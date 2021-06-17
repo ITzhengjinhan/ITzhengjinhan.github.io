@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="对象数组根据对象属性删除里面的对象, 全栈攻城狮">
+    <meta name="keywords" content="对象数组常用的操作, 全栈攻城狮">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>对象数组根据对象属性删除里面的对象 | 全栈攻城狮</title>
+    <title>对象数组常用的操作 | 全栈攻城狮</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">对象数组根据对象属性删除里面的对象</h1>
+                    <h1 class="description center-align post-title">对象数组常用的操作</h1>
                 </div>
             </div>
         </div>
@@ -530,7 +530,33 @@ let t = data.map(item =&gt; &#123;
             endTime1: item.endTime
           &#125;
         &#125;)
-        console.log(t) </code></pre>
+        console.log(t) </code></pre><h3 id="对象数组去重"><a href="#对象数组去重" class="headerlink" title="对象数组去重"></a>对象数组去重</h3><pre><code>方法一：使用对象的hasOwnProperty属性
+function uniqueObject(arr)&#123;
+    let obj=&#123;&#125;;
+    arr.forEach((item,index)=&gt;&#123;
+        // 若重复则删除该项
+        if(obj.hasOwnProperty(item.id))&#123;
+            arr.splice(index,1);
+        // 不重复则存入obj
+        &#125;else&#123;
+            obj[item.id]=item.name;
+        &#125;
+    &#125;);
+    return arr;
+&#125;
+方法二：reduce
+function deRepeat(arr)&#123;
+    let obj=&#123;&#125;;
+    let res=arr.reduce(function(pre,cur,index,arr)&#123;
+        // 当前项还没出现过，至今未发现重复项
+        if(!obj.hasOwnProperty(cur.id))&#123;
+            obj[cur.id]=cur.name;
+            pre.push(cur)
+        &#125;
+        return pre;
+    &#125;,[])
+    return arr;
+&#125;</code></pre>
             </div>
             <hr/>
 

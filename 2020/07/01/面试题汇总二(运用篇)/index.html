@@ -718,8 +718,52 @@ var b=&#123;...arr&#125;//&#123;0: &quot;123&quot;, 1: &quot;456&quot;, 2: &quot
 对象转数组：
 Object.keys(&#123; name: &#39;张三&#39;, age: 14 &#125;)//[&quot;name&quot;, &quot;age&quot;] 
 Object.values(&#123;name: &#39;张三&#39;, age: 14 &#125;)// [&quot;张三&quot;, 14] 
-Object.entries(&#123; name: &#39;张三&#39;, age:14 &#125;) // (2) [Array(2), Array(2)]0: (2)[&quot;name&quot;, &quot;张三&quot;]1: (2)[&quot;age&quot;, 14]</code></pre><h3 id="14、数组去重"><a href="#14、数组去重" class="headerlink" title="14、数组去重"></a>14、数组去重</h3><pre><code>function unique (arr) &#123;
+Object.entries(&#123; name: &#39;张三&#39;, age:14 &#125;) // (2) [Array(2), Array(2)]0: (2)[&quot;name&quot;, &quot;张三&quot;]1: (2)[&quot;age&quot;, 14]</code></pre><h3 id="14、数组去重"><a href="#14、数组去重" class="headerlink" title="14、数组去重"></a>14、数组去重</h3><pre><code>//基本数据类型数组去重：
+方法一：ES6的Set
+function unique (arr) &#123;
  return Array.from(new Set(arr))
+&#125;
+方法二：jquery 提供了去重方法 unique()
+function setArray(arr)&#123;
+    return $.unique(arr); //jquery 形式。
+&#125;
+方法三：indexOf()
+function unique(arr)&#123;
+    var newArr=new Array();
+    for(var i=0;i&lt;arr.length;i++)&#123;
+        if(newArr.indexOf(arr[i])&lt;0)&#123; //判断数组中，是否拥有该值。 不在的话，放入到新的数组中。
+            newArr.push(arr[i]);
+        &#125;
+    &#125;
+    return newArr;
+&#125;
+//对象数组去重：
+方法一：使用对象的hasOwnProperty属性
+function uniqueObject(arr)&#123;
+    let obj=&#123;&#125;;
+    arr.forEach((item,index)=&gt;&#123;
+        // 若重复则删除该项
+        if(obj.hasOwnProperty(item.id))&#123;
+            arr.splice(index,1);
+        // 不重复则存入obj
+        &#125;else&#123;
+            obj[item.id]=item.name;
+        &#125;
+    &#125;);
+    return arr;
+&#125;
+方法二：reduce
+function deRepeat(arr)&#123;
+    let obj=&#123;&#125;;
+    let res=arr.reduce(function(pre,cur,index,arr)&#123;
+        // 当前项还没出现过，至今未发现重复项
+        if(!obj.hasOwnProperty(cur.id))&#123;
+            obj[cur.id]=cur.name;
+            pre.push(cur)
+        &#125;
+        return pre;
+    &#125;,[])
+    return arr;
 &#125;</code></pre><h3 id="15、简易运算符"><a href="#15、简易运算符" class="headerlink" title="15、简易运算符"></a>15、简易运算符</h3><pre><code>三点运算符 x==1?true:false;
 逻辑运算符 x&amp;&amp;true||false;
 通过逻辑运算符可以初始化变量:
