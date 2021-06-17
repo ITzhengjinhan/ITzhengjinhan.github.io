@@ -492,40 +492,56 @@
 1.引入less：&lt;link rel=&quot;stylesheet/less&quot; type=&quot;text/css&quot; href=&quot;./less/apply.less&quot; /&gt; 
 2：引入cdn：&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/less.js/3.11.1/less.min.js&quot; &gt;&lt;/script&gt; 
 3：编写less文件，完成后在控制台输入 lessc index.less ../css/index.css即可转为css</code></pre><h3 id="Scss-与Less类似，但Sass的安装需要Ruby环境，是在服务端处理的，而Less是需要引入less-js来处理Less代码输出css到浏览器，也可以在开发环节使用Less，然后编译成css文件，直接放到项目中"><a href="#Scss-与Less类似，但Sass的安装需要Ruby环境，是在服务端处理的，而Less是需要引入less-js来处理Less代码输出css到浏览器，也可以在开发环节使用Less，然后编译成css文件，直接放到项目中" class="headerlink" title="Scss:与Less类似，但Sass的安装需要Ruby环境，是在服务端处理的，而Less是需要引入less.js来处理Less代码输出css到浏览器，也可以在开发环节使用Less，然后编译成css文件，直接放到项目中"></a>Scss:与Less类似，但Sass的安装需要Ruby环境，是在服务端处理的，而Less是需要引入less.js来处理Less代码输出css到浏览器，也可以在开发环节使用Less，然后编译成css文件，直接放到项目中</h3><h3 id="安装：npm-install-g-sass"><a href="#安装：npm-install-g-sass" class="headerlink" title="安装：npm install -g sass"></a>安装：npm install -g sass</h3><h3 id="语法区别"><a href="#语法区别" class="headerlink" title="语法区别"></a>语法区别</h3><ol>
-<li>变量符不一样，Less是@，而Scss是$，而且变量的作用域也不一样。<pre><code>Less-作用域
+<li>变量符不一样，Less是@，而Scss是$，而且变量的作用域也不一样。</li>
+</ol>
+<pre><code>Less-作用域
 @color: #00c; /* 蓝色 */
 #header &#123;
-@color: #c00; /* 红色 */
-border: 1px solid @color; /* 红色边框 */
+  @color: #c00; /* 红色 */
+  border: 1px solid @color; /* 红色边框 */
 &#125;
 #footer &#123;
-border: 1px solid @color; /* 蓝色边框 */
+  border: 1px solid @color; /* 蓝色边框 */
 &#125;
-</code></pre></li>
+Less-作用域编译后
+#header&#123;border:1px solid #cc0000;&#125;
+#footer&#123;border:1px solid #0000cc;&#125;
+scss-作用域
+$color: #00c; /* 蓝色 */
+#header &#123;
+  $color: #c00; /* 红色 */
+  border: 1px solid $color; /* 红色边框 */
+&#125;
+#footer &#123;
+  border: 1px solid $color; /* 蓝色边框 */
+&#125;
+Sass-作用域编译后
+#header&#123;border:1px solid #c00&#125;
+#footer&#123;border:1px solid #c00&#125;
+我们可以看出来，less和scss中的变量会随着作用域的变化而不一样。</code></pre><ol start="2">
+<li>输出设置，Less没有输出设置，Scss提供4中输出选项：nested, compact, compressed 和 expanded。</li>
 </ol>
-<p>Less-作用域编译后<br>#header{border:1px solid #cc0000;}<br>#footer{border:1px solid #0000cc;}</p>
-<p>scss-作用域<br>$color: #00c; /* 蓝色 <em>/<br>#header {<br>  $color: #c00; /</em> 红色 <em>/<br>  border: 1px solid $color; /</em> 红色边框 <em>/<br>}<br>#footer {<br>  border: 1px solid $color; /</em> 蓝色边框 */<br>}</p>
-<p>Sass-作用域编译后<br>#header{border:1px solid #c00}<br>#footer{border:1px solid #c00}</p>
-<p>我们可以看出来，less和scss中的变量会随着作用域的变化而不一样。</p>
-<pre><code>2. 输出设置，Less没有输出设置，Scss提供4中输出选项：nested, compact, compressed 和 expanded。</code></pre><p>输出样式的风格可以有四种选择，默认为nested<br>nested：嵌套缩进的css代码<br>expanded：展开的多行css代码<br>compact：简洁格式的css代码<br>compressed：压缩后的css代码</p>
-<pre><code>&lt;img src=&quot;https://s1.ax1x.com/2020/09/15/wc9cOx.png&quot; style=&quot;width:700px;height:300px&quot;/&gt;
-&lt;img src=&quot;https://s1.ax1x.com/2020/09/15/wc92m6.png&quot; style=&quot;width:700px;height:300px&quot;/&gt;
-&lt;img src=&quot;https://s1.ax1x.com/2020/09/15/wc94te.png&quot; style=&quot;width:700px;height:300px&quot;/&gt;
-&lt;img src=&quot;https://s1.ax1x.com/2020/09/15/wc9T1A.png&quot; style=&quot;width:700px;height:300px&quot;/&gt;
+<pre><code>输出样式的风格可以有四种选择，默认为nested
+nested：嵌套缩进的css代码
+expanded：展开的多行css代码
+compact：简洁格式的css代码
+compressed：压缩后的css代码</code></pre><img src="https://s1.ax1x.com/2020/09/15/wc9cOx.png" style="width:700px;height:300px"/>
+<img src="https://s1.ax1x.com/2020/09/15/wc92m6.png" style="width:700px;height:300px"/>
+<img src="https://s1.ax1x.com/2020/09/15/wc94te.png" style="width:700px;height:300px"/>
+<img src="https://s1.ax1x.com/2020/09/15/wc9T1A.png" style="width:700px;height:300px"/>
 
-3. Scss支持条件语句，可以使用if&#123;&#125;else&#123;&#125;,for&#123;&#125;循环等等。而Less不支持。</code></pre><p>@if lightness($color) &gt; 30% {</p>
-<p>} @else {</p>
-<p>}</p>
-<p>@for $i from 1 to 10 {<br>  .border-#{$i} {<br>    border: #{$i}px solid blue;<br>  }<br>}</p>
-<pre><code>
-### 使用方法
-转为css后引入：将scss文件编译成css置放于项目中，可使用命令sass index.scss ../css/index.css   
+<ol start="3">
+<li>Scss支持条件语句，可以使用if{}else{},for{}循环等等。而Less不支持。</li>
+</ol>
+<pre><code>@if lightness($color) &gt; 30% &#123;
+&#125; @else &#123;
+&#125;
+@for $i from 1 to 10 &#123;
+  .border-#&#123;$i&#125; &#123;
+    border: #&#123;$i&#125;px solid blue;
+  &#125;
+&#125;</code></pre><h3 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h3><p>转为css后引入：将scss文件编译成css置放于项目中，可使用命令sass index.scss ../css/index.css   </p>
 
-
-
-
-
-</code></pre>
             </div>
             <hr/>
 
