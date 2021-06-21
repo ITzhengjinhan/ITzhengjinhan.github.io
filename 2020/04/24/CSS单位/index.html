@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="uniapp开发景区微信小程序用到的方法, 全栈攻城狮">
+    <meta name="keywords" content="总结css单位中的单位符号（包含移动端）, 全栈攻城狮">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>uniapp开发景区微信小程序用到的方法 | 全栈攻城狮</title>
+    <title>总结css单位中的单位符号（包含移动端） | 全栈攻城狮</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">uniapp开发景区微信小程序用到的方法</h1>
+                    <h1 class="description center-align post-title">总结css单位中的单位符号（包含移动端）</h1>
                 </div>
             </div>
         </div>
@@ -460,9 +460,41 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="项目仓库：https-github-com-ITzhengjinhan-Travel-tour-project"><a href="#项目仓库：https-github-com-ITzhengjinhan-Travel-tour-project" class="headerlink" title="项目仓库：https://github.com/ITzhengjinhan/Travel-tour-project"></a>项目仓库：<a target="_blank" rel="noopener" href="https://github.com/ITzhengjinhan/Travel-tour-project">https://github.com/ITzhengjinhan/Travel-tour-project</a></h1><h2 id="1、短信验证"><a href="#1、短信验证" class="headerlink" title="1、短信验证"></a>1、短信验证</h2><p>1.1 先下载微信小程序的sdk：<br> <a target="_blank" rel="noopener" href="http://smsow.zhenzikj.com/doc/sdk.html">http://smsow.zhenzikj.com/doc/sdk.html</a><br>1.2 注册账号和密码，替换属于自己的appId和appSecret，注意产品上线要添加request域名请求，参考文档：<br><a target="_blank" rel="noopener" href="http://smsow.zhenzikj.com/doc/weixinmp_code_sdk_doc.html">http://smsow.zhenzikj.com/doc/weixinmp_code_sdk_doc.html</a></p>
-<h2 id="2、百度语音解说（文字转语音）"><a href="#2、百度语音解说（文字转语音）" class="headerlink" title="2、百度语音解说（文字转语音）"></a>2、百度语音解说（文字转语音）</h2><p>转载于：<br> <a target="_blank" rel="noopener" href="https://ext.dcloud.net.cn/plugin?id=182">https://ext.dcloud.net.cn/plugin?id=182</a><br>帮助事项：<br>1.1 要先注册百度云，创建应用，获取自己的key和secret key，注册链接如下：<br><a target="_blank" rel="noopener" href="https://console.bce.baidu.com/ai/?fromai=1#/ai/speech/app/list">https://console.bce.baidu.com/ai/?fromai=1#/ai/speech/app/list</a><br>1.2 微信小程序上线后要添加request域名请求：<a target="_blank" rel="noopener" href="https://openapi.baidu.com">https://openapi.baidu.com</a><br>1.3 如果需要demo案例，可参考<br><a target="_blank" rel="noopener" href="http://www.manongjc.com/detail/12-cszxzlihgwmhlvq.html">http://www.manongjc.com/detail/12-cszxzlihgwmhlvq.html</a></p>
-<h2 id="3、第三方地图导览"><a href="#3、第三方地图导览" class="headerlink" title="3、第三方地图导览"></a>3、第三方地图导览</h2><p>转载于：<br> <a target="_blank" rel="noopener" href="https://ext.dcloud.net.cn/plugin?id=1108">https://ext.dcloud.net.cn/plugin?id=1108</a></p>
+                <h2 id="1-先介绍css单位中px和em-rem的区别"><a href="#1-先介绍css单位中px和em-rem的区别" class="headerlink" title="1.先介绍css单位中px和em,rem的区别"></a>1.先介绍css单位中px和em,rem的区别</h2><h3 id="em（相对长度单位）"><a href="#em（相对长度单位）" class="headerlink" title="em（相对长度单位）"></a>em（相对长度单位）</h3><ol>
+<li><p>em的值并不是固定的</p>
+</li>
+<li><p>em会继承父级元素的字体大小（参考物是父元素的font-size）,浏览器的默认字体都是16px，那么1em=16px，以此类推计算12px=0.75em，10px=0.625em，2em=32px；</p>
+</li>
+<li><p>为了简化font-size的换算，我们在body中写入一下代码body {font-size: 62.5%;  } /*  公式16px*62.5%=10px  */  这样页面中1em=10px,1.2em=12px,1.4em=14px,1.6em=16px，使得视觉、使用、书写都得到了极大的帮助</p>
+</li>
+<li><p>em中所有的字体都是相对于父元素的大小决定的；所以如果一个设置了font-size:1.2em的元素在另一个设置了font-size:1.2em的元素里，而这个元素又在另一个设置了font-size:1.2em的元素里，那么最后计算的结果是1.2X1.2X1.2=1.728em</p>
+</li>
+</ol>
+<pre><code>&lt;div class=&quot;big&quot;&gt;
+    我是大字体
+   &lt;div class=&quot;small&quot;&gt;我是小字体&lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
+     body &#123;font-size: 62.5%; &#125; /*  公式:16px*62.5%=10px  */ 
+    .big&#123;font-size: 1.2em&#125;     /* 12px     */
+    .small&#123;font-size: 1.2em&#125;   /* 14.4px   */
+&lt;/style&gt;
+但运行结果small的字体大小为：1.2em*1.2em=1.44em,这里font-size:1em=10px;等价于14.4px</code></pre><h3 id="rem（相对长度单位）"><a href="#rem（相对长度单位）" class="headerlink" title="rem（相对长度单位）"></a>rem（相对长度单位）</h3><ol>
+<li><p>rem单位可谓集相对大小和绝对大小的优点于一身,和em不同的是rem总是相对于根元素(如:root{})，而不像em一样使用级联的方式来计算尺寸。这种相对单位使用起来更简单。</p>
+</li>
+<li><p>rem支持IE9及以上，意思是相对于根元素html（网页），不会像em那样，依赖于父元素的字体大小，而造成混乱。使用起来安全了很多。</p>
+</li>
+<li><p>值得注意的浏览器支持问题： IE8，Safari 4或 iOS 3.2中不支持rem单位。</p>
+</li>
+</ol>
+<pre><code>&lt;div class=&quot;big&quot;&gt;
+    我是14px=1.4rem&lt;div class=&quot;small&quot;&gt;我是12px=1.2rem&lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
+    html &#123;font-size: 10px;  &#125; /*  公式16px*62.5%=10px  */  
+    .big&#123;font-size: 1.4rem&#125;   /*  等价于14px  */
+    .small&#123;font-size: 1.2rem&#125; /*  等价于12px  */
+&lt;/style&gt;</code></pre><h2 id="2、小程序中使用rpx单位-布局适配方案（rpx、px、vw、vh）"><a href="#2、小程序中使用rpx单位-布局适配方案（rpx、px、vw、vh）" class="headerlink" title="2、小程序中使用rpx单位,布局适配方案（rpx、px、vw、vh）"></a>2、小程序中使用rpx单位,布局适配方案（rpx、px、vw、vh）</h2><h3 id="rpx-是微信小程序中css的尺寸单位，rpx可以根据屏幕宽度进行自适应。"><a href="#rpx-是微信小程序中css的尺寸单位，rpx可以根据屏幕宽度进行自适应。" class="headerlink" title="rpx:是微信小程序中css的尺寸单位，rpx可以根据屏幕宽度进行自适应。"></a>rpx:是微信小程序中css的尺寸单位，rpx可以根据屏幕宽度进行自适应。</h3><h3 id="vw、vh适配-根据整个屏幕宽高定义，vw表示width，vh表示height"><a href="#vw、vh适配-根据整个屏幕宽高定义，vw表示width，vh表示height" class="headerlink" title="vw、vh适配,根据整个屏幕宽高定义，vw表示width，vh表示height"></a>vw、vh适配,根据整个屏幕宽高定义，vw表示width，vh表示height</h3><p>vw和vh是css3中的新单位，是一种视窗单位，在小程序中也同样适用。<br>小程序中，窗口宽度固定为100vw，将窗口宽度平均分成100份，1份是1vw<br>小程序中，窗口高度固定为100vh ，将窗口高度平均分成100份，1份是1vh</p>
 
             </div>
             <hr/>
@@ -488,7 +520,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2020/04/24/uniapp%E5%BC%80%E5%8F%91%E6%99%AF%E5%8C%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8A%9F%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/">http://itzhengjinhan.github.io/2020/04/24/uniapp%E5%BC%80%E5%8F%91%E6%99%AF%E5%8C%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8A%9F%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/</a>
+                    <a href="http://itzhengjinhan.github.io/2020/04/24/CSS%E5%8D%95%E4%BD%8D/">http://itzhengjinhan.github.io/2020/04/24/CSS%E5%8D%95%E4%BD%8D/</a>
                 </span>
             </div>
             <div class="reprint__notice">
