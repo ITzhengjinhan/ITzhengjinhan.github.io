@@ -494,15 +494,21 @@
 
 <p>eventBus，就是创建一个事件中心，相当于中转站，可以用它来传递事件和接收事件。项目比较小时，用这个比较合适。（不少人推荐直接用VUEX）</p>
 
+<p><b>3.隔代组件通信传值</b><p>
+
+<p>provide / inject :祖先组件中通过 provide 来提供变量，然后在子孙组件中通过 inject 来注入变量。provide / inject API 主要解决了跨级组件间的通信问题，不过它的使用场景，主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。</p>
+
+
 <h3 id="6、如何让CSS只在当前组件中起作用？"><a href="#6、如何让CSS只在当前组件中起作用？" class="headerlink" title="6、如何让CSS只在当前组件中起作用？"></a>6、如何让CSS只在当前组件中起作用？</h3><p>在组件中的style前面加上scoped</p>
-<h3 id="7、的作用是什么"><a href="#7、的作用是什么" class="headerlink" title="7、的作用是什么?"></a>7、<keep-alive></keep-alive>的作用是什么?</h3><p>keep-alive 是 Vue 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。</p>
+<h3 id="7、的作用是什么"><a href="#7、的作用是什么" class="headerlink" title="7、的作用是什么?"></a>7、<keep-alive>的作用是什么?</h3><p>keep-alive 是 Vue 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。</p>
 <h3 id="8、-route和-router的区别"><a href="#8、-route和-router的区别" class="headerlink" title="8、$route和$router的区别"></a>8、$route和$router的区别</h3><p>$route是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。而$router是“路由实例”对象包括了路由的跳转方法，钩子函数等。</p>
 <h3 id="9、说出几种vue当中的指令和它的用法？"><a href="#9、说出几种vue当中的指令和它的用法？" class="headerlink" title="9、说出几种vue当中的指令和它的用法？"></a>9、说出几种vue当中的指令和它的用法？</h3><p>v-model:双向数据绑定；</p>
 <p>v-for:循环；</p>
 <p>v-if和v-show:显示与隐藏；</p>
 <p>v-on:事件绑定；</p>
 <p>v-once: 只绑定一次</p>
-<h3 id="10、computed和watch有什么区别"><a href="#10、computed和watch有什么区别" class="headerlink" title="10、computed和watch有什么区别"></a>10、computed和watch有什么区别</h3><p>computed是计算属性，也就是计算值，它更多用于计算值的场景；<br>computed具有缓存性，computed的值在getter执行后是会缓存的，只有在它依赖的属性值改变之后，下一次获取computed的值时重新调用对应的getter来计算<br>watch更多的是[观察]的作用，类似于某些数据的监听回调，用于观察props $emit或者本组件的值，当数据变化时来执行回调进行后续操作；<br>watch无缓存性，页面重新渲染时值不变化也会执行<br>总结：<br>当我们要进行数值计算，而且依赖于其他数据，那么把这个数据设计为computed<br>如果你需要在某个数据变化时做一些事情，使用watch来观察这个数据变化。</p>
+<h3 id="vue-loader是什么？使用它的用途有哪些？"><a href="#vue-loader是什么？使用它的用途有哪些？" class="headerlink" title="vue-loader是什么？使用它的用途有哪些？"></a>vue-loader是什么？使用它的用途有哪些？</h3><p>vue文件的一个加载器，将template/js/style转换成js模块。<br>用途：js可以写es6、style样式可以scss或less、template可以加jade等</p>
+<h3 id="10、computed和watch有什么区别"><a href="#10、computed和watch有什么区别" class="headerlink" title="10、computed和watch有什么区别"></a>10、computed和watch有什么区别</h3><p>computed是计算属性，也就是计算值，它更多用于计算值的场景；<br>computed具有缓存性，computed的值在getter执行后是会缓存的，只有在它依赖的属性值改变之后，下一次获取computed的值时重新调用对应的getter来计算<br>当一个属性受多个属性影响的时候就需要用到computed,最典型的例子： 购物车商品结算的时候<br><br/><br>watch更多的是[观察]的作用，类似于某些数据的监听回调，用于观察props $emit或者本组件的值，当数据变化时来执行回调进行后续操作；<br>watch无缓存性，页面重新渲染时值不变化也会执行<br>当一条数据影响多条数据的时候就需要用watch,经典例子：搜索数据<br><br/><br>总结：<br>当我们要进行数值计算，而且依赖于其他数据，那么把这个数据设计为computed<br>如果你需要在某个数据变化时做一些事情，使用watch来观察这个数据变化。</p>
 <h3 id="11、vue路由的钩子函数"><a href="#11、vue路由的钩子函数" class="headerlink" title="11、vue路由的钩子函数"></a>11、vue路由的钩子函数</h3><p>首页可以控制导航跳转，beforeEach，afterEach等，一般用于页面title的修改。一些需要登录才能调整页面的重定向功能。</p>
 <p>beforeEach主要有3个参数to，from，next：</p>
 <p>to：route即将进入的目标路由对象，</p>
@@ -536,7 +542,8 @@ var app = new Vue(&#123;
         console.log(text)
     &#125;)</code></pre><h3 id="14、vue初始化页面闪动问题如何解决"><a href="#14、vue初始化页面闪动问题如何解决" class="headerlink" title="14、vue初始化页面闪动问题如何解决"></a>14、vue初始化页面闪动问题如何解决</h3><p>出现该问题主要因为在vue代码尚未被解析之前，尚不能控制页面中的DOM的显示，所以会看见模板字符串等代码,闪动后出现解析后的值。<br>解决方案，使用v-cloak</p>
 <pre><code>    [v-cloak]&#123;display:none;&#125;
-    &lt;div v-cloak&gt;&#123;&#123;message&#125;&#125;&lt;/div&gt;</code></pre><h3 id="15、vuex是什么？怎么使用？哪种功能场景使用它？"><a href="#15、vuex是什么？怎么使用？哪种功能场景使用它？" class="headerlink" title="15、vuex是什么？怎么使用？哪种功能场景使用它？"></a>15、vuex是什么？怎么使用？哪种功能场景使用它？</h3><p>只用来读取的状态集中放在store中； 改变状态的方式是提交mutations，这是个同步的事物； 异步逻辑应该封装在action中。</p>
+    &lt;div v-cloak&gt;&#123;&#123;message&#125;&#125;&lt;/div&gt;</code></pre><h3 id="vue首屏白屏如何解决？"><a href="#vue首屏白屏如何解决？" class="headerlink" title="vue首屏白屏如何解决？"></a>vue首屏白屏如何解决？</h3><p>1）路由懒加载<br>2）vue-cli开启打包压缩 和后端配合 gzip访问<br>3）进行cdn加速<br>4）开启vue服务渲染模式<br>5）用webpack的externals属性把不需要打包的库文件分离出去，减少打包后文件的大小<br>6）添加loading效果，给用户一种进度感受</p>
+<h3 id="15、vuex是什么？怎么使用？哪种功能场景使用它？"><a href="#15、vuex是什么？怎么使用？哪种功能场景使用它？" class="headerlink" title="15、vuex是什么？怎么使用？哪种功能场景使用它？"></a>15、vuex是什么？怎么使用？哪种功能场景使用它？</h3><p>只用来读取的状态集中放在store中； 改变状态的方式是提交mutations，这是个同步的事物； 异步逻辑应该封装在action中。</p>
 <p>在main.js引入store，注入。新建了一个目录store，….. export 。</p>
 <p>场景有：单页应用中，组件之间的状态、音乐播放、登录状态、加入购物车</p>
 <p><b>state</b></p>
@@ -579,8 +586,18 @@ const store = new Vuex.Store(&#123;
   modules: &#123;
     a: moduleA,
     b: moduleB
-&#125;)</code></pre><h3 id="16、class动态绑定值拼接字符串"><a href="#16、class动态绑定值拼接字符串" class="headerlink" title="16、class动态绑定值拼接字符串"></a>16、class动态绑定值拼接字符串</h3><pre><code>:class=&quot;`字符串$&#123;index&#125;`&quot;
-//不仅如此，style或者ref、自定义属性等绑定变量拼接字符串皆可。</code></pre><h3 id="17、vue如何获取dom对象的信息"><a href="#17、vue如何获取dom对象的信息" class="headerlink" title="17、vue如何获取dom对象的信息"></a>17、vue如何获取dom对象的信息</h3><p>方法一：ref方法</p>
+&#125;)</code></pre><h3 id="16、vue单页面和传统的多页面区别？"><a href="#16、vue单页面和传统的多页面区别？" class="headerlink" title="16、vue单页面和传统的多页面区别？"></a>16、vue单页面和传统的多页面区别？</h3><p>单页面应用（SPA）：通俗一点说就是指只有一个主页面的应用，浏览器一开始要加载所有必须的 html, js, css。所有的页面内容都包含在这个所谓的主页面中。然后在交互的时候由路由程序动态载入，单页面的页面跳转，仅刷新局部资源。多应用于pc端。<br>缺点：<br>初次加载耗时多，SEO （搜索引擎优化）难度较大，前进后退路由不好管理</p>
+<p>多页面（MPA）：指一个应用中有多个页面，页面跳转时是整页刷新</p>
+<h3 id="17、Vue-的父组件和子组件生命周期钩子函数执行顺序？"><a href="#17、Vue-的父组件和子组件生命周期钩子函数执行顺序？" class="headerlink" title="17、Vue 的父组件和子组件生命周期钩子函数执行顺序？"></a>17、Vue 的父组件和子组件生命周期钩子函数执行顺序？</h3><p>Vue 的父组件和子组件生命周期钩子函数执行顺序可以归类为以下 4 部分：</p>
+<p>加载渲染过程：<br>父 beforeCreate -&gt; 父 created -&gt; 父 beforeMount -&gt; 子 beforeCreate -&gt; 子 created -&gt; 子 beforeMount -&gt; 子 mounted -&gt; 父 mounted</p>
+<p>子组件更新过程：<br>父 beforeUpdate -&gt; 子 beforeUpdate -&gt; 子 updated -&gt; 父 updated</p>
+<p>父组件更新过程：<br>父 beforeUpdate -&gt; 父 updated</p>
+<p>销毁过程：<br>父 beforeDestroy -&gt; 子 beforeDestroy -&gt; 子 destroyed -&gt; 父 destroyed</p>
+<h3 id="18、vue3-0-用过吗-了解多少"><a href="#18、vue3-0-用过吗-了解多少" class="headerlink" title="18、vue3.0 用过吗 了解多少"></a>18、vue3.0 用过吗 了解多少</h3><pre><code>1.响应式原理的改变 Vue3.x 使用 Proxy 取代 Vue2.x 版本的 Object.defineProperty,从而实时监听数组，对象变化，缺点，ie兼容性问题
+2.组件选项声明方式 Vue3.x 使用 Composition API 替换vue 2.x的option API</code></pre><h3 id="19、vue-router-路由钩子函数是什么-执行顺序是什么"><a href="#19、vue-router-路由钩子函数是什么-执行顺序是什么" class="headerlink" title="19、vue-router 路由钩子函数是什么 执行顺序是什么"></a>19、vue-router 路由钩子函数是什么 执行顺序是什么</h3><pre><code>路由钩子的执行流程, 钩子函数种类有:全局守卫、路由守卫、组件守卫</code></pre><h3 id="20、vue首屏白屏如何解决？"><a href="#20、vue首屏白屏如何解决？" class="headerlink" title="20、vue首屏白屏如何解决？"></a>20、vue首屏白屏如何解决？</h3><p>1）路由懒加载<br>2）vue-cli开启打包压缩 和后台配合 gzip访问<br>3）进行cdn加速<br>4）开启vue服务渲染模式<br>5）用webpack的externals属性把不需要打包的库文件分离出去，减少打包后文件的大小<br>6）在生产环境中删除掉不必要的console.log</p>
+<h3 id="21、v-if和v-for同时使用在同一个标签上的表现？"><a href="#21、v-if和v-for同时使用在同一个标签上的表现？" class="headerlink" title="21、v-if和v-for同时使用在同一个标签上的表现？"></a>21、v-if和v-for同时使用在同一个标签上的表现？</h3><p>当v-if与v-for一起使用时，v-for具有比v-if更高的优先级，这意味着v-if将分别重复运行于每个v-for循环中。<br>所以，不推荐v-if和v-for同时使用。如果v-if和v-for一起用的话，vue中的的会自动提示开发者将v-if应该放到外层去</p>
+<h3 id="class动态绑定值拼接字符串"><a href="#class动态绑定值拼接字符串" class="headerlink" title="class动态绑定值拼接字符串"></a>class动态绑定值拼接字符串</h3><pre><code>:class=&quot;`字符串$&#123;index&#125;`&quot;
+//不仅如此，style或者ref、自定义属性等绑定变量拼接字符串皆可。</code></pre><h3 id="vue如何获取dom对象的信息"><a href="#vue如何获取dom对象的信息" class="headerlink" title="vue如何获取dom对象的信息"></a>vue如何获取dom对象的信息</h3><p>方法一：ref方法</p>
 <ol>
 <li><p>首先有一个元素</p>
 <pre><code>&lt;div class=&quot;parent&quot;&gt;
@@ -615,10 +632,7 @@ clickfun(e) &#123;
     # 获得点击元素的前一个元素的第一个子元素的HTML值
     e.currentTarget.previousElementSibling.firstElementChild.innerHTML
     &#125;
-        &#125;,</code></pre><h3 id="18、vue3-0-用过吗-了解多少"><a href="#18、vue3-0-用过吗-了解多少" class="headerlink" title="18、vue3.0 用过吗 了解多少"></a>18、vue3.0 用过吗 了解多少</h3><pre><code>1.响应式原理的改变 Vue3.x 使用 Proxy 取代 Vue2.x 版本的 Object.defineProperty,从而实时监听数组，对象变化，缺点，ie兼容性问题
-2.组件选项声明方式 Vue3.x 使用 Composition API 替换vue 2.x的option API</code></pre><h3 id="19、vue-router-路由钩子函数是什么-执行顺序是什么"><a href="#19、vue-router-路由钩子函数是什么-执行顺序是什么" class="headerlink" title="19、vue-router 路由钩子函数是什么 执行顺序是什么"></a>19、vue-router 路由钩子函数是什么 执行顺序是什么</h3><pre><code>路由钩子的执行流程, 钩子函数种类有:全局守卫、路由守卫、组件守卫</code></pre><h3 id="20、vue首屏白屏如何解决？"><a href="#20、vue首屏白屏如何解决？" class="headerlink" title="20、vue首屏白屏如何解决？"></a>20、vue首屏白屏如何解决？</h3><p>1）路由懒加载<br>2）vue-cli开启打包压缩 和后台配合 gzip访问<br>3）进行cdn加速<br>4）开启vue服务渲染模式<br>5）用webpack的externals属性把不需要打包的库文件分离出去，减少打包后文件的大小<br>6）在生产环境中删除掉不必要的console.log</p>
-<h3 id="21、route和router的区别？"><a href="#21、route和router的区别？" class="headerlink" title="21、route和router的区别？"></a>21、route和router的区别？</h3><p>$router是VueRouter的一个对象，通过Vue.use(VueRouter)和VueRouter构造函数得到一个router的实例对象，这个对象中是一个全局的对象，他包含了所有的路由包含了许多关键的对象和属性<br>$route对象表示当前的路由信息，包含了当前URL解析得到的信息。包含当前的路径、参数、query对象等。</p>
-
+        &#125;,</code></pre>
             </div>
             <hr/>
 
