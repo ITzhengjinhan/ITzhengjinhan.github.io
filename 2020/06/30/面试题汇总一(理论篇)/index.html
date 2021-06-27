@@ -544,7 +544,7 @@ obj.fun.apply(db,[&#39;成都&#39;,&#39;上海&#39;]);      // 德玛年龄99来
 obj.fun.bind(db,&#39;成都&#39;,&#39;上海&#39;)();       // 德玛年龄99来自成都去往上海
 obj.fun.bind(db,[&#39;成都&#39;,&#39;上海&#39;])();　　 // 德玛年龄99来自成都, 上海去往 undefined</code></pre><h3 id="6、简单说下传统的布局"><a href="#6、简单说下传统的布局" class="headerlink" title="6、简单说下传统的布局"></a>6、简单说下传统的布局</h3><p>三列布局(圣杯布局、双飞翼布局)<br>可参考：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/mutouafangzi/article/details/89431542">三列布局</a></p>
 <h3 id="7、for-in和for-of的区别"><a href="#7、for-in和for-of的区别" class="headerlink" title="7、for in和for of的区别"></a>7、for in和for of的区别</h3><p>for of遍历的是键值value，for in遍历的是键名key或数组下标</p>
-<h3 id="8、宏队列和微队列"><a href="#8、宏队列和微队列" class="headerlink" title="8、宏队列和微队列"></a>8、宏队列和微队列</h3><p>熟记一些常见的就好，比方说setTimeout里是微队列，promise的then回调是宏队列，程序执行时先执行同步，再宏队列，最后是微队列</p>
+<h3 id="8、宏队列和微队列"><a href="#8、宏队列和微队列" class="headerlink" title="8、宏队列和微队列"></a>8、宏队列和微队列</h3><p>熟记一些常见的就好，比方说setTimeout里是宏队列，promise的then回调是微队列，程序执行时先执行同步，再微队列，最后是宏队列</p>
 <h3 id="9、浏览器兼容问题的解决方案，这里列举一些好用的途径"><a href="#9、浏览器兼容问题的解决方案，这里列举一些好用的途径" class="headerlink" title="9、浏览器兼容问题的解决方案，这里列举一些好用的途径"></a>9、浏览器兼容问题的解决方案，这里列举一些好用的途径</h3><ol>
 <li>CSS出现的问题：Hack的使用（即不同浏览器可识别的css属性专属代码）</li>
 <li>js中代码报错问题：可通过navigator.userAgent获取用户浏览器信息，再根据不同浏览器写不同可识别的方法</li>
@@ -608,6 +608,8 @@ son继承了parent的原型中的函数属性getName。</code></pre><p>2.原型�
 <li>加快请求速度（DNS预解析，vue中路由懒加载，CDN分发等）</li>
 <li>渲染速度（CSS放头部，js放尾部）</li>
 </ol>
+<img src="https://pic.imgdb.cn/item/60d881b45132923bf8fa84cd.jpg">
+
 <h3 id="18、get与post请求的区别"><a href="#18、get与post请求的区别" class="headerlink" title="18、get与post请求的区别"></a>18、get与post请求的区别</h3><ol>
 <li>get产生一个TCP数据包，post产生两个TCP数据包</li>
 <li>对于get请求，浏览器会把http header 和data一并发送过去，服务器响应200返回数据<br>而对于post，浏览器先发header，服务器响应100，浏览器再发送data，服务器响应200返回数据<br>进行说明post安全性比get高</li>
