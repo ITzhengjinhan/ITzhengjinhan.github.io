@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="在vue-cli项目中使用iview, 全栈攻城狮">
+    <meta name="keywords" content="在vue-cli项目中使用elementUI、iviewUI、vantUI, 全栈攻城狮">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>在vue-cli项目中使用iview | 全栈攻城狮</title>
+    <title>在vue-cli项目中使用elementUI、iviewUI、vantUI | 全栈攻城狮</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">在vue-cli项目中使用iview</h1>
+                    <h1 class="description center-align post-title">在vue-cli项目中使用elementUI、iviewUI、vantUI</h1>
                 </div>
             </div>
         </div>
@@ -460,8 +460,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>介绍：<br>iView 是一套基于 Vue.js 的开源 UI 组件库，主要服务于 PC 界面的中后台产品。</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="第一步：安装"><a href="#第一步：安装" class="headerlink" title="第一步：安装"></a>第一步：安装</h3><pre><code>npm install iview --save</code></pre><h3 id="第二步-main-js中引入"><a href="#第二步-main-js中引入" class="headerlink" title="第二步:main.js中引入"></a>第二步:main.js中引入</h3><ol>
+                <h2 id="一、elementUI介绍："><a href="#一、elementUI介绍：" class="headerlink" title="一、elementUI介绍："></a>一、elementUI介绍：</h2><p>ElementUI:一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库，主要服于后台管理系统。</p>
+<h3 id="第一步：安装"><a href="#第一步：安装" class="headerlink" title="第一步：安装"></a>第一步：安装</h3><pre><code>npm install element-ui -S</code></pre><h3 id="第二步-main-js中引入"><a href="#第二步-main-js中引入" class="headerlink" title="第二步:main.js中引入"></a>第二步:main.js中引入</h3><ol>
+<li>import ElementUI from ‘element-ui’;</li>
+<li>import ‘element-ui/lib/theme-chalk/index.css’;</li>
+<li>Vue.use(ElementUI);</li>
+</ol>
+<h3 id="第三步：选择自己喜欢的UI组件"><a href="#第三步：选择自己喜欢的UI组件" class="headerlink" title="第三步：选择自己喜欢的UI组件"></a>第三步：选择自己喜欢的UI组件</h3><pre><code class="html">进入到&lt;a href=&quot;https://element.eleme.cn/#/zh-CN/component/quickstart&quot;&gt;element官网&lt;/a&gt;挑选自己喜欢的UI组件</code></pre>
+<h2 id="二、iViewUI介绍："><a href="#二、iViewUI介绍：" class="headerlink" title="二、iViewUI介绍："></a>二、iViewUI介绍：</h2><p>iView 是一套基于 Vue.js 的开源 UI 组件库，主要服务于 PC 界面的中后台产品。</p>
+<h3 id="第一步：安装-1"><a href="#第一步：安装-1" class="headerlink" title="第一步：安装"></a>第一步：安装</h3><pre><code>npm install iview --save</code></pre><h3 id="第二步-main-js中引入-1"><a href="#第二步-main-js中引入-1" class="headerlink" title="第二步:main.js中引入"></a>第二步:main.js中引入</h3><ol>
 <li>import iView from ‘iview’;</li>
 <li>import ‘iview/dist/styles/iview.css’;</li>
 <li>Vue.use(iView);</li>
@@ -482,10 +489,48 @@
     <img alt="logo" src="https://img-blog.csdnimg.cn/20190701171319815.png" width="220" style="margin-bottom: 10px;">
 </p>
 
+<h2 id="三、VantUI介绍："><a href="#三、VantUI介绍：" class="headerlink" title="三、VantUI介绍："></a>三、VantUI介绍：</h2><p>Vue-cli中引入VantUI组件库</p>
+<h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><pre><code class="shell">npm i vant -S</code></pre>
+<h4 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h4><pre><code class="shell">yarn add vant</code></pre>
+<h4 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h4><p>访问下面的文件 URL，会自动重定向至最新版本的 CDN 链接，建议使用固定版本的 CDN 链接，避免升级时受到非兼容性更新的影响。</p>
+<pre><code class="html">&lt;!-- 引入样式 --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/vant/lib/vant-css/index.css&quot;&gt;
 
+&lt;!-- 引入组件 --&gt;
+&lt;script src=&quot;https://unpkg.com/vue/dist/vue.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/vant/lib/vant.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><h4 id="方式一-使用-babel-plugin-import-推荐"><a href="#方式一-使用-babel-plugin-import-推荐" class="headerlink" title="方式一. 使用  babel-plugin-import (推荐)"></a>方式一. 使用  <a target="_blank" rel="noopener" href="https://github.com/ant-design/babel-plugin-import">babel-plugin-import</a> (推荐)</h4><p><code>babel-plugin-import</code> 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式</p>
+<pre><code class="bash"># 安装 babel-plugin-import 插件
+npm i babel-plugin-import -D</code></pre>
+<pre><code class="js">// 在 .babelrc 或 babel-loader 中添加插件配置
+// 注意：webpack 1 无需设置 libraryDirectory。
+&#123;
+  &quot;plugins&quot;: [
+    [&quot;import&quot;, &#123;
+      &quot;libraryName&quot;: &quot;vant&quot;,
+      &quot;libraryDirectory&quot;: &quot;es&quot;,
+      &quot;style&quot;: true
+    &#125;]
+  ]
+&#125;</code></pre>
+<p>接着你可以在代码中直接引入 Vant 组件，插件会自动将代码转化为方式二中的按需引入形式。</p>
+<pre><code class="js">import &#123; Button &#125; from &#39;vant&#39;;</code></pre>
+<blockquote>
+<p>如果你在使用 TypeScript，可以使用 <a target="_blank" rel="noopener" href="https://github.com/Brooooooklyn/ts-import-plugin">ts-import-plugin</a> 实现按需引入</p>
+</blockquote>
+<h4 id="方式二-按需引入组件"><a href="#方式二-按需引入组件" class="headerlink" title="方式二. 按需引入组件"></a>方式二. 按需引入组件</h4><p>在不使用插件的情况下，可以手动引入需要的组件</p>
+<pre><code class="js">import Button from &#39;vant/lib/button&#39;;
+import &#39;vant/lib/vant-css/base.css&#39;;
+import &#39;vant/lib/vant-css/button.css&#39;;</code></pre>
+<h4 id="方式三-导入所有组件"><a href="#方式三-导入所有组件" class="headerlink" title="方式三. 导入所有组件"></a>方式三. 导入所有组件</h4><pre><code class="js">import Vue from &#39;vue&#39;;
+import Vant from &#39;vant&#39;;
+import &#39;vant/lib/vant-css/index.css&#39;;
 
-
-
+Vue.use(Vant);</code></pre>
+<blockquote>
+<p>注意：配置 babel-plugin-import 插件后将不允许导入所有组件</p>
+</blockquote>
+<p>更多内容请参考 <a target="_blank" rel="noopener" href="https://youzan.github.io/vant#/zh-CN/quickstart">快速上手</a>.</p>
 
             </div>
             <hr/>
@@ -511,7 +556,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2020/03/16/vue%E4%B8%AD%E4%BD%BF%E7%94%A8Iview/">http://itzhengjinhan.github.io/2020/03/16/vue%E4%B8%AD%E4%BD%BF%E7%94%A8Iview/</a>
+                    <a href="http://itzhengjinhan.github.io/2020/03/16/vue%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84UI%E5%BA%93%E5%92%8C%E5%BC%95%E7%94%A8%E6%96%B9%E6%B3%95/">http://itzhengjinhan.github.io/2020/03/16/vue%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84UI%E5%BA%93%E5%92%8C%E5%BC%95%E7%94%A8%E6%96%B9%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -718,13 +763,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/16/vue%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts/">
+                <a href="/2020/03/17/vue%E4%B8%AD%E4%BD%BF%E7%94%A8fetch%E8%B7%A8%E5%9F%9F%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="在vue-cli项目中使用echart">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="在vue-cli项目中使用fetch获取后端数据出现的跨域问题">
                         
-                        <span class="card-title">在vue-cli项目中使用echart</span>
+                        <span class="card-title">在vue-cli项目中使用fetch获取后端数据出现的跨域问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -735,7 +780,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-17
                         </span>
                         <span class="publish-author">
                             
@@ -755,13 +800,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/16/vue%E4%B8%AD%E4%BD%BF%E7%94%A8vantUI/">
+                <a href="/2020/03/16/vue%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Vue-cli中引入VantUI组件库">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="在vue-cli项目中使用echart">
                         
-                        <span class="card-title">Vue-cli中引入VantUI组件库</span>
+                        <span class="card-title">在vue-cli项目中使用echart</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
