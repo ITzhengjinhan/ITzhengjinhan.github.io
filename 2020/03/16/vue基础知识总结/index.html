@@ -529,62 +529,440 @@ new Vue(&#123;
     &#125;)
 v-on语法糖：可以用&#39;@&#39;符号代替&#39;v-on:&#39;
 &lt;button @click=&quot;count&quot;&gt;点击&lt;/button&gt;
-&lt;/script&gt;</code></pre><h2 id="五、事件修饰符"><a href="#五、事件修饰符" class="headerlink" title="五、事件修饰符"></a>五、事件修饰符</h2><p>.stop<br>.prevent<br>.capture<br>.self<br>.once</p>
-<script src="https://how2j.cn/study/vue.min.js"></script>
-
-<style type="text/css">
-   * {
+&lt;/script&gt;</code></pre><h2 id="五、事件修饰符"><a href="#五、事件修饰符" class="headerlink" title="五、事件修饰符"></a>五、事件修饰符</h2><p>.stop   阻止事件冒泡<br>.prevent 阻止事件触发<br>.capture 优先触发<br>.self    只有自己能触发，子元素无法触发<br>.once    只能触发一次 </p>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt;
+   * &#123;
        margin: 0 auto;
        text-align:center;
        line-height: 40px;
-   }
-   div {
+   &#125;
+   div &#123;
        width: 100px;
         cursor:pointer;
-   }
-   #grandFather {
+   &#125;
+   #grandFather &#123;
        background: deeppink;
-   }
-   #father {
+   &#125;
+   #father &#123;
        background: pink;
-   }
-   #me {
+   &#125;
+   #me &#123;
        background: hotpink;
-   }#son {
+   &#125;#son &#123;
         background: #ff4225;
-    }
-</style>
+    &#125;
+&lt;/style&gt;
 
-<div id="content">
-    <div id="grandFather"  v-on:click="doc">
+&lt;div id=&quot;content&quot;&gt;
+    &lt;div id=&quot;grandFather&quot;  v-on:click=&quot;doc&quot;&gt;
         grandFather
-        <div id="father" v-on:click="doc">
+        &lt;div id=&quot;father&quot; v-on:click=&quot;doc&quot;&gt;
             father
-            <div id="me" v-on:click.stop="doc">
+            &lt;div id=&quot;me&quot; v-on:click.stop=&quot;doc&quot;&gt;
                 me
-                <div id="son" v-on:click="doc">
+                &lt;div id=&quot;son&quot; v-on:click=&quot;doc&quot;&gt;
                 son
-            </div>
-            </div>
-        </div>
-    </div>
+            &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;!--
+1.在me上的click后面加一个 .stop， 那么冒泡到了这里就结束了，就不会冒到father上面去了
+2.在father 上增加一个.capture&lt;div id=&quot;father&quot; v-on:click.capture=&quot;doc&quot;&gt;那么当冒泡发生的时候，就会优先让father捕捉事件。点击son或者me的时候，都会优先触发它
+3.修改father,增加 .self&lt;div id=&quot;father&quot; v-on:click.self=&quot;doc&quot;&gt;这样点击son 和 me都不会导致其触发click事件，只有点击father自己，才会导致事件发生。
+4.修改father,增加 .once&lt;div id=&quot;father&quot; v-on:click.once=&quot;doc&quot;&gt;这样father点击一次之后，就不会再监听到click了
+5.通过在 click 后面添加 .prevent 可以阻止页面刷新。注： 只有超链和form这种会导致页面刷新的操作，.prevent 才有用。 普通的不导致页面刷新的按钮，加上这个没有任何变化。
+--&gt;
+&lt;/div&gt;
 
-</div>
-
-<script>
-    var content = new Vue({
-        el: "#content",
-        data: {
-            id: ''
-        },
-        methods: {
-            doc: function () {
+&lt;script&gt;
+    var content = new Vue(&#123;
+        el: &quot;#content&quot;,
+        data: &#123;
+            id: &#39;&#39;
+        &#125;,
+        methods: &#123;
+            doc()&#123;
                 this.id= event.currentTarget.id;
                 alert(this.id)
-            }
-        }
-    })
-</script
+            &#125;
+        &#125;
+    &#125;)
+&lt;/script&gt;</code></pre><h2 id="六、条件语句"><a href="#六、条件语句" class="headerlink" title="六、条件语句"></a>六、条件语句</h2><p>v-if  满足条件时渲染，不满足则不渲染<br>v-else<br>v-else-if</p>
+<p>v-if与v-show 区别：前者表示是否渲染该节点，后者只是显示和隐藏<br>频繁操作dom,则使用v-show</p>
+<pre><code>&lt;div id=&quot;div1&quot;&gt;
+  &lt;button v-on:click=&quot;toutai&quot;&gt; 看看下辈子投胎是做什么的 &lt;/button&gt;
+  &lt;div v-if=&quot;number&gt;98&quot;&gt; 神仙&lt;/div&gt;
+  &lt;div v-else-if=&quot;number&gt;95&quot;&gt; 国家领导人&lt;/div&gt;
+  &lt;div v-else-if=&quot;number&gt;90&quot;&gt; 大富商&lt;/div&gt;
+  &lt;div v-else-if=&quot;number&gt;80&quot;&gt; 大企业主&lt;/div&gt;
+  &lt;div v-else-if=&quot;number&gt;70&quot;&gt; 演艺明星&lt;/div&gt;
+  &lt;div v-else-if=&quot;number&gt;60&quot;&gt; 小企业主&lt;/div&gt;
+  &lt;div v-else-if=&quot;number&gt;50&quot;&gt; 普通公务员&lt;/div&gt;
+  &lt;div v-else-if=&quot;number&gt;40&quot;&gt; 小个体户&lt;/div&gt;
+  &lt;div v-else-if=&quot;number&gt;30&quot;&gt; 血汗工厂工人&lt;/div&gt;
+  &lt;div v-else-if=&quot;number&gt;20&quot;&gt; 偏远山区农民&lt;/div&gt;
+  &lt;div v-else&gt; 流浪汉&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt; 
+new Vue(&#123;
+      el: &#39;#div1&#39;,
+      data: &#123;
+          number:0
+      &#125;,
+      methods:&#123;
+          toutai()&#123;
+             this.number=Math.random()*100
+          &#125;
+      &#125;
+    &#125;)
+&lt;/script&gt;</code></pre><h2 id="七、v-for循环语句"><a href="#七、v-for循环语句" class="headerlink" title="七、v-for循环语句"></a>七、v-for循环语句</h2><pre><code>&lt;style&gt;
+table tr td&#123;
+    border:1px solid gray;
+&#125;
+table&#123;
+    border-collapse:collapse;
+    width:300px;
+&#125;
+tr.firstLine&#123;
+    background-color: lightGray;
+&#125;
+&lt;/style&gt;
+
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;table align=&quot;center&quot; &gt;
+        &lt;tr class=&quot;firstLine&quot;&gt;
+            &lt;td&gt;name&lt;/td&gt;
+            &lt;td&gt;hp&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr v-for=&quot;(hero,index) in heros&quot; :key=&quot;index&quot;&gt;
+            &lt;td&gt;&#123;&#123;hero.name&#125;&#125;&lt;/td&gt;
+            &lt;td&gt;&#123;&#123;hero.hp&#125;&#125;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+new Vue(&#123;
+      el: &#39;#div1&#39;,
+      data()&#123;
+        return&#123;
+          heros:[
+          &#123;name:&quot;盖伦&quot;,hp:341&#125;,
+          &#123;name:&quot;提莫&quot;,hp:225&#125;,
+          &#123;name:&quot;安妮&quot;,hp:427&#125;,
+          &#123;name:&quot;死歌&quot;,hp:893&#125;
+          ]
+        &#125;
+      &#125;
+    &#125;)
+ //:key一般绑定唯一识别的key，从而虚拟dom根据key比较真实dom（也就是diff算法），将不同的地方渲染，从而更高效渲染dom
+&lt;/script&gt;</code></pre><h2 id="八、v-model-双向绑定"><a href="#八、v-model-双向绑定" class="headerlink" title="八、v-model 双向绑定"></a>八、v-model 双向绑定</h2><p>v-bind:将modal数据渲染到view层<br>事件监听：将view层数据返回到modal层</p>
+<pre><code>&lt;div id=&quot;div1&quot;&gt;
+    hero name: &lt;input v-model=&quot;name&quot; &gt;
+    &lt;button @click=&quot;doClick&quot; &gt;提交数据&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+new Vue(&#123;
+      el: &#39;#div1&#39;,
+      data:&#123;
+        name:&quot;teemo&quot;
+      &#125;,
+      methods:&#123;
+          doClick()&#123;
+              alert(this.name);
+          &#125;
+      &#125;
+    &#125;)
+&lt;/script&gt;
+对应的修饰符：
+.lazy 对于输入元素，默认的行为方式是一旦有数据变化，马上进行绑定。但是加上.lazy之后，相当于监听change操作，只有在失去焦点的时候，才会进行数据绑定了
+.number 有时候，拿到了数据需要进行数学运算， 为了保证运算结果，必须先把类型转换为number类型，而v-model默认是string类型，所以就可以通过.number方式确保获取到的是数字类型了。
+.trim 去掉前后的空白</code></pre><h2 id="九、computed-属性和watch属性"><a href="#九、computed-属性和watch属性" class="headerlink" title="九、computed 属性和watch属性"></a>九、computed 属性和watch属性</h2><pre><code>&lt;style&gt;
+table tr td&#123;
+    border:1px solid gray;
+    padding:10px;
+
+&#125;
+table&#123;
+    border-collapse:collapse;
+    width:800px;
+    table-layout:fixed;
+&#125;
+tr.firstLine&#123;
+    background-color: lightGray;
+&#125;
+&lt;/style&gt;
+
+&lt;div id=&quot;div1&quot;&gt;
+
+    &lt;table align=&quot;center&quot; &gt;
+        &lt;tr class=&quot;firstLine&quot;&gt;
+            &lt;td&gt;人民币&lt;/td&gt;
+            &lt;td&gt;美元&lt;/td&gt;
+        &lt;/tr&gt;      
+        &lt;tr&gt;
+            &lt;td align=&quot;center&quot; colspan=&quot;2&quot;&gt;
+            汇率： &lt;input type=&quot;number&quot; v-model.number=&quot;exchange&quot; /&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+
+            &lt;td align=&quot;center&quot;&gt;
+                ￥: &lt;input type=&quot;number&quot; v-model.number = &quot;rmb&quot;  /&gt;
+            &lt;/td&gt;
+            &lt;td align=&quot;center&quot;&gt;
+                $: &#123;&#123; dollar &#125;&#125;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+new Vue(&#123;
+      el: &#39;#div1&#39;,
+      data: &#123;
+          exchange:6.4,
+          rmb:0
+      &#125;,
+      computed:&#123;
+          dollar() &#123;
+              return this.rmb / this.exchange;
+          &#125;
+      &#125;
+    &#125;) 
+&lt;/script&gt;
+---------------------------分割线-----------------------------------------
+&lt;style&gt;
+table tr td&#123;
+    border:1px solid gray;
+    padding:10px;
+
+&#125;
+table&#123;
+    border-collapse:collapse;
+    width:800px;
+    table-layout:fixed;
+&#125;
+tr.firstLine&#123;
+    background-color: lightGray;
+&#125;
+&lt;/style&gt;
+
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;table align=&quot;center&quot; &gt;
+        &lt;tr class=&quot;firstLine&quot;&gt;
+            &lt;td&gt;人民币&lt;/td&gt;
+            &lt;td&gt;美元&lt;/td&gt;
+        &lt;/tr&gt;      
+        &lt;tr&gt;
+            &lt;td align=&quot;center&quot; colspan=&quot;2&quot;&gt;
+            汇率： &lt;input type=&quot;number&quot; v-model.number=&quot;exchange&quot; /&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+
+            &lt;td align=&quot;center&quot;&gt;
+                ￥: &lt;input type=&quot;number&quot; v-model.number = &quot;rmb&quot;  /&gt;
+            &lt;/td&gt;
+            &lt;td align=&quot;center&quot;&gt;
+                $: &lt;input type=&quot;number&quot; v-model.number = &quot;dollar&quot;   /&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+
+new Vue(&#123;
+      el: &#39;#div1&#39;,
+      data: &#123;
+          exchange:6.4,
+          rmb:0,
+          dollar:0
+      &#125;,
+      watch:&#123;
+          rmb(val) &#123;
+              this.rmb = val;
+              this.dollar = this.rmb / this.exchange;
+          &#125;,
+          dollar(val) &#123;
+              this.dollar = val;
+              this.rmb = this.dollar * this.exchange;
+          &#125;,
+      &#125;
+
+    &#125;)
+
+&lt;/script&gt;</code></pre><p>区别：<br>computed是计算属性，也就是计算值，它更多用于计算值的场景；<br>computed具有缓存性，computed的值在getter执行后是会缓存的，只有在它依赖的属性值改变之后，下一次获取computed的值时重新调用对应的getter来计算<br>当一个属性受多个属性影响的时候就需要用到computed,最典型的例子： 购物车商品结算的时候</p>
+<p>watch更多的是[观察]的作用，类似于某些数据的监听回调，用于观察props $emit或者本组件的值，当数据变化时来执行回调进行后续操作；<br>watch无缓存性，页面重新渲染时值不变化也会执行<br>当一条数据影响多条数据的时候就需要用watch,经典例子：搜索数据</p>
+<h2 id="十、filter过滤器"><a href="#十、filter过滤器" class="headerlink" title="十、filter过滤器"></a>十、filter过滤器</h2><p>定义两个过滤器，分别是首字母大写和尾字母大写<br>然后通过如下方式同时首字母大小写</p>
+<pre><code>&lt;style&gt;
+table tr td&#123;
+    border:1px solid gray;
+    padding:10px;
+
+&#125;
+table&#123;
+    border-collapse:collapse;
+    width:800px;
+    table-layout:fixed;
+&#125;
+tr.firstLine&#123;
+    background-color: lightGray;
+&#125;
+&lt;/style&gt;
+
+&lt;div id=&quot;div1&quot;&gt;
+
+    &lt;table align=&quot;center&quot; &gt;
+        &lt;tr class=&quot;firstLine&quot;&gt;
+            &lt;td&gt;输入数据&lt;/td&gt;
+            &lt;td&gt;过滤后的结果&lt;/td&gt;
+        &lt;/tr&gt;      
+        &lt;tr&gt;
+            &lt;td align=&quot;center&quot;&gt;
+                &lt;input v-model= &quot;data&quot;  /&gt;
+            &lt;/td&gt;
+            &lt;td align=&quot;center&quot;&gt;
+                &#123;&#123; data|capitalize|capitalizeLastLetter &#125;&#125;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+
+new Vue(&#123;
+      el: &#39;#div1&#39;,
+      data: &#123;
+          data:&#39;&#39;
+      &#125;,
+      filters:&#123;
+          capitalize(value) &#123;
+                if (!value) return &#39;&#39; //如果为空，则返回空字符串
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.substring(1)
+          &#125;,
+          capitalizeLastLetter(value) &#123;
+                if (!value) return &#39;&#39; //如果为空，则返回空字符串
+                value = value.toString()
+                return value.substring(0,value.length-1)+ value.charAt(value.length-1).toUpperCase()
+          &#125;
+      &#125;
+    &#125;)
+
+&lt;/script&gt;</code></pre><h2 id="十一、组件"><a href="#十一、组件" class="headerlink" title="十一、组件"></a>十一、组件</h2><h3 id="局部组件"><a href="#局部组件" class="headerlink" title="局部组件"></a>局部组件</h3><pre><code>1.在 Vue对象里增加 components：
+components:&#123;
+      &#39;product&#39;:&#123;
+          template:&#39;&lt;div class=&quot;product&quot; &gt;MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮&lt;/div&gt;&#39;
+      &#125;
+    &#125;
+2.然后在视图里，通过如下方式就可以调用了
+&lt;product&gt;&lt;/product&gt;
+
+上述1中还可以进行模板抽离
+    components:&#123;
+      &#39;product&#39;:&#123;
+          template:&#39;#myCpm&#39;
+      &#125;
+    &#125;
+VUE提供两种方案定义模板内容：
+1)使用&lt;script&gt;标签
+&lt;script type=&quot;text/x-template&quot; id=&quot;myCpm&quot;&gt;
+    &lt;div class=&quot;product&quot; &gt;MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮&lt;/div&gt;
+&lt;/script&gt;
+
+2)使用&lt;template&gt;标签
+&lt;template id=&quot;myCpm&quot;&gt;
+    &lt;div class=&quot;product&quot; &gt;MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮&lt;/div&gt;
+&lt;/template&gt;</code></pre><h3 id="全局组件"><a href="#全局组件" class="headerlink" title="全局组件"></a>全局组件</h3><pre><code>1.Vue.component(&#39;product&#39;, &#123;
+      template: &#39;&lt;div class=&quot;product&quot; &gt;MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮&lt;/div&gt;&#39;
+    &#125;)
+2.然后在视图里，通过如下方式就可以调用了
+&lt;product&gt;&lt;/product&gt;</code></pre><h3 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h3><p>在组件中，通过选项props来声明需要从父级接收到的数据</p>
+<pre><code>&lt;style&gt;
+div.product&#123;
+  float:left;
+  border:1px solid lightGray;
+  width:200px;
+  margin:10px;
+  cursor: pointer;
+&#125;
+&lt;/style&gt;
+
+&lt;div id=&quot;div1&quot;&gt;
+    组件外的值：&lt;input v-model=&quot;outName&quot; &gt;&lt;br&gt;
+    &lt;product v-bind:name=&quot;outName&quot;&gt;&lt;/product&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+Vue.component(&#39;product&#39;, &#123;
+      props:[&#39;name&#39;],
+      template: &#39;&lt;div class=&quot;product&quot; &gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;&#39;
+    &#125;)
+
+new Vue(&#123;
+  el: &#39;#div1&#39;,
+  data:&#123;
+      outName:&#39;我是父组件，给子组件传值&#39;
+  &#125;
+&#125;)
+&lt;/script&gt;</code></pre><p>子组件给父组件传值，通过$emit();</p>
+<pre><code>&lt;style&gt;
+div.product&#123;
+  float:left;
+  border:1px solid lightGray;
+  width:200px;
+  margin:10px;
+  cursor: pointer;
+&#125;
+&lt;/style&gt;
+
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;product @increment=&quot;changeTotal&quot; @descrement=&quot;changeTotal&quot;&gt;&#123;&#123;total&#125;&#125;&lt;/product&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+components:&#123;
+      &#39;product&#39;:&#123;
+          template:&#39;&lt;div class=&quot;product&quot; &gt;MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮&lt;/div&gt;&#39;,
+          data()&#123;
+            return &#123;
+                count:0;
+            &#125;
+          &#125;,
+          methods:&#123;
+            increment()&#123;
+                this.$emit(&#39;increment&#39;,this.count++)
+            &#125;,
+            descrement()&#123;
+                this.$emit(&#39;increment&#39;,this.count--)
+            &#125;
+          &#125;
+      &#125;
+    &#125;
+
+new Vue(&#123;
+  el: &#39;#div1&#39;,
+  data:&#123;
+      total:0
+  &#125;,
+  methods:&#123;
+    changeTotal(counter)&#123;
+        this.total=counter;//接受子组件传值
+    &#125;
+  &#125;
+&#125;)
+&lt;/script&gt;</code></pre>
             </div>
             <hr/>
 
