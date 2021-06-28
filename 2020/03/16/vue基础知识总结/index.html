@@ -460,7 +460,131 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="一、vue的安装方法"><a href="#一、vue的安装方法" class="headerlink" title="一、vue的安装方法"></a>一、vue的安装方法</h2><ol>
+<li><p>方法一：直接CDN引入</p>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!-- 生产环境版本，优化了尺寸和速度 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</li>
+<li><p>方法二：下载和引入<br>开发环境：<a target="_blank" rel="noopener" href="https://cn.vuejs.org/js/vue.js">https://cn.vuejs.org/js/vue.js</a><br>生产环境：<a target="_blank" rel="noopener" href="https://cn.vuejs.org/js/vue.min.js">https://cn.vuejs.org/js/vue.min.js</a></p>
+</li>
+<li><p>NPM安装<br>命令行工具 (CLI)<br>Vue.js 有一款官方的脚手架生成工具 vue-cli<br>1) 全局安装<br>npm install –g vue-cli<br>2) 创建项目<br>vue init webpack myproject<br>3) 安装依赖包<br>npm install<br>4) 启动服务：<br>正常开发时，就会运行命令npm run dev，启动一个小型的express 服务。</p>
+</li>
+</ol>
+<h2 id="二、vue文件结构"><a href="#二、vue文件结构" class="headerlink" title="二、vue文件结构"></a>二、vue文件结构</h2><p>数据和方法</p>
+<pre><code>&lt;div id=&quot;app&quot;&gt;
+    &#123;&#123;message&#125;&#125;//数据的引用
+    &lt;p&gt;&#123;&#123;greet()&#125;&#125;&lt;/p&gt;//方法的引用
+&lt;/div&gt;
+&lt;script&gt;
+var app=new Vue(&#123;
+    el:&#39;#app&#39;,
+    data()&#123;
+        return&#123;
+            message=&#39;hello vue!&#39;,
+            name=&quot;zhangsan&quot;
+        &#125;
+    &#125;,
+    methods:&#123;
+        greet()&#123;
+            //获取数据中的变量
+            return `Hello,$&#123;this.name&#125;`
+        &#125;
+    &#125;
+
+&#125;)
+&lt;/script&gt;</code></pre><h2 id="三、v-bind动态绑定属性"><a href="#三、v-bind动态绑定属性" class="headerlink" title="三、v-bind动态绑定属性"></a>三、v-bind动态绑定属性</h2><pre><code>&lt;div id=&quot;app&quot;&gt;
+    &lt;a v-bind:href=&quot;website&quot;&gt;百度&lt;/a&gt;
+&lt;/div&gt;
+&lt;script&gt;
+var app=new Vue(&#123;
+    el:&#39;#app&#39;,
+    data()&#123;
+        return&#123;
+            website=&#39;www.baidu.com&#39;
+        &#125;
+    &#125;,
+&#125;)
+&lt;/script&gt;
+v-bind语法糖：可以用&#39;:&#39;符号代替&#39;v-bind:&#39;
+&lt;a :href=&quot;website&quot;&gt;百度&lt;/a&gt;</code></pre><h2 id="四、事件监听v-on"><a href="#四、事件监听v-on" class="headerlink" title="四、事件监听v-on"></a>四、事件监听v-on</h2><pre><code>&lt;div id=&quot;div1&quot;&gt;
+
+  &lt;div&gt;一共点击了  &#123;&#123;clickNumber&#125;&#125;次&lt;/div&gt; 
+  &lt;button @click=&quot;count&quot;&gt;点击&lt;/button&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+new Vue(&#123;
+      el: &#39;#div1&#39;,
+      data()&#123;
+          clickNumber:0
+      &#125;,
+      methods:&#123;
+          count()&#123;
+              this.clickNumber++;
+          &#125;
+      &#125;
+    &#125;)
+v-on语法糖：可以用&#39;@&#39;符号代替&#39;v-on:&#39;
+&lt;button @click=&quot;count&quot;&gt;点击&lt;/button&gt;
+&lt;/script&gt;</code></pre><h2 id="五、事件修饰符"><a href="#五、事件修饰符" class="headerlink" title="五、事件修饰符"></a>五、事件修饰符</h2><p>.stop<br>.prevent<br>.capture<br>.self<br>.once</p>
+<script src="https://how2j.cn/study/vue.min.js"></script>
+
+<style type="text/css">
+   * {
+       margin: 0 auto;
+       text-align:center;
+       line-height: 40px;
+   }
+   div {
+       width: 100px;
+        cursor:pointer;
+   }
+   #grandFather {
+       background: deeppink;
+   }
+   #father {
+       background: pink;
+   }
+   #me {
+       background: hotpink;
+   }#son {
+        background: #ff4225;
+    }
+</style>
+
+<div id="content">
+    <div id="grandFather"  v-on:click="doc">
+        grandFather
+        <div id="father" v-on:click="doc">
+            father
+            <div id="me" v-on:click.stop="doc">
+                me
+                <div id="son" v-on:click="doc">
+                son
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var content = new Vue({
+        el: "#content",
+        data: {
+            id: ''
+        },
+        methods: {
+            doc: function () {
+                this.id= event.currentTarget.id;
+                alert(this.id)
+            }
+        }
+    })
+</script
             </div>
             <hr/>
 
@@ -692,13 +816,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/16/vue%E4%B8%AD%E4%BD%BF%E7%94%A8vantUI/">
+                <a href="/2020/03/16/vue-cli%E8%84%9A%E6%89%8B%E6%9E%B6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Vue-cli中引入VantUI组件库">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="vue-cli脚手架基础知识总结">
                         
-                        <span class="card-title">Vue-cli中引入VantUI组件库</span>
+                        <span class="card-title">vue-cli脚手架基础知识总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
