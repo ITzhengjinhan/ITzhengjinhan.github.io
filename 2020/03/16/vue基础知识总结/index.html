@@ -962,7 +962,31 @@ new Vue(&#123;
     &#125;
   &#125;
 &#125;)
-&lt;/script&gt;</code></pre>
+&lt;/script&gt;</code></pre><h2 id="十二、slot插槽"><a href="#十二、slot插槽" class="headerlink" title="十二、slot插槽"></a>十二、slot插槽</h2><pre><code>&lt;div id=&quot;app&quot;&gt;
+    &lt;my-cpn&gt;&lt;/my-cpn&gt;
+    &lt;my-cpn&gt;
+        &lt;h2&gt;我也是替换插槽的内容&lt;/h2&gt;
+        &lt;p&gt;我也是替换插槽的内容&lt;/p&gt;
+    &lt;/my-cpn&gt;
+&lt;/div&gt;
+
+&lt;template id=&quot;myCpm&quot;&gt;
+    &lt;div&gt;
+        &lt;slot&gt;我是一个插槽中的默认值&lt;/slot&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+Vue.component(&quot;my-cpn&quot;,&#123;
+    template:&quot;#myCpm&quot;
+&#125;)
+let app=new Vue(&#123;
+    el:&#39;#app&#39;
+&#125;)
+&lt;/script&gt;</code></pre><img src="https://pic.imgdb.cn/item/60db302a5132923bf89473d4.jpg">
+具名插槽：
+<img src="https://pic.imgdb.cn/item/60db30455132923bf8957943.png">
+
             </div>
             <hr/>
 
