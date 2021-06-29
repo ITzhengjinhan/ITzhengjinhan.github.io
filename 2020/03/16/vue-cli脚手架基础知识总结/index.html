@@ -460,7 +460,64 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="一、搭建vue-cli"><a href="#一、搭建vue-cli" class="headerlink" title="一、搭建vue-cli"></a>一、搭建vue-cli</h2><h3 id="1-安装步骤"><a href="#1-安装步骤" class="headerlink" title="1.安装步骤"></a>1.安装步骤</h3><img src="https://pic.imgdb.cn/item/60db32aa5132923bf8ac74ca.jpg">
+### 2.配置设置
+<img src="https://pic.imgdb.cn/item/60db327b5132923bf8aaa4e4.png">
+### 3.干净的页面架构
+<img src="https://pic.imgdb.cn/item/60db32d75132923bf8ae35bb.jpg">
+
+<h2 id="二、开始使用"><a href="#二、开始使用" class="headerlink" title="二、开始使用"></a>二、开始使用</h2><h3 id="1-创建一个user-vue文件"><a href="#1-创建一个user-vue文件" class="headerlink" title="1.创建一个user.vue文件"></a>1.创建一个user.vue文件</h3><img src="https://pic.imgdb.cn/item/60db34c95132923bf8c1e82a.jpg">
+### 2.在app.vue文件中引入
+<img src="https://pic.imgdb.cn/item/60db35535132923bf8c77a6c.jpg">
+### 3.效果
+<img src="https://pic.imgdb.cn/item/60db358d5132923bf8c9ddc3.jpg">
+
+<h2 id="style的scoped属性"><a href="#style的scoped属性" class="headerlink" title="style的scoped属性"></a>style的scoped属性</h2><img src="https://pic.imgdb.cn/item/60db35be5132923bf8cbef26.jpg">
+<img src="https://pic.imgdb.cn/item/60db35d25132923bf8ccc68e.jpg">
+<img src="https://pic.imgdb.cn/item/60db35e05132923bf8cd6067.jpg">
+
+<h2 id="三、实现一个局部刷新路由跳转"><a href="#三、实现一个局部刷新路由跳转" class="headerlink" title="三、实现一个局部刷新路由跳转"></a>三、实现一个局部刷新路由跳转</h2><h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h3><img src="https://pic.imgdb.cn/item/60db37a25132923bf8e1929c.jpg">
+### home.vue
+<img src="https://pic.imgdb.cn/item/60db37be5132923bf8e2e7bd.jpg">
+### user.vue
+<img src="https://pic.imgdb.cn/item/60db37ec5132923bf8e51af2.jpg">
+### 2.路由配置
+在index.js中导入路由，并导出路径
+<img src="https://pic.imgdb.cn/item/60db38075132923bf8e66941.jpg">
+在main.js中导入index导出的路由
+<img src="https://pic.imgdb.cn/item/60db38145132923bf8e711d0.jpg">
+### App.vue中添加<router-view>路由页面，并设置<router-link>跳转
+<img src="https://pic.imgdb.cn/item/60db38d15132923bf8f05a88.jpg">
+### 3.效果：
+<img src="https://pic.imgdb.cn/item/60db39075132923bf8f2fb29.jpg">
+<img src="https://pic.imgdb.cn/item/60db390f5132923bf8f35cec.jpg">
+### 配置路由，如何让路径默认跳到首页
+<img src="https://pic.imgdb.cn/item/60db395d5132923bf8f712b3.png">
+
+<h2 id="四、hash模式切换为history模式"><a href="#四、hash模式切换为history模式" class="headerlink" title="四、hash模式切换为history模式"></a>四、hash模式切换为history模式</h2><img src="https://pic.imgdb.cn/item/60db39cf5132923bf8fcc5db.png">
+
+<h2 id="五、router-link其他属性"><a href="#五、router-link其他属性" class="headerlink" title="五、router-link其他属性"></a>五、router-link其他属性</h2><img src="https://pic.imgdb.cn/item/60db3a7f5132923bf8055c02.png">
+### 传递参数的方式
+<img src="https://pic.imgdb.cn/item/60db40555132923bf84b9f6b.png">
+<img src="https://pic.imgdb.cn/item/60db41705132923bf858aa4b.png">
+<img src="https://pic.imgdb.cn/item/60db41e95132923bf85e6f96.png">
+### 参数的获取
+通过this.$route获取路由信息
+补充：$route和$router区别，
+前者储存了路由一些列信息params、query等，后者是路由的实例，具有操作路由的进出栈，钩子函数等。
+
+<h2 id="六、代码实现路由跳转"><a href="#六、代码实现路由跳转" class="headerlink" title="六、代码实现路由跳转"></a>六、代码实现路由跳转</h2><img src="https://pic.imgdb.cn/item/60db3a975132923bf8067971.png">
+
+<h2 id="七、子路由的配置"><a href="#七、子路由的配置" class="headerlink" title="七、子路由的配置"></a>七、子路由的配置</h2><h3 id="嵌套在该路由的children中"><a href="#嵌套在该路由的children中" class="headerlink" title="嵌套在该路由的children中"></a>嵌套在该路由的children中</h3><img src="https://pic.imgdb.cn/item/60db3db85132923bf82c8362.jpg">
+### 添加<router-view>路由页面
+<img src="https://pic.imgdb.cn/item/60db3ebd5132923bf838cfcc.jpg">
+### userlist.vue
+<img src="https://pic.imgdb.cn/item/60db3ec85132923bf8394af6.jpg">
+### 效果
+<img src="https://pic.imgdb.cn/item/60db3ed05132923bf839a74b.jpg">
+
+
+
             </div>
             <hr/>
 
