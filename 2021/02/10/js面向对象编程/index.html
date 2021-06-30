@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="clip-path的隐藏用法, 全栈攻城狮">
+    <meta name="keywords" content="javascript面向对象, 全栈攻城狮">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>clip-path的隐藏用法 | 全栈攻城狮</title>
+    <title>javascript面向对象 | 全栈攻城狮</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">clip-path的隐藏用法</h1>
+                    <h1 class="description center-align post-title">javascript面向对象</h1>
                 </div>
             </div>
         </div>
@@ -460,23 +460,142 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>不使用 overflow: hidden 实现 overflow: hidden</p>
-<h3 id="需求：要求容器内的内容，在竖直方向上超出容器会被裁剪，而在水平方向上超出容器，则不会被裁剪。类似这样："><a href="#需求：要求容器内的内容，在竖直方向上超出容器会被裁剪，而在水平方向上超出容器，则不会被裁剪。类似这样：" class="headerlink" title="需求：要求容器内的内容，在竖直方向上超出容器会被裁剪，而在水平方向上超出容器，则不会被裁剪。类似这样："></a>需求：要求容器内的内容，在竖直方向上超出容器会被裁剪，而在水平方向上超出容器，则不会被裁剪。类似这样：</h3><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/y0P0QU"><img src="https://s3.ax1x.com/2021/02/10/y0P0QU.gif" alt="y0P0QU.gif"></a></p>
-<h4 id="原解法"><a href="#原解法" class="headerlink" title="原解法"></a>原解法</h4><p>是在上述黄色背景元素本身之外再套用一层父元素，然后父元素才是实际设置 overflow: hidden 的元素，父元素的范围就是实际才是控制是否裁剪的范围。类似这样：<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/y0PTwd"><img src="https://s3.ax1x.com/2021/02/10/y0PTwd.gif" alt="y0PTwd.gif"></a><br>实际的父元素才是设置了 overflow: hidden 的元素。<br>当然，如果实际情况就是这么简单，也没什么问题。<br>但是如果元素处于一个复杂的布局流内，那么可能就没有那么多的空间，让我们再去包裹一层父容器了</p>
-<h4 id="新方法：利用-clip-path-进行裁剪"><a href="#新方法：利用-clip-path-进行裁剪" class="headerlink" title="新方法：利用 clip-path 进行裁剪"></a>新方法：利用 clip-path 进行裁剪</h4><pre><code>    &lt;div class=&quot;g-container&quot;&gt;
-        &lt;div class=&quot;sub&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
+                <h3 id="1、什么是面向对象"><a href="#1、什么是面向对象" class="headerlink" title="1、什么是面向对象"></a>1、什么是面向对象</h3><p>面向对象其实是一种编程思想，其中核心的概念有类，以及类的实例（对象）<br>JS本身就是基于面向对象思想开发出来的编程语言，所以在学习和开发JS的时候，也要按照面向对象的思想去处理。在JS中有很多内置类：Number、String、Array、Date…等等，同时也可以创建自定义类</p>
+<h3 id="2、构造函数"><a href="#2、构造函数" class="headerlink" title="2、构造函数"></a>2、构造函数</h3><p>在es6之前，在JS中可以通过声明一个构造函数来定义类。然后通过new关键字来实例化这个类，其构造函数执行后，返回的结果就是类的一个实例。如下：</p>
+<pre><code>function Person(name, age) &#123;
+    let total = 0; //上下文的私有变量  和实例对象没有必然的联系
+    this.name = name
+    this.age = age
 
-    .g-container &#123;
-    width: 200px;
-    height: 200px;
-    clip-path: polygon(-1000% 0, 1000% 0, 1000% 100%, -1000% 100%);
-    &#125;</code></pre><p>这里利用了 clip-path: polygon() 来裁剪一个矩形区域，而利用了 clip-path 支持负坐标的特点，将裁剪的起点定到远离坐标能画成一个大矩形的形状。示意图：<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/y0kpin"><img src="https://s3.ax1x.com/2021/02/10/y0kpin.png" alt="y0kpin.png"></a><br>这样，我们能够在正常布局流中，当前容器大小范围内，画出任意希望 overflow: hidden 的范围。<br>大家可以点进 Demo 里面尝试下：<br><a target="_blank" rel="noopener" href="https://codepen.io/Chokcoco/pen/ZEpRqME">Demo</a><br>补充：</p>
-<pre><code>    // 裁剪出左右两边都 overflow:hidden，上下不 overflow:hidden 的区域
-    clip-path: polygon(0 -1000% ,100% -1000%, 100% 1000%,0 1000%);
+    // return &#123; a: 1 &#125;  // 如果有直接返回一个引用类型值，那么实例化后的值就是这个
+&#125;
+const instance = new Person(&#39;张三&#39;, 18) // &#123; name: &#39;张三&#39;, age: 18&#125;</code></pre><p>new 函数()：构造函数执行。<br>它和普通函数的执行还是有一些区别的</p>
+<p>相似点：<br>1)一样是把函数执行（传递实参也是一样的）<br>2)形成私有上下文,也存在私有变量，然后初始化this</p>
+<p>不同点<br>1)new 执行，浏览器会在当前上下文中，默认创建一个对象（实例对象）<br>2)在初始化this的时候，会把this指向这个实例对象，在构造函数中编写this.xxx = xxx的操作，其实就是给这个实例对象设置私有属性。除了这些，其他的操作和这个实例对象没有直接关系<br>这个构造函数如果没有返回值，或者返回值的类型是基本数据类型，则最后默认返回的是这个默认创建的实例对象。如果有显式的return一个引用类型值，则最后是以这个显式返回的引用类型为主</p>
+<h4 id="新方法：利用-clip-path-进行裁剪"><a href="#新方法：利用-clip-path-进行裁剪" class="headerlink" title="新方法：利用 clip-path 进行裁剪"></a>新方法：利用 clip-path 进行裁剪</h4><h3 id="3、class"><a href="#3、class" class="headerlink" title="3、class"></a>3、class</h3><p>在es6后，可以通过class关键字来定义一个类。但需要注意的是：「es5的构造函数可以通过new关键字执行，执行后返回一个实例对象，构造函数也可以直接执行。但是使用class来定义的类，只能通过new关键字来执行，不能直接执行，否则会报错」</p>
+<pre><code>class Person &#123;
+    constructor(name, age) &#123;
+        this.name = name
+        this.age = age
+    &#125;
+&#125;
+const instance = new Person(&#39;张三&#39;, 18) // &#123; name: &#39;张三&#39;, age: 18&#125;</code></pre><p>class和构造函数有什么区别？<br>1)class在语法上更贴合面向对象的写法<br>2)class实现继承更加易读，易理解<br>3)class本质上是普通构造函数的语法糖</p>
+<h3 id="4、new的原理和实现"><a href="#4、new的原理和实现" class="headerlink" title="4、new的原理和实现"></a>4、new的原理和实现</h3><pre><code>/*
+new的原理：使用new关键字执行构造函数时，会经过以下过程
+function Fn() &#123;
+    1. 创建一个实例对象
+    2. 也会像普通函数执行一样执行，
+        - 也会创建私有上下文
+        - 初始化作用域链
+        - 变量提升..等等
+        this则执行这个实例对象
+    3. 返回值没有或者是基本值，则返回的是实例对象
+&#125;
+const fn =  new Fn()
+*/
+function _new(Ctor, ...params) &#123;
+    // 1.创建一个实例对象「创建Ctor类的实例：实例.__proto__ -&gt; 类.prototype」 
 
-   // 裁剪出左边、上边、右边都 overflow:hidden，下边不 overflow: hidden 的区域
-    clip-path: polygon(100% 0，100% 1000%, 0 1000%, 0 0);</code></pre>
+    // 可以直接写 obj.__proto__ = Ctor.prototype。但是在IE上禁止了直接操作__proto__
+
+    // Object.creat创建的对象，会让这个对象的__proto__指向传入的值
+    // 此时的obj.__proto__ = Ctor.prototype
+    // 也就是实例的隐式原型__proto__指向了它构造函数的显式原型prototype
+    let obj = Object.create(Ctor.prototype)
+
+    // 2.把函数执行，并把this指向实例对象
+    const result = Ctor.call(obj, ...params)
+
+    // 3.处理返回值
+    if (result !== null &amp;&amp; /^(object|function)$/.test(typeof result)) &#123;
+        return result
+    &#125;
+    return obj
+&#125;
+
+function Person(name) &#123;
+    this.name = name
+&#125;
+Person.prototype.sayName = function () &#123;
+    console.log(&#39;my name is &#39; + this.name)
+&#125;
+
+let p = _new(Person, &#39;张三&#39;) // &#123; name: &#39;张三&#39; &#125;</code></pre><h3 id="5、原型和原型链"><a href="#5、原型和原型链" class="headerlink" title="5、原型和原型链"></a>5、原型和原型链</h3><p>js中面向对象的底层处理机制：<br>所有的引用类型，都具有对象属性。也即是给对象自由扩展属性<br>每一个（除箭头函数外的）函数数据类型，都天生自带一个属性：prototype原型对象（也叫显式原型），其属性值是一个对象。这个原型对象上有一个constructor，属性值是当前构造函数本身<br>每一个对象数据类型值，都有一个属性：<strong>proto</strong>原型链属性（也叫隐式原型），这个的属性值指向它的构造函数的 prototype 的属性值<br>什么是原型？<br>原型就是（除箭头函数外的）函数数据类型上的prototyp属性。<br>原型的作用就是实现对象的继承，从而共享属性和方法<br>什么又是原型链？</p>
+<pre><code>function Person(name) &#123;
+    this.name = name
+&#125;
+Person.prototype.sayName = function () &#123;
+    console.log(&#39;my name is &#39; + this.name)
+&#125;
+const instance = new Person(&#39;张三&#39;) // &#123; name: &#39;张三&#39; &#125;
+
+// 实例化后打印出来是没有sayName这个方法的，但是却可以调用，这是为什么呢？
+首先会找自己的私有属性。如果私有属性中找不到，则默认会基于__proto__找所属类prototype上的属性或方法。
+如果还没有，则还会基于prototype上的__proto__继续向上查找。... 直到找到Object.prototype为止。这个查找机制，就是原型链
+instance.sayName() // my name is 张三</code></pre><h3 id="六、常见的几种继承方法"><a href="#六、常见的几种继承方法" class="headerlink" title="六、常见的几种继承方法"></a>六、常见的几种继承方法</h3><p>6.1 构造函数继承（基于call来实现）</p>
+<p>构造函数继承的原理：把父类构造函数的this指向为子类实例化对象引用，从而使父类执行的时候父类里面的私有属性都会被挂载到子类的实例上去</p>
+<pre><code>function Parent(x) &#123;
+    this.x = x
+&#125;
+Parent.prototype.getX = function() &#123; return this.x &#125;
+
+function Child() &#123;
+    Parent.call(this, 100) // 重点代码
+    this.y = 200
+&#125;
+let c = new Child()  // &#123; y: 200, x: 100 &#125;
+c.getX()  // 100</code></pre><p>优点：1. 可以在子类构造函数中向父类传参数。2. 父类的公共属性不会被共像<br>缺点：不能实现完整的继承，方法都在构造函数中定义，只能继承父类的实例属性和方法。子类不能继承父类定义在prototype中的属性以及方法</p>
+<p>6.2 原型继承<br>原型继承的原理：根据对象的可扩展的特性，通过修改子类的prototype实现继承，同时弥补构造函数继承中（子类不能继承父类定义在prototype中的属性以及方法）的缺陷。使子类原型对象指向父类的实例以实现继承, 即重写子类的原型</p>
+<pre><code>function Parent() &#123;
+    this.x = 100
+&#125;
+Parent.prototype.getX = function() &#123; return this.x &#125;
+
+function Child() &#123;
+    this.y = 200
+&#125;
+Child.prototype = new Parent()
+Child.prototype.constructor = Child
+let c = new Child() // &#123; y: 200 &#125;
+c.getX() // 100</code></pre><p>6.3 寄生式组合继承（基于call + 另类的原型继承）</p>
+<pre><code>function Parent(x) &#123;
+    this.x = x
+&#125;
+Parent.prototype.getX = function() &#123; return this.x &#125;
+
+function Child() &#123;
+    Parent.call(this, 100)
+    this.y = 200
+&#125;
+// 可以写 Child.prototype.__proto__ = Parent.prototype, 但是在IE上禁止了直接操作__proto__
+
+Child.prototype = Object.create(Parent.prototype)
+
+// 因为上面直接修改了Child的prototype，所以这里手动声明一下constructor
+Child.prototype.constructor = Child
+let c = new Child() // &#123; y: 200, x: 100 &#125;
+c.getX() // 100</code></pre><p>6.4 ES6中的类和继承</p>
+<pre><code>class Parent &#123;
+    constructor(x) &#123;
+        this.x = x
+    &#125;
+    getX() &#123;
+        return this.x
+    &#125;
+&#125;
+
+// extends继承，实现的效果和寄生式组合继承类似
+class Child extends Parent &#123;
+    constructor() &#123;
+        super(100）// 相当于调用Parent的constructor，并传入100
+
+        // 需要在使用this之前首先调用 super()，
+        this.y = 200
+    &#125;
+&#125;
+
+const c = new Child()
+c.getX() // 100</code></pre>
             </div>
             <hr/>
 
@@ -501,7 +620,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2021/02/10/%E4%B8%8D%E4%BD%BF%E7%94%A8overflow_hidden%E5%AE%9E%E7%8E%B0overflow_hidden/">http://itzhengjinhan.github.io/2021/02/10/%E4%B8%8D%E4%BD%BF%E7%94%A8overflow_hidden%E5%AE%9E%E7%8E%B0overflow_hidden/</a>
+                    <a href="http://itzhengjinhan.github.io/2021/02/10/js%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">http://itzhengjinhan.github.io/2021/02/10/js%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/</a>
                 </span>
             </div>
             <div class="reprint__notice">
