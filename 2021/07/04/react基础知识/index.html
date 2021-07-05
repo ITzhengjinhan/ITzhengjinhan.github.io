@@ -620,6 +620,34 @@ return (
 &#125;
 &#125;
 ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre></li>
+<li>计数器案例<pre><code>class App extends React.Component &#123;
+constructor(props) &#123;
+ super(props);
+ this.state = &#123;
+   counter: 0
+ &#125;
+&#125;
+render() &#123;
+ return (
+   &lt;div&gt;
+     &lt;h2&gt;当前计数:&#123;this.state.counter&#125;&lt;/h2&gt;
+     &lt;button onClick=&#123;this.increment.bind(this)&#125;&gt;+1&lt;/button&gt;
+     &lt;button onClick=&#123;this.decrement.bind(this)&#125;&gt;-1&lt;/button&gt;
+   &lt;/div&gt;
+ )
+&#125;
+increment() &#123;
+ this.setState(&#123;
+   counter: this.state.counter+1
+ &#125;)
+&#125;
+decrement() &#123;
+ this.setState(&#123;
+   counter: this.state.counter-1
+ &#125;)
+&#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre></li>
 </ol>
 
             </div>
