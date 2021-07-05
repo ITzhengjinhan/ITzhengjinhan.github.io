@@ -505,85 +505,66 @@ babel依赖：https://unpkg.com/babel-standalone@6/babel.min.js</code></pre><h4 
 let message = &quot;Hello World&quot;;
 //通过ReactDom对象来渲染内容:
 ReactDOM.render(&lt;h2&gt;&#123;message&#125;&lt;/h2&gt;, document.getElementById(&quot;app&quot;));
-VUE用的是双括号&#123;&#123;&#125;&#125;
-```
-通过事件改变view视图的值
-```
-  <div id="app">
-  </div>
-  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script type="text/babel">
+VUE用的是双括号&#123;&#123;&#125;&#125;</code></pre><p>通过事件改变view视图的值</p>
+<pre><code>  &lt;div id=&quot;app&quot;&gt;
+  &lt;/div&gt;
+  &lt;script src=&quot;https://unpkg.com/react@16/umd/react.development.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://unpkg.com/react-dom@16/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://unpkg.com/babel-standalone@6/babel.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/babel&quot;&gt;
     // 将数据定义到变量中
-    let message = "Hello World";
+    let message = &quot;Hello World&quot;;
     // 通过ReactDom对象来渲染内容
     render();
     // 定义一个执行的函数
     function btnClick() &#123;
-      message = "Hello React";
+      message = &quot;Hello React&quot;;
       render();
     &#125;
     function render() &#123;
       ReactDOM.render((
-        <div>
-          <h2>&#123;message&#125;</h2>
-          <button onClick=&#123;btnClick&#125;>改变文本</button>
-        </div>
-      ), document.getElementById("app"));
+        &lt;div&gt;
+          &lt;h2&gt;&#123;message&#125;&lt;/h2&gt;
+          &lt;button onClick=&#123;btnClick&#125;&gt;改变文本&lt;/button&gt;
+        &lt;/div&gt;
+      ), document.getElementById(&quot;app&quot;));
     &#125;
-  </script>
-```
-
-### 六、核心JSX语法一
-学习之前需要了解以下知识：
-
-#### 6.1类的定义
-ES6之前定义一个Person类：
-```
-function Person(name, age) &#123;
+  &lt;/script&gt;</code></pre><h3 id="六、核心JSX语法一"><a href="#六、核心JSX语法一" class="headerlink" title="六、核心JSX语法一"></a>六、核心JSX语法一</h3><p>学习之前需要了解以下知识：</p>
+<h4 id="6-1类的定义"><a href="#6-1类的定义" class="headerlink" title="6.1类的定义"></a>6.1类的定义</h4><p>ES6之前定义一个Person类：</p>
+<pre><code>function Person(name, age) &#123;
   this.name = name;
   this.age = age;
 &#125;
 Person.prototype.running = function() &#123;
-  console.log(this.name + this.age + "running");
+  console.log(this.name + this.age + &quot;running&quot;);
 &#125;
-var p = new Person("why", 18);
-p.running();
-```
-转换成ES6:
-类中有一个constructor构造方法，当我们通过new关键字调用时，就会默认执行这个构造方法
-1. 构造方法中可以给当前对象添加属性
-2. 类中也可以定义其他方法，这些方法会被放到Person类的prototype上
-3. 属性也可以直接定义在类中
-```
-class Person &#123;
-  height = 1.88;
-  address = "北京市";
+var p = new Person(&quot;why&quot;, 18);
+p.running();</code></pre><p>转换成ES6:<br>类中有一个constructor构造方法，当我们通过new关键字调用时，就会默认执行这个构造方法</p>
+<ol>
+<li>构造方法中可以给当前对象添加属性</li>
+<li>类中也可以定义其他方法，这些方法会被放到Person类的prototype上</li>
+<li>属性也可以直接定义在类中<pre><code>class Person &#123;
+height = 1.88;
+address = &quot;北京市&quot;;
+constructor(name, age) &#123;
+ this.name = name;
+ this.age = age;
+&#125;
+running() &#123;
+ console.log(this.name + this.age + &quot;running&quot;);
+&#125;
+&#125;
+const p = new Person(&quot;why&quot;, 18);
+p.running();</code></pre></li>
+</ol>
+<h4 id="6-2类的继承"><a href="#6-2类的继承" class="headerlink" title="6.2类的继承"></a>6.2类的继承</h4><p>ES6中增加了extends关键字来作为类的继承。<br>我们先写两个类没有继承的情况下，它们存在的重复代码：<br>Person类和Student类：</p>
+<pre><code>class Person &#123;
   constructor(name, age) &#123;
     this.name = name;
     this.age = age;
   &#125;
   running() &#123;
-    console.log(this.name + this.age + "running");
-  &#125;
-&#125;
-const p = new Person("why", 18);
-p.running();
-```
-
-#### 6.2类的继承
-ES6中增加了extends关键字来作为类的继承。
-我们先写两个类没有继承的情况下，它们存在的重复代码：
-Person类和Student类：
-```
-class Person &#123;
-  constructor(name, age) &#123;
-    this.name = name;
-    this.age = age;
-  &#125;
-  running() &#123;
-    console.log(this.name, this.age, "running");
+    console.log(this.name, this.age, &quot;running&quot;);
   &#125;
 &#125;
 class Student &#123;
@@ -594,233 +575,186 @@ class Student &#123;
     this.score = score;
   &#125;
   running() &#123;
-    console.log(this.name, this.age, "running");
+    console.log(this.name, this.age, &quot;running&quot;);
   &#125;
   studying() &#123;
-    console.log(this.name, this.age, this.sno, this.score, "studing");
+    console.log(this.name, this.age, this.sno, this.score, &quot;studing&quot;);
   &#125;
-&#125;
-```
-我们可以使用继承来简化代码：
-注意：在constructor中，子类必须通过super来调用父类的构造方法，对父类进行初始化，否则会报错
-这里其实学过java的朋友应该很好理解。
-```
-class Student1 extends Person &#123;
+&#125;</code></pre><p>我们可以使用继承来简化代码：<br>注意：在constructor中，子类必须通过super来调用父类的构造方法，对父类进行初始化，否则会报错<br>这里其实学过java的朋友应该很好理解。</p>
+<pre><code>class Student1 extends Person &#123;
   constructor(name, age, sno, score) &#123;
     super(name, age);
     this.sno = sno;
     this.score = score;
   &#125;
   studying() &#123;
-    console.log(this.name, this.age, this.sno, this.score, "studing");
+    console.log(this.name, this.age, this.sno, this.score, &quot;studing&quot;);
   &#125;
 &#125;
-const stu1 = new Student1("why", 18, 110, 100);
-stu1.studying();
-```
-
-#### 6.3案例练习
-
-1.  列表展示
-真实开发中，我们的数据通常会从服务器获取，比较常见的是获取一个列表数据，保存到一个数组中进行展示
-比如现在有一个电影列表，我们如何通过React进行展示呢？
-我们还是通过一个组件来完成：
-```
-class App extends React.Component &#123;
-  constructor(props) &#123;
-    super(props);
-    this.state = &#123;
-      movies: ["星际穿越", "大话西游", "盗梦空间", "少年派"]
-    &#125;
-  &#125;
-  render() &#123;
-    // var movieLis = [];
-    // for (var i in this.state.movies) &#123;
-    //   movieLis.push((<li>&#123;this.state.movies[i]&#125;</li>));
-    // &#125;
-    return (
-      <div>
-        <h2>电影列表</h2>
-        <ul>
-          &#123;
-            this.state.movies.map((item, index) => &#123;
-              return (<li>&#123;item&#125;</li>)
-            &#125;)
-          &#125;
-        </ul>
-      </div>
-    )
-  &#125;
+const stu1 = new Student1(&quot;why&quot;, 18, 110, 100);
+stu1.studying();</code></pre><h4 id="6-3案例练习"><a href="#6-3案例练习" class="headerlink" title="6.3案例练习"></a>6.3案例练习</h4><ol>
+<li>列表展示<br>真实开发中，我们的数据通常会从服务器获取，比较常见的是获取一个列表数据，保存到一个数组中进行展示<br>比如现在有一个电影列表，我们如何通过React进行展示呢？<br>我们还是通过一个组件来完成：<pre><code>class App extends React.Component &#123;
+constructor(props) &#123;
+super(props);
+this.state = &#123;
+  movies: [&quot;星际穿越&quot;, &quot;大话西游&quot;, &quot;盗梦空间&quot;, &quot;少年派&quot;]
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-2. 计数器案例
-```
-class App extends React.Component &#123;
-  constructor(props) &#123;
-    super(props);
-    this.state = &#123;
-      counter: 0
-    &#125;
-  &#125;
-  render() &#123;
-    return (
-      <div>
-        <h2>当前计数:&#123;this.state.counter&#125;</h2>
-        <button onClick=&#123;this.increment.bind(this)&#125;>+1</button>
-        <button onClick=&#123;this.decrement.bind(this)&#125;>-1</button>
-      </div>
-    )
-  &#125;
-  increment() &#123;
-    this.setState(&#123;
-      counter: this.state.counter+1
-    &#125;)
-  &#125;
-  decrement() &#123;
-    this.setState(&#123;
-      counter: this.state.counter-1
-    &#125;)
-  &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-
-### JSX语法解析
-
-#### 认识JSX
-```
-<script type="text/babel">
-  const element = <h2>Hello World</h2>
- ReactDOM.render(element, document.getElementById("app"));
-</script>
-```
-
-1. JSX是一种JavaScript的语法扩展（eXtension），也在很多地方称之为JavaScript XML，因为看起就是一段XML语法；
-2. 它用于描述我们的UI界面，并且其完全可以和JavaScript融合在一起使用；
-3. 它不同于Vue中的模块语法，不需要专门学习模块语法中的一些指令（比如v-for、v-if、v-else、v-bind）；
-4. JSX的顶层只能有一个根元素，所以我们很多时候会在外层包裹一个div原生（或者使用后面我们学习的Fragment）；
-5. JSX中的标签可以是单标签，也可以是双标签；注意：如果是单标签，必须以/>结尾
-6. 如果我们jsx中的内容是动态的，我们可以通过表达式来获取：书写规则：&#123;表达式&#125;，大括号内可以是变量、字符串、数组、函数调用等任意js表达式；
-
-#### jsx中的注释:
-```
-<div>
+render() &#123;
+// var movieLis = [];
+// for (var i in this.state.movies) &#123;
+//   movieLis.push((&lt;li&gt;&#123;this.state.movies[i]&#125;&lt;/li&gt;));
+// &#125;
+return (
+  &lt;div&gt;
+    &lt;h2&gt;电影列表&lt;/h2&gt;
+    &lt;ul&gt;
+      &#123;
+        this.state.movies.map((item, index) =&gt; &#123;
+          return (&lt;li&gt;&#123;item&#125;&lt;/li&gt;)
+        &#125;)
+      &#125;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+)
+&#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre></li>
+<li>计数器案例<pre><code>class App extends React.Component &#123;
+constructor(props) &#123;
+ super(props);
+ this.state = &#123;
+   counter: 0
+ &#125;
+&#125;
+render() &#123;
+ return (
+   &lt;div&gt;
+     &lt;h2&gt;当前计数:&#123;this.state.counter&#125;&lt;/h2&gt;
+     &lt;button onClick=&#123;this.increment.bind(this)&#125;&gt;+1&lt;/button&gt;
+     &lt;button onClick=&#123;this.decrement.bind(this)&#125;&gt;-1&lt;/button&gt;
+   &lt;/div&gt;
+ )
+&#125;
+increment() &#123;
+ this.setState(&#123;
+   counter: this.state.counter+1
+ &#125;)
+&#125;
+decrement() &#123;
+ this.setState(&#123;
+   counter: this.state.counter-1
+ &#125;)
+&#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre></li>
+</ol>
+<h3 id="JSX语法解析"><a href="#JSX语法解析" class="headerlink" title="JSX语法解析"></a>JSX语法解析</h3><h4 id="认识JSX"><a href="#认识JSX" class="headerlink" title="认识JSX"></a>认识JSX</h4><pre><code>&lt;script type=&quot;text/babel&quot;&gt;
+  const element = &lt;h2&gt;Hello World&lt;/h2&gt;
+ ReactDOM.render(element, document.getElementById(&quot;app&quot;));
+&lt;/script&gt;</code></pre><ol>
+<li>JSX是一种JavaScript的语法扩展（eXtension），也在很多地方称之为JavaScript XML，因为看起就是一段XML语法；</li>
+<li>它用于描述我们的UI界面，并且其完全可以和JavaScript融合在一起使用；</li>
+<li>它不同于Vue中的模块语法，不需要专门学习模块语法中的一些指令（比如v-for、v-if、v-else、v-bind）；</li>
+<li>JSX的顶层只能有一个根元素，所以我们很多时候会在外层包裹一个div原生（或者使用后面我们学习的Fragment）；</li>
+<li>JSX中的标签可以是单标签，也可以是双标签；注意：如果是单标签，必须以/&gt;结尾</li>
+<li>如果我们jsx中的内容是动态的，我们可以通过表达式来获取：书写规则：{表达式}，大括号内可以是变量、字符串、数组、函数调用等任意js表达式；</li>
+</ol>
+<h4 id="jsx中的注释"><a href="#jsx中的注释" class="headerlink" title="jsx中的注释:"></a>jsx中的注释:</h4><pre><code>&lt;div&gt;
   &#123;/* 我是一段注释 */&#125;
-  <h2>Hello World</h2>
-</div>
-```
-#### JSX嵌入变量
-情况一：当变量是Number、String、Array类型时，可以直接显示
-情况二：当变量是null、undefined、Boolean类型时，内容为空；如果希望可以显示null、undefined、Boolean，那么需要转成字符串；
-转换的方式有很多，比如toString方法、和空字符串拼接，String(变量)等方式；
-情况三：对象类型不能作为子元素（not valid as a React child）
-```
-class App extends React.Component &#123;
+  &lt;h2&gt;Hello World&lt;/h2&gt;
+&lt;/div&gt;</code></pre><h4 id="JSX嵌入变量"><a href="#JSX嵌入变量" class="headerlink" title="JSX嵌入变量"></a>JSX嵌入变量</h4><p>情况一：当变量是Number、String、Array类型时，可以直接显示<br>情况二：当变量是null、undefined、Boolean类型时，内容为空；如果希望可以显示null、undefined、Boolean，那么需要转成字符串；<br>转换的方式有很多，比如toString方法、和空字符串拼接，String(变量)等方式；<br>情况三：对象类型不能作为子元素（not valid as a React child）</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
     super(props);
     this.state = &#123;
-      name: "why",
+      name: &quot;why&quot;,
       age: 18,
-      hobbies: ["篮球", "唱跳", "rap"],
-	  //
+      hobbies: [&quot;篮球&quot;, &quot;唱跳&quot;, &quot;rap&quot;],
+      //
       test1: null,
       test2: undefined,
       flag: false,
-	  //
+      //
       friend: &#123;
-        name: "kobe",
+        name: &quot;kobe&quot;,
         age: 40
       &#125;
     &#125;
   &#125;
   render() &#123;
     return (
-      <div>
+      &lt;div&gt;
         &#123;/* 我是一段注释 */&#125;
-        <h2>Hello World</h2>
-      </div>
-      <div>
+        &lt;h2&gt;Hello World&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
         &#123;/* 1.可以直接显示 */&#125;
-        <h2>&#123;this.state.name&#125;</h2>
-        <h2>&#123;this.state.age&#125;</h2>
-        <h2>&#123;this.state.hobbies&#125;</h2>
+        &lt;h2&gt;&#123;this.state.name&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.age&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.hobbies&#125;&lt;/h2&gt;
         &#123;/* 2.不显示 */&#125;
-        <h2>&#123;this.state.test1&#125;</h2>
-        <h2>&#123;this.state.test1 + ""&#125;</h2>
-        <h2>&#123;this.state.test2&#125;</h2>
-        <h2>&#123;this.state.test2 + ""&#125;</h2>
-        <h2>&#123;this.state.flag&#125;</h2>
-        <h2>&#123;this.state.flag + ""&#125;</h2>
+        &lt;h2&gt;&#123;this.state.test1&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.test1 + &quot;&quot;&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.test2&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.test2 + &quot;&quot;&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.flag&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.flag + &quot;&quot;&#125;&lt;/h2&gt;
         &#123;/* 3.不显示 */&#125;
-        <h2>123&#123;this.state.friend&#125;</h2>
-      </div>
+        &lt;h2&gt;123&#123;this.state.friend&#125;&lt;/h2&gt;
+      &lt;/div&gt;
     )
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-
-#### JSX嵌入表达式
-JSX中，也可以是一个表达式。
-这里我们演练三个，其他的大家在开发中灵活运用：
-1.运算表达式
-2.三元运算符
-3.执行一个函数
-```
-class App extends React.Component &#123;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><h4 id="JSX嵌入表达式"><a href="#JSX嵌入表达式" class="headerlink" title="JSX嵌入表达式"></a>JSX嵌入表达式</h4><p>JSX中，也可以是一个表达式。<br>这里我们演练三个，其他的大家在开发中灵活运用：<br>1.运算表达式<br>2.三元运算符<br>3.执行一个函数</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
     super(props);
     this.state = &#123;
-      firstName: "kobe",
-      lastName: "bryant",
+      firstName: &quot;kobe&quot;,
+      lastName: &quot;bryant&quot;,
       age: 20
     &#125;
   &#125;
   render() &#123;
     return (
-      <div>
+      &lt;div&gt;
         &#123;/* 运算表达式 */&#125;
-        <h2>&#123;this.state.firstName + " " + this.state.lastName&#125;</h2>
+        &lt;h2&gt;&#123;this.state.firstName + &quot; &quot; + this.state.lastName&#125;&lt;/h2&gt;
         &#123;/* 三元运算符 */&#125;
-        <h2>&#123;this.state.age >= 18 ? "成年人": "未成年人"&#125;</h2>
+        &lt;h2&gt;&#123;this.state.age &gt;= 18 ? &quot;成年人&quot;: &quot;未成年人&quot;&#125;&lt;/h2&gt;
         &#123;/* 执行一个函数 */&#125;
-        <h2>&#123;this.sayHello("kobe")&#125;</h2>
-      </div>
+        &lt;h2&gt;&#123;this.sayHello(&quot;kobe&quot;)&#125;&lt;/h2&gt;
+      &lt;/div&gt;
     )
   &#125;
   sayHello(name) &#123;
-    return "Hello " + name;
+    return &quot;Hello &quot; + name;
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><h4 id="jsx绑定属性"><a href="#jsx绑定属性" class="headerlink" title="jsx绑定属性"></a>jsx绑定属性</h4><p>很多时候，描述的HTML原生会有一些属性，而我们希望这些属性也是动态的：</p>
+<ol>
+<li>比如元素都会有title属性,比如img元素会有src属性,比如a元素会有href属性,比如元素可能需要绑定class</li>
+<li>注意：绑定class比较特殊，因为class在js中是一个关键字，所以jsx中不允许直接写class,写法：使用className替代</li>
+<li>比如原生使用内联样式style，style后面跟的是一个对象类型，对象中是样式的属性名和属性值；注意：这里会将属性名转成驼峰标识，而不是连接符-；<img src="https://pic.imgdb.cn/item/60e2b6805132923bf8013d76.png">
 
-#### jsx绑定属性
-很多时候，描述的HTML原生会有一些属性，而我们希望这些属性也是动态的：
-
-1. 比如元素都会有title属性,比如img元素会有src属性,比如a元素会有href属性,比如元素可能需要绑定class
-2. 注意：绑定class比较特殊，因为class在js中是一个关键字，所以jsx中不允许直接写class,写法：使用className替代
-3. 比如原生使用内联样式style，style后面跟的是一个对象类型，对象中是样式的属性名和属性值；注意：这里会将属性名转成驼峰标识，而不是连接符-；
-<img src="https://pic.imgdb.cn/item/60e2b6805132923bf8013d76.png">
-
-#### jsx事件监听
-方案一：bind给btnClick显示绑定this
-```
-class App extends React.Component &#123;
+</li>
+</ol>
+<h4 id="jsx事件监听"><a href="#jsx事件监听" class="headerlink" title="jsx事件监听"></a>jsx事件监听</h4><p>方案一：bind给btnClick显示绑定this</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
     super(props);
     this.state = &#123;
-      message: "你好啊,李银河"
+      message: &quot;你好啊,李银河&quot;
     &#125;
     this.btnClick = this.btnClick.bind(this);
   &#125;
   render() &#123;
     return (
-      <div>
-        <button onClick=&#123;this.btnClick&#125;>点我一下(React)</button>
-        <button onClick=&#123;this.btnClick&#125;>也点我一下(React)</button>
-      </div>
+      &lt;div&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;点我一下(React)&lt;/button&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;也点我一下(React)&lt;/button&gt;
+      &lt;/div&gt;
     )
   &#125;
   btnClick() &#123;
@@ -828,47 +762,41 @@ class App extends React.Component &#123;
     console.log(this.state.message);
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-方案二：使用 ES6 箭头函数
-```
-class App extends React.Component &#123;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>方案二：使用 ES6 箭头函数</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
     super(props);
     this.state = &#123;
-      message: "你好啊,李银河"
+      message: &quot;你好啊,李银河&quot;
     &#125;
   &#125;
   render() &#123;
     return (
-      <div>
-        <button onClick=&#123;this.btnClick&#125;>点我一下(React)</button>
-        <button onClick=&#123;this.btnClick&#125;>也点我一下(React)</button>
-      </div>
+      &lt;div&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;点我一下(React)&lt;/button&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;也点我一下(React)&lt;/button&gt;
+      &lt;/div&gt;
     )
   &#125;
-  btnClick = () => &#123;
+  btnClick = () =&gt; &#123;
     console.log(this);
     console.log(this.state.message);
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-方案三：事件监听时传入箭头函数（推荐）
-```
-class App extends React.Component &#123;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>方案三：事件监听时传入箭头函数（推荐）</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
     super(props);
     this.state = &#123;
-      message: "你好啊,李银河"
+      message: &quot;你好啊,李银河&quot;
     &#125;
   &#125;
   render() &#123;
     return (
-      <div>
-        <button onClick=&#123;() => this.btnClick()&#125;>点我一下(React)</button>
-        <button onClick=&#123;() => this.btnClick()&#125;>也点我一下(React)</button>
-      </div>
+      &lt;div&gt;
+        &lt;button onClick=&#123;() =&gt; this.btnClick()&#125;&gt;点我一下(React)&lt;/button&gt;
+        &lt;button onClick=&#123;() =&gt; this.btnClick()&#125;&gt;也点我一下(React)&lt;/button&gt;
+      &lt;/div&gt;
     )
   &#125;
   btnClick() &#123;
@@ -876,21 +804,14 @@ class App extends React.Component &#123;
     console.log(this.state.message);
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-
-#### 事件参数传递
-情况一：获取event对象
-很多时候我们需要拿到event对象来做一些事情（比如阻止默认行为）
-假如我们用不到this，那么直接传入函数就可以获取到event对象；
-```
-class App extends React.Component &#123;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><h4 id="事件参数传递"><a href="#事件参数传递" class="headerlink" title="事件参数传递"></a>事件参数传递</h4><p>情况一：获取event对象<br>很多时候我们需要拿到event对象来做一些事情（比如阻止默认行为）<br>假如我们用不到this，那么直接传入函数就可以获取到event对象；</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
   render() &#123;
     return (
-      <div>
-        <a target="_blank" rel="noopener" href="http://www.baidu.com" onClick=&#123;this.btnClick&#125;>点我一下</a>
-      </div>
+      &lt;div&gt;
+        &lt;a href=&quot;http://www.baidu.com&quot; onClick=&#123;this.btnClick&#125;&gt;点我一下&lt;/a&gt;
+      &lt;/div&gt;
     )
   &#125;
   btnClick(e) &#123;
@@ -898,28 +819,25 @@ class App extends React.Component &#123;
     console.log(e);
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-情况二：获取更多参数
-```
-class App extends React.Component &#123;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>情况二：获取更多参数</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
     super(props);
     this.state = &#123;
-      names: ["衣服", "鞋子", "裤子"]
+      names: [&quot;衣服&quot;, &quot;鞋子&quot;, &quot;裤子&quot;]
     &#125;
   &#125;
  render() &#123;
     return (
-      <div> 
+      &lt;div&gt; 
        &#123;
-          this.state.names.map((item, index) => &#123;
+          this.state.names.map((item, index) =&gt; &#123;
             return (
-              <a href="#" onClick=&#123;e => this.aClick(e, item, index)&#125;>&#123;item&#125;</a>
+              &lt;a href=&quot;#&quot; onClick=&#123;e =&gt; this.aClick(e, item, index)&#125;&gt;&#123;item&#125;&lt;/a&gt;
             )
           &#125;)
         &#125;
-      </div>
+      &lt;/div&gt;
     )
   &#125;
   aClick(e, item, index) &#123;
@@ -928,17 +846,8 @@ class App extends React.Component &#123;
     console.log(e);
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-
-### 七、核心JSX语法二
-
-#### 条件渲染
-
-在vue中，我们会通过指令来控制：比如v-if、v-show；
-在React中，所有的条件判断都和普通的JavaScript代码一致
-```
-class App extends React.Component &#123;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><h3 id="七、核心JSX语法二"><a href="#七、核心JSX语法二" class="headerlink" title="七、核心JSX语法二"></a>七、核心JSX语法二</h3><h4 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h4><p>在vue中，我们会通过指令来控制：比如v-if、v-show；<br>在React中，所有的条件判断都和普通的JavaScript代码一致</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
     super(props);
 
@@ -949,23 +858,19 @@ class App extends React.Component &#123;
   render() &#123;
     let titleJsx = null;
     if (this.state.isLogin) &#123;
-      titleJsx = <h2>欢迎回来~</h2>
+      titleJsx = &lt;h2&gt;欢迎回来~&lt;/h2&gt;
     &#125; else &#123;
-      titleJsx = <h2>请先登录~</h2>
+      titleJsx = &lt;h2&gt;请先登录~&lt;/h2&gt;
     &#125;
     return (
-      <div>
+      &lt;div&gt;
         &#123;titleJsx&#125;
-      </div>
+      &lt;/div&gt;
     )
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-
-我们也可以将其封装到一个独立的函数中：
-```
-class App extends React.Component &#123;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>我们也可以将其封装到一个独立的函数中：</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
     super(props);
 
@@ -975,27 +880,23 @@ class App extends React.Component &#123;
   &#125;
   render() &#123;
     return (
-      <div>
+      &lt;div&gt;
         &#123;this.getTitleJsx()&#125;
-      </div>
+      &lt;/div&gt;
     )
   &#125;
   getTitleJsx() &#123;
     let titleJsx = null;
     if (this.state.isLogin) &#123;
-      titleJsx = <h2>欢迎回来~</h2>
+      titleJsx = &lt;h2&gt;欢迎回来~&lt;/h2&gt;
     &#125; else &#123;
-      titleJsx = <h2>请先登录~</h2>
+      titleJsx = &lt;h2&gt;请先登录~&lt;/h2&gt;
     &#125;
     return titleJsx;
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
-
-三元运算符
-```
-class App extends React.Component &#123;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>三元运算符</p>
+<pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
     super(props);
     this.state = &#123;
@@ -1004,10 +905,10 @@ class App extends React.Component &#123;
   &#125;
   render() &#123;
     return (
-      <div>
-        <h2>&#123;this.state.isLogin ? "欢迎回来~": "请先登录~"&#125;</h2>
-        <button onClick=&#123;e => this.loginBtnClick()&#125;>&#123;this.state.isLogin ? "退出": "登录"&#125;</button>
-      </div>
+      &lt;div&gt;
+        &lt;h2&gt;&#123;this.state.isLogin ? &quot;欢迎回来~&quot;: &quot;请先登录~&quot;&#125;&lt;/h2&gt;
+        &lt;button onClick=&#123;e =&gt; this.loginBtnClick()&#125;&gt;&#123;this.state.isLogin ? &quot;退出&quot;: &quot;登录&quot;&#125;&lt;/button&gt;
+      &lt;/div&gt;
     )
   &#125;
   loginBtnClick() &#123;
@@ -1016,23 +917,38 @@ class App extends React.Component &#123;
     &#125;)
   &#125;
 &#125;
-ReactDOM.render(<App/>, document.getElementById("app"));
-```
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>与运算符&amp;&amp;</p>
+<pre><code>如果我们使用三元运算符
+&#123;this.state.isLogin ? &lt;h2&gt;&#123;this.state.username&#125;&lt;/h2&gt;: null&#125;
+通过逻辑与&amp;&amp;来简化操作
+&#123;this.state.isLogin &amp;&amp; &lt;h2&gt;&#123;this.state.username&#125;&lt;/h2&gt;&#125;</code></pre><p>实现v-show效果<br><img src="https://pic.imgdb.cn/item/60e2cfb45132923bf893b3f5.png"></p>
+<h4 id="jsx列表渲染"><a href="#jsx列表渲染" class="headerlink" title="jsx列表渲染"></a>jsx列表渲染</h4><p>在React中并没有像Vue模块语法中的v-for指令，而且需要我们通过JavaScript代码的方式组织数据，转成JSX：</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
 
+    this.state = &#123;
+      movies: [&quot;盗梦空间&quot;, &quot;大话西游&quot;, &quot;流浪地球&quot;, &quot;少年派&quot;, &quot;食神&quot;, &quot;美人鱼&quot;, &quot;海王&quot;]
+    &#125;
+  &#125;
 
-
-实现v-show效果
-```
- render() &#123;
-    const &#123; isLogin, username &#125; = this.state;
-    const nameDisplay = isLogin ? "block": "none";
+  render() &#123;
     return (
-      <div>
-        <h2 style=&#123;&#123;display: nameDisplay&#125;&#125;&gt;&#123;username&#125;&lt;/h2&gt;
-        &lt;button onClick=&#123;e =&gt; this.loginBtnClick()&#125;&gt;&#123;isLogin ? &quot;退出&quot;: &quot;登录&quot;&#125;&lt;/button&gt;
+      &lt;div&gt;
+        &lt;h2&gt;电影列表&lt;/h2&gt;
+        &lt;ul&gt;
+          &#123;
+            this.state.movies.map(item =&gt; &#123;
+              return &lt;li&gt;&#123;item&#125;&lt;/li&gt;
+            &#125;)
+          &#125;
+        &lt;/ul&gt;
       &lt;/div&gt;
     )
-  &#125;</code></pre>
+  &#125;
+&#125;
+
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre>
             </div>
             <hr/>
 
