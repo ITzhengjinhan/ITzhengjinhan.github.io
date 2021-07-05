@@ -472,7 +472,7 @@
 const instance = new Person(&#39;张三&#39;, 18) // &#123; name: &#39;张三&#39;, age: 18&#125;</code></pre><p>new 函数()：构造函数执行。<br>它和普通函数的执行还是有一些区别的</p>
 <p>相似点：<br>1)一样是把函数执行（传递实参也是一样的）<br>2)形成私有上下文,也存在私有变量，然后初始化this</p>
 <p>不同点<br>1)new 执行，浏览器会在当前上下文中，默认创建一个对象（实例对象）<br>2)在初始化this的时候，会把this指向这个实例对象，在构造函数中编写this.xxx = xxx的操作，其实就是给这个实例对象设置私有属性。除了这些，其他的操作和这个实例对象没有直接关系<br>这个构造函数如果没有返回值，或者返回值的类型是基本数据类型，则最后默认返回的是这个默认创建的实例对象。如果有显式的return一个引用类型值，则最后是以这个显式返回的引用类型为主</p>
-<h4 id="新方法：利用-clip-path-进行裁剪"><a href="#新方法：利用-clip-path-进行裁剪" class="headerlink" title="新方法：利用 clip-path 进行裁剪"></a>新方法：利用 clip-path 进行裁剪</h4><h3 id="3、class"><a href="#3、class" class="headerlink" title="3、class"></a>3、class</h3><p>在es6后，可以通过class关键字来定义一个类。但需要注意的是：「es5的构造函数可以通过new关键字执行，执行后返回一个实例对象，构造函数也可以直接执行。但是使用class来定义的类，只能通过new关键字来执行，不能直接执行，否则会报错」</p>
+<h3 id="3、class"><a href="#3、class" class="headerlink" title="3、class"></a>3、class</h3><p>在es6后，可以通过class关键字来定义一个类。但需要注意的是：「es5的构造函数可以通过new关键字执行，执行后返回一个实例对象，构造函数也可以直接执行。但是使用class来定义的类，只能通过new关键字来执行，不能直接执行，否则会报错」</p>
 <pre><code>class Person &#123;
     constructor(name, age) &#123;
         this.name = name
