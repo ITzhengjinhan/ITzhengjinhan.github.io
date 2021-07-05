@@ -649,7 +649,64 @@ decrement() &#123;
 &#125;
 ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre></li>
 </ol>
-
+<h3 id="JSX语法解析"><a href="#JSX语法解析" class="headerlink" title="JSX语法解析"></a>JSX语法解析</h3><h4 id="认识JSX"><a href="#认识JSX" class="headerlink" title="认识JSX"></a>认识JSX</h4><pre><code>&lt;script type=&quot;text/babel&quot;&gt;
+  const element = &lt;h2&gt;Hello World&lt;/h2&gt;
+ ReactDOM.render(element, document.getElementById(&quot;app&quot;));
+&lt;/script&gt;</code></pre><ol>
+<li>JSX是一种JavaScript的语法扩展（eXtension），也在很多地方称之为JavaScript XML，因为看起就是一段XML语法；</li>
+<li>它用于描述我们的UI界面，并且其完全可以和JavaScript融合在一起使用；</li>
+<li>它不同于Vue中的模块语法，不需要专门学习模块语法中的一些指令（比如v-for、v-if、v-else、v-bind）；</li>
+<li>JSX的顶层只能有一个根元素，所以我们很多时候会在外层包裹一个div原生（或者使用后面我们学习的Fragment）；</li>
+<li>JSX中的标签可以是单标签，也可以是双标签；注意：如果是单标签，必须以/&gt;结尾</li>
+<li>如果我们jsx中的内容是动态的，我们可以通过表达式来获取：书写规则：{表达式}，大括号内可以是变量、字符串、数组、函数调用等任意js表达式；</li>
+</ol>
+<h4 id="jsx中的注释"><a href="#jsx中的注释" class="headerlink" title="jsx中的注释:"></a>jsx中的注释:</h4><pre><code>&lt;div&gt;
+  &#123;/* 我是一段注释 */&#125;
+  &lt;h2&gt;Hello World&lt;/h2&gt;
+&lt;/div&gt;</code></pre><h4 id="JSX嵌入变量"><a href="#JSX嵌入变量" class="headerlink" title="JSX嵌入变量"></a>JSX嵌入变量</h4><p>情况一：当变量是Number、String、Array类型时，可以直接显示<br>情况二：当变量是null、undefined、Boolean类型时，内容为空；如果希望可以显示null、undefined、Boolean，那么需要转成字符串；<br>转换的方式有很多，比如toString方法、和空字符串拼接，String(变量)等方式；<br>情况三：对象类型不能作为子元素（not valid as a React child）</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+    this.state = &#123;
+      name: &quot;why&quot;,
+      age: 18,
+      hobbies: [&quot;篮球&quot;, &quot;唱跳&quot;, &quot;rap&quot;],
+      //
+      test1: null,
+      test2: undefined,
+      flag: false,
+      //
+      friend: &#123;
+        name: &quot;kobe&quot;,
+        age: 40
+      &#125;
+    &#125;
+  &#125;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &#123;/* 我是一段注释 */&#125;
+        &lt;h2&gt;Hello World&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &#123;/* 1.可以直接显示 */&#125;
+        &lt;h2&gt;&#123;this.state.name&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.age&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.hobbies&#125;&lt;/h2&gt;
+        &#123;/* 2.不显示 */&#125;
+        &lt;h2&gt;&#123;this.state.test1&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.test1 + &quot;&quot;&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.test2&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.test2 + &quot;&quot;&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.flag&#125;&lt;/h2&gt;
+        &lt;h2&gt;&#123;this.state.flag + &quot;&quot;&#125;&lt;/h2&gt;
+        &#123;/* 3.不显示 */&#125;
+        &lt;h2&gt;123&#123;this.state.friend&#125;&lt;/h2&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre>
             </div>
             <hr/>
 
