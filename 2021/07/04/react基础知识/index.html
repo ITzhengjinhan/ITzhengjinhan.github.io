@@ -738,7 +738,112 @@ ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code><
 <li>注意：绑定class比较特殊，因为class在js中是一个关键字，所以jsx中不允许直接写class,写法：使用className替代</li>
 <li>比如原生使用内联样式style，style后面跟的是一个对象类型，对象中是样式的属性名和属性值；注意：这里会将属性名转成驼峰标识，而不是连接符-；</li>
 </ol>
-
+<h4 id="jsx事件监听"><a href="#jsx事件监听" class="headerlink" title="jsx事件监听"></a>jsx事件监听</h4><p>方案一：bind给btnClick显示绑定this</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+    this.state = &#123;
+      message: &quot;你好啊,李银河&quot;
+    &#125;
+    this.btnClick = this.btnClick.bind(this);
+  &#125;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;点我一下(React)&lt;/button&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;也点我一下(React)&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+  btnClick() &#123;
+    console.log(this);
+    console.log(this.state.message);
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>方案二：使用 ES6 箭头函数</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+    this.state = &#123;
+      message: &quot;你好啊,李银河&quot;
+    &#125;
+  &#125;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;点我一下(React)&lt;/button&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;也点我一下(React)&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+  btnClick = () =&gt; &#123;
+    console.log(this);
+    console.log(this.state.message);
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>方案三：事件监听时传入箭头函数（推荐）</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+    this.state = &#123;
+      message: &quot;你好啊,李银河&quot;
+    &#125;
+  &#125;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;button onClick=&#123;() =&gt; this.btnClick()&#125;&gt;点我一下(React)&lt;/button&gt;
+        &lt;button onClick=&#123;() =&gt; this.btnClick()&#125;&gt;也点我一下(React)&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+  btnClick() &#123;
+    console.log(this);
+    console.log(this.state.message);
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><h4 id="事件参数传递"><a href="#事件参数传递" class="headerlink" title="事件参数传递"></a>事件参数传递</h4><p>情况一：获取event对象<br>很多时候我们需要拿到event对象来做一些事情（比如阻止默认行为）<br>假如我们用不到this，那么直接传入函数就可以获取到event对象；</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;a href=&quot;http://www.baidu.com&quot; onClick=&#123;this.btnClick&#125;&gt;点我一下&lt;/a&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+  btnClick(e) &#123;
+    e.preventDefault();
+    console.log(e);
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>情况二：获取更多参数</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+    this.state = &#123;
+      names: [&quot;衣服&quot;, &quot;鞋子&quot;, &quot;裤子&quot;]
+    &#125;
+  &#125;
+ render() &#123;
+    return (
+      &lt;div&gt; 
+       &#123;
+          this.state.names.map((item, index) =&gt; &#123;
+            return (
+              &lt;a href=&quot;#&quot; onClick=&#123;e =&gt; this.aClick(e, item, index)&#125;&gt;&#123;item&#125;&lt;/a&gt;
+            )
+          &#125;)
+        &#125;
+      &lt;/div&gt;
+    )
+  &#125;
+  aClick(e, item, index) &#123;
+    e.preventDefault();
+    console.log(item, index);
+    console.log(e);
+  &#125;
+&#125;</code></pre>
             </div>
             <hr/>
 
