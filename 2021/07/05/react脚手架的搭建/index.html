@@ -467,6 +467,22 @@
 <pre><code>create-react-app 项目名称</code></pre><p>创建完成后，进入对应的目录，就可以将项目跑起来：</p>
 <pre><code>cd 01-test-react
 yarn start</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e3135f5132923bf8d54ff6.png"><br>项目结构：<br><img src="https://pic.imgdb.cn/item/60e313735132923bf8d5e21f.png"><br>说明：<br><img src="https://pic.imgdb.cn/item/60e313865132923bf8d668f5.png"></p>
+<h2 id="三、从零编写项目"><a href="#三、从零编写项目" class="headerlink" title="三、从零编写项目"></a>三、从零编写项目</h2><p>开始编写代码<br>在src目录下，创建一个index.js文件，因为这是webpack打包的入口。<br>在index.js中开始编写React代码：<br>我们需要手动的来导入React、ReactDOM，因为它们都是在我们安装的模块中；</p>
+<pre><code>import React from &quot;react&quot;;
+import ReactDOM from &#39;react-dom&#39;;
+ReactDOM.render(&lt;h2&gt;Hello React&lt;/h2&gt;, document.getElementById(&quot;root&quot;));</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e315795132923bf8e4ae4d.jpg"></p>
+<p>如果我们不希望直接在 ReactDOM.render 中编写过多的代码，就可以单独抽取一个组件<br>App.js：</p>
+<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
+
+export default class App extends Component &#123;
+  render() &#123;
+    return &lt;h2&gt;Hello React&lt;/h2&gt;
+  &#125;
+&#125;</code></pre><p>在index.js中引入App，并且使用它：</p>
+<pre><code>import React from &quot;react&quot;;
+import ReactDOM from &#39;react-dom&#39;;
+import App from &#39;./App&#39;;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;root&quot;));</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e315795132923bf8e4ae4d.jpg"></p>
 
             </div>
             <hr/>
