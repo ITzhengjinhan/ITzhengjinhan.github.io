@@ -706,6 +706,32 @@ ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code><
     )
   &#125;
 &#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><h4 id="JSX嵌入表达式"><a href="#JSX嵌入表达式" class="headerlink" title="JSX嵌入表达式"></a>JSX嵌入表达式</h4><p>JSX中，也可以是一个表达式。<br>这里我们演练三个，其他的大家在开发中灵活运用：<br>1.运算表达式<br>2.三元运算符<br>3.执行一个函数</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+    this.state = &#123;
+      firstName: &quot;kobe&quot;,
+      lastName: &quot;bryant&quot;,
+      age: 20
+    &#125;
+  &#125;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &#123;/* 运算表达式 */&#125;
+        &lt;h2&gt;&#123;this.state.firstName + &quot; &quot; + this.state.lastName&#125;&lt;/h2&gt;
+        &#123;/* 三元运算符 */&#125;
+        &lt;h2&gt;&#123;this.state.age &gt;= 18 ? &quot;成年人&quot;: &quot;未成年人&quot;&#125;&lt;/h2&gt;
+        &#123;/* 执行一个函数 */&#125;
+        &lt;h2&gt;&#123;this.sayHello(&quot;kobe&quot;)&#125;&lt;/h2&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+  sayHello(name) &#123;
+    return &quot;Hello &quot; + name;
+  &#125;
+&#125;
 ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre>
             </div>
             <hr/>
