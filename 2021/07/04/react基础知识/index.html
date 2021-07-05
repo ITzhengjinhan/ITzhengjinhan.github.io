@@ -501,9 +501,9 @@ babel依赖：https://unpkg.com/babel-standalone@6/babel.min.js</code></pre><h4 
     // 通过ReactDom对象来渲染内容
     ReactDOM.render(&lt;h2&gt;Hello World&lt;/h2&gt;, document.getElementById(&quot;app&quot;));
   &lt;/script&gt;</code></pre><p>目前我们渲染的内容是定义死的，能否将其抽取到一个变量中呢？</p>
-<pre><code>将数据定义到变量中:
+<pre><code>//将数据定义到变量中:
 let message = &quot;Hello World&quot;;
-通过ReactDom对象来渲染内容:
+//通过ReactDom对象来渲染内容:
 ReactDOM.render(&lt;h2&gt;&#123;message&#125;&lt;/h2&gt;, document.getElementById(&quot;app&quot;));
 //VUE用的是双括号&#123;&#123;&#125;&#125;
 ```
@@ -512,11 +512,9 @@ ReactDOM.render(&lt;h2&gt;&#123;message&#125;&lt;/h2&gt;, document.getElementByI
 ```
   <div id="app">
   </div>
-
   <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-
   <script type="text/babel">
     // 将数据定义到变量中
     let message = "Hello World";
@@ -529,7 +527,6 @@ ReactDOM.render(&lt;h2&gt;&#123;message&#125;&lt;/h2&gt;, document.getElementByI
       message = "Hello React";
       render();
     &#125;
-
     function render() &#123;
       ReactDOM.render((
         <div>
@@ -539,7 +536,6 @@ ReactDOM.render(&lt;h2&gt;&#123;message&#125;&lt;/h2&gt;, document.getElementByI
       ), document.getElementById("app"));
     &#125;
   </script>
-  
 ```
 
 ### 六、核心JSX语法一
