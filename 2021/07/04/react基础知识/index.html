@@ -503,7 +503,6 @@ babel依赖：https://unpkg.com/babel-standalone@6/babel.min.js</code></pre><h4 
   &lt;/script&gt;</code></pre><p>目前我们渲染的内容是定义死的，能否将其抽取到一个变量中呢？</p>
 <pre><code>// 将数据定义到变量中
 let message = &quot;Hello World&quot;;
-
 // 通过ReactDom对象来渲染内容
 ReactDOM.render(&lt;h2&gt;&#123;message&#125;&lt;/h2&gt;, document.getElementById(&quot;app&quot;));
 //VUE用的是双括号&#123;&#123;&#125;&#125;
