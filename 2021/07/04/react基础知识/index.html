@@ -577,6 +577,38 @@ Person类和Student类：</code></pre><p>class Person {<br>  constructor(name, a
 这里其实学过java的朋友应该很好理解。</code></pre><p>class Student1 extends Person {<br>  constructor(name, age, sno, score) {<br>    super(name, age);<br>    this.sno = sno;<br>    this.score = score;<br>  }</p>
 <p>  studying() {<br>    console.log(this.name, this.age, this.sno, this.score, “studing”);<br>  }<br>}</p>
 <p>const stu1 = new Student1(“why”, 18, 110, 100);<br>stu1.studying();</p>
+<pre><code>
+#### 6.3案例练习
+
+1.  列表展示
+真实开发中，我们的数据通常会从服务器获取，比较常见的是获取一个列表数据，保存到一个数组中进行展示
+比如现在有一个电影列表，我们如何通过React进行展示呢？
+我们还是通过一个组件来完成：</code></pre><p>class App extends React.Component {<br>  constructor(props) {<br>    super(props);</p>
+<pre><code>this.state = &#123;
+  movies: [&quot;星际穿越&quot;, &quot;大话西游&quot;, &quot;盗梦空间&quot;, &quot;少年派&quot;]
+&#125;</code></pre><p>  }</p>
+<p>  render() {<br>    // var movieLis = [];<br>    // for (var i in this.state.movies) {<br>    //   movieLis.push((<li>{this.state.movies[i]}</li>));<br>    // }</p>
+<pre><code>return (
+  &lt;div&gt;
+    &lt;h2&gt;电影列表&lt;/h2&gt;
+    &lt;ul&gt;
+      &#123;
+        this.state.movies.map((item, index) =&gt; &#123;
+          return (&lt;li&gt;&#123;item&#125;&lt;/li&gt;)
+        &#125;)
+      &#125;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+)</code></pre><p>  }<br>}</p>
+<p>ReactDOM.render(<App/>, document.getElementById(“app”));</p>
+<pre><code>2. 计数器案例</code></pre><p>class App extends React.Component {<br>  constructor(props) {<br>    super(props);</p>
+<pre><code>this.state = &#123;
+  counter: 0
+&#125;</code></pre><p>  }</p>
+<p>  render() {<br>    return (<br>      <div><br>        <h2>当前计数:{this.state.counter}</h2><br>        <button onClick={this.increment.bind(this)}>+1</button><br>        <button onClick={this.decrement.bind(this)}>-1</button><br>      </div><br>    )<br>  }</p>
+<p>  increment() {<br>    this.setState({<br>      counter: this.state.counter+1<br>    })<br>  }</p>
+<p>  decrement() {<br>    this.setState({<br>      counter: this.state.counter-1<br>    })<br>  }<br>}</p>
+<p>ReactDOM.render(<App/>, document.getElementById(“app”));</p>
 <pre><code></code></pre>
             </div>
             <hr/>
