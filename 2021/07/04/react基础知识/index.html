@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="JavaScript开发优化技巧以及lodash的使用方法, 全栈攻城狮">
+    <meta name="keywords" content="React基础知识, 全栈攻城狮">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>JavaScript开发优化技巧以及lodash的使用方法 | 全栈攻城狮</title>
+    <title>React基础知识 | 全栈攻城狮</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JavaScript开发优化技巧以及lodash的使用方法</h1>
+                    <h1 class="description center-align post-title">React基础知识</h1>
                 </div>
             </div>
         </div>
@@ -444,7 +444,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-11
+                    2021-07-04
                 </div>
                 
 
@@ -460,100 +460,533 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Lodash.js是一个一致性、模块化、高性能的 JavaScript 实用工具库。通过降低 array、number、objects、string 等等的使用难度从而让 JavaScript 变得更简单。</p>
-<h3 id="使用Lodash-js需要引入Lodash-js开发包，一般常见有三种方式，具体如下："><a href="#使用Lodash-js需要引入Lodash-js开发包，一般常见有三种方式，具体如下：" class="headerlink" title="使用Lodash.js需要引入Lodash.js开发包，一般常见有三种方式，具体如下："></a>使用Lodash.js需要引入Lodash.js开发包，一般常见有三种方式，具体如下：</h3><ol>
-<li>js离线文件引入，直接在官网网站下载相关的lodash.js包，放在自己的开发项目中，然后在需要使用的文件中引入：<script src="lodash.js"></script></li>
-<li>cdn加速引入：一般使用bootcdn来直接在线引入，通过cdn加速文件下载访问：<script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.core.min.js"></script></li>
-<li>直接通过依赖包注入，使用webpack或者glup的打包模式，可以直接在自己的项目中挂载lodash的依赖包<br>地址：<a target="_blank" rel="noopener" href="https://www.lodashjs.com/">官网地址</a></li>
+                <p>本博客学习来源：B站UP主–coderwhy，在此特别感谢王老师的贡献。</p>
+<h3 id="一、React是什么？"><a href="#一、React是什么？" class="headerlink" title="一、React是什么？"></a>一、React是什么？</h3><p>官方对它的解释：用于构建用户界面的 JavaScript 库。</p>
+<h3 id="二、React的特点"><a href="#二、React的特点" class="headerlink" title="二、React的特点"></a>二、React的特点</h3><h4 id="React的特点"><a href="#React的特点" class="headerlink" title="React的特点"></a>React的特点</h4><ol>
+<li><p>声明式编程：<br>声明式编程是目前整个大前端开发的模式：Vue、React、Flutter、SwiftUI；<br>它允许我们只需要维护自己的状态，当状态改变时，React可以根据最新的状态去渲染我们的UI界面；</p>
+</li>
+<li><p>组件化开发：<br>组件化开发页面目前前端的流行趋势，我们会将复杂的界面拆分成一个个小的组件；</p>
+</li>
 </ol>
-<h3 id="一、按字符串属性值对对象数组进行排序"><a href="#一、按字符串属性值对对象数组进行排序" class="headerlink" title="一、按字符串属性值对对象数组进行排序"></a>一、按字符串属性值对对象数组进行排序</h3><p>使用ES6排序功能：</p>
-<pre><code>var data = [
-  &#123; name: &#39;abc&#39;, value: 21 &#125;,
-  &#123; name: &#39;cde&#39;, value: 37 &#125;,
-  &#123; name: &#39;ee&#39;, value: 45 &#125;,
-  &#123; name: &#39;ff&#39;, value: -12 &#125;,
-  &#123; name: &#39;ab&#39;, value: 13 &#125;,
-  &#123; name: &#39;cs&#39;, value: 37 &#125;
-];
-// sort by value
-data.sort(function (a, b) &#123;
-  return a.value - b.value;
-&#125;);</code></pre><p>使用Lodash:</p>
-<pre><code>const sortedValues = _.sortBy(data, &#39;value&#39;);</code></pre><h3 id="二、如何四舍五入至小数点后两位"><a href="#二、如何四舍五入至小数点后两位" class="headerlink" title="二、如何四舍五入至小数点后两位?"></a>二、如何四舍五入至小数点后两位?</h3><p>1.使用ParseFloat:</p>
-<pre><code>parseFloat(&quot;183.456&quot;).toFixed(2);</code></pre><p>2.将字符串转换为十进制:</p>
-<pre><code>var string = 10.134.toFixed(2); // =&gt; &#39;10.13&#39;
-var num = Number(string); // =&gt; 10.13</code></pre><p>3.使用MathRound</p>
-<pre><code>Math.round( num * 100 + Number.EPSILON ) / 100</code></pre><h3 id="三、如何遍历或枚举JavaScript对象"><a href="#三、如何遍历或枚举JavaScript对象" class="headerlink" title="三、如何遍历或枚举JavaScript对象?"></a>三、如何遍历或枚举JavaScript对象?</h3><p>1.ES5（Object.keys（）和forEach）</p>
-<pre><code>该Object.keys()方法返回给定对象自己的可枚举属性名称的数组，并以与普通循环相同的顺序进行迭代。
-该forEach()方法为每个数组元素执行一次提供的功能。
-var data = &#123; val1: &quot;abc&quot;, val2: &quot;cde&quot; &#125;;
-Object.keys(data).forEach(function(key) &#123;
-    console.log(key, obj[key]);
-&#125;);</code></pre><p>2.ES6（for … of）：</p>
-<pre><code>for (const key of Object.keys(data)) &#123;
-    console.log(key, obj[key]);
-&#125;</code></pre><h3 id="四、如何在JavaScript中合并两个数组并删除重复项？"><a href="#四、如何在JavaScript中合并两个数组并删除重复项？" class="headerlink" title="四、如何在JavaScript中合并两个数组并删除重复项？"></a>四、如何在JavaScript中合并两个数组并删除重复项？</h3><p>1.使用Filter和Concat</p>
-<pre><code>let a = [56, 43, 3], b = [11, 43, 56, 12]
-let c = a.concat(b)
-let d = c.filter((val, pos) =&gt; c.indexOf(val) === pos)</code></pre><p>2.使用set</p>
-<pre><code>[...new Set([...array1 ,...array2])]; </code></pre><p>3.使用Lodash</p>
-<pre><code>console.log(_.union([10, 4, 5], [134, 26, 19, 10], [6, 1]));</code></pre><h3 id="五、如何检查字符串在JavaScript中是否包含子字符串？"><a href="#五、如何检查字符串在JavaScript中是否包含子字符串？" class="headerlink" title="五、如何检查字符串在JavaScript中是否包含子字符串？"></a>五、如何检查字符串在JavaScript中是否包含子字符串？</h3><p>includes（）</p>
-<pre><code>该includes()方法确定一个数组是否在其条目中包括某个值，是返回值true还是false适当的值。
-const val1 = &quot;atitpatel&quot;;
-const val2 = &quot;patel&quot;;
-console.log(val1.includes(val2));</code></pre><p>indexof（）</p>
-<pre><code>在indexOf()该方法返回在该给定元素可以在阵列中可以发现，或-1，如果它不存在的第一个索引。
-var str = &quot;atitpatel&quot;;
-var substr = &quot;patel&quot;;
-console.log(str.indexOf(substr) !== -1);</code></pre><h3 id="六、如何正确克隆JavaScript对象"><a href="#六、如何正确克隆JavaScript对象" class="headerlink" title="六、如何正确克隆JavaScript对象"></a>六、如何正确克隆JavaScript对象</h3><p>使用ES6</p>
-<pre><code>var val1 = &#123;data: &quot;value&quot;&#125;;
-var val2= Object.assign(&#123;&#125;, val1);
-如果要浅拷贝:
-Object.assign(&#123;&#125;, data)
-进行深复制:
-JSON.parse(JSON.stringify(data))</code></pre><h3 id="七、如何测试一个空的JavaScript对象"><a href="#七、如何测试一个空的JavaScript对象" class="headerlink" title="七、如何测试一个空的JavaScript对象"></a>七、如何测试一个空的JavaScript对象</h3><pre><code>jQuery：jQuery.isEmptyObject(&#123;&#125;); // true
-lodash: _.isEmpty(&#123;&#125;); // true</code></pre><h3 id="八、如何在JavaScript中使字符串的首字母大写"><a href="#八、如何在JavaScript中使字符串的首字母大写" class="headerlink" title="八、如何在JavaScript中使字符串的首字母大写"></a>八、如何在JavaScript中使字符串的首字母大写</h3><pre><code>在CSS中:
-p:first &#123;
-    text-transform:capitalize;
+<h3 id="三、React开发依赖"><a href="#三、React开发依赖" class="headerlink" title="三、React开发依赖"></a>三、React开发依赖</h3><p>开发React必须依赖3个库：</p>
+<pre><code>react：包含react所必须的核心代码
+react-dom：react渲染在不同平台所需要的核心代码
+babel：将jsx转换成React代码的工具</code></pre><h4 id="3个库具体介绍"><a href="#3个库具体介绍" class="headerlink" title="3个库具体介绍"></a>3个库具体介绍</h4><pre><code>在React的0.14版本之前是没有react-dom这个概念的，所有功能都包含在react里。
+为什么要进行拆分呢？原因就是react-native。
+react包中包含了react和react-native所共同拥有的核心代码。
+react-dom针对web和native所完成的事情不同：
+web端：react-dom会将jsx最终渲染成真实的DOM，显示在浏览器中
+native端：react-dom会将jsx最终渲染成原生的控件（比如Android中的Button，iOS中的UIButton）。
+
+babel是什么呢？
+是目前前端使用非常广泛的编辑器、转移器。
+比如当下很多浏览器并不支持ES6的语法，但是确实ES6的语法非常的简洁和方便，我们开发时希望使用它。
+那么编写源码时我们就可以使用ES6来编写，之后通过Babel工具，将ES6转成大多数浏览器都支持的ES5的语法。
+
+React和Babel的关系：
+默认情况下开发React其实可以不使用babel。
+但是前提是我们自己使用 React.createElement 来编写源代码，它编写的代码非常的繁琐和可读性差。
+那么我们就可以直接编写jsx（JavaScript XML）的语法，并且让babel帮助我们转换成React.createElement</code></pre><h3 id="四、引用方法"><a href="#四、引用方法" class="headerlink" title="四、引用方法"></a>四、引用方法</h3><h4 id="方式一：直接CDN引入"><a href="#方式一：直接CDN引入" class="headerlink" title="方式一：直接CDN引入"></a>方式一：直接CDN引入</h4><pre><code>react依赖：https://unpkg.com/react@16/umd/react.development.js
+react-dom依赖：https://unpkg.com/react-dom@16/umd/react-dom.development.js
+babel依赖：https://unpkg.com/babel-standalone@6/babel.min.js</code></pre><h4 id="方式二：下载后，添加本地依赖"><a href="#方式二：下载后，添加本地依赖" class="headerlink" title="方式二：下载后，添加本地依赖"></a>方式二：下载后，添加本地依赖</h4><h4 id="方式三：通过npm管理（后续脚手架再使用）"><a href="#方式三：通过npm管理（后续脚手架再使用）" class="headerlink" title="方式三：通过npm管理（后续脚手架再使用）"></a>方式三：通过npm管理（后续脚手架再使用）</h4><p>暂时我们直接通过CDN引入，来演练下面的示例程序：<br>这里有一个crossorigin的属性，这个属性的目的是为了拿到跨域脚本的错误信息</p>
+<pre><code>&lt;script src=&quot;https://unpkg.com/react@16/umd/react.development.js&quot; crossorigin&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/react-dom@16/umd/react-dom.development.js&quot; crossorigin&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/babel-standalone@6/babel.min.js&quot;&gt;&lt;/script&gt;</code></pre><h3 id="五、Hello-World"><a href="#五、Hello-World" class="headerlink" title="五、Hello World"></a>五、Hello World</h3><pre><code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+
+  &lt;script src=&quot;https://unpkg.com/react@16/umd/react.development.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://unpkg.com/react-dom@16/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://unpkg.com/babel-standalone@6/babel.min.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script type=&quot;text/babel&quot;&gt;
+    // 通过ReactDom对象来渲染内容
+    ReactDOM.render(&lt;h2&gt;Hello World&lt;/h2&gt;, document.getElementById(&quot;app&quot;));
+  &lt;/script&gt;</code></pre><p>目前我们渲染的内容是定义死的，能否将其抽取到一个变量中呢？</p>
+<pre><code>// 将数据定义到变量中
+let message = &quot;Hello World&quot;;
+
+// 通过ReactDom对象来渲染内容
+ReactDOM.render(&lt;h2&gt;&#123;message&#125;&lt;/h2&gt;, document.getElementById(&quot;app&quot;));
+//VUE用的是双括号&#123;&#123;&#125;&#125;
+```
+通过事件改变view视图的值
+```
+<body>
+  
+  <div id="app">
+  </div>
+
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    // 将数据定义到变量中
+    let message = "Hello World";
+
+    // 通过ReactDom对象来渲染内容
+    render();
+
+    // 定义一个执行的函数
+    function btnClick() &#123;
+      message = "Hello React";
+      render();
+    &#125;
+
+    function render() &#123;
+      ReactDOM.render((
+        <div>
+          <h2>&#123;message&#125;</h2>
+          <button onClick=&#123;btnClick&#125;>改变文本</button>
+        </div>
+      ), document.getElementById("app"));
+    &#125;
+  </script>
+</body>
+```
+### 六、核心JSX语法一
+学习之前需要了解以下知识：
+
+#### 6.1类的定义
+ES6之前定义一个Person类：
+```
+function Person(name, age) &#123;
+  this.name = name;
+  this.age = age;
 &#125;
-使用函数，我们可以调用toUpperCase（）方法:
-function makeUpperCase(val)
-&#123;
-    return val &amp;&amp; val[0].toUpperCase() + val.slice(1);
-&#125;</code></pre><h3 id="九、如何获取JavaScript对象的长度？"><a href="#九、如何获取JavaScript对象的长度？" class="headerlink" title="九、如何获取JavaScript对象的长度？"></a>九、如何获取JavaScript对象的长度？</h3><p>1.使用ES6功能：</p>
-<pre><code>let size = Object.keys(data).length;</code></pre><p>2.使用lodash</p>
-<pre><code>_.size(&#123;val1 : 1, val2 : 2, val3 : 3&#125;);</code></pre><h3 id="十、如何在JavaScript中生成随机字符串-字符？"><a href="#十、如何在JavaScript中生成随机字符串-字符？" class="headerlink" title="十、如何在JavaScript中生成随机字符串/字符？"></a>十、如何在JavaScript中生成随机字符串/字符？</h3><pre><code>function generateUID(length)
-&#123;
-    return window.btoa(Array.from(window.crypto.getRandomValues(new Uint8Array(length * 2))).map((b) =&gt; String.fromCharCode(b)).join(&quot;&quot;)).replace(/[+/]/g, &quot;&quot;).substring(0, length);
+
+Person.prototype.running = function() &#123;
+  console.log(this.name + this.age + "running");
 &#125;
-console.log(generateUID(22)); // &quot;cFg3Upv2cE5cK8Xd7hHwWp&quot;
-console.log(generateUID(5)); // &quot;CAGkP&quot;</code></pre><h3 id="十一、如何重命名数组内的对象键？"><a href="#十一、如何重命名数组内的对象键？" class="headerlink" title="十一、如何重命名数组内的对象键？"></a>十一、如何重命名数组内的对象键？</h3><pre><code>const data = [&#123;
-        prop_name: &#39;test1&#39;,
-        prop_age: 45,
-        prop_email: &#39;test1@test.com&#39;,
-    &#125;,
-    &#123;
-        prop_name: &#39;test2&#39;,
-        prop_age: 41,
-        prop_email: &#39;test2@test.com&#39;,
-    &#125;,
-    &#123;
-        prop_name: &#39;test3&#39;,
-        prop_age: 45,
-        prop_email: &#39;test3@test.com&#39;,
-    &#125;,
-];
-const newKey = [
-    &#39;firstname&#39;,
-    &#39;age&#39;,
-    &#39;email&#39;
-];
-let resultData = data.map(obj =&gt;
-    Object.values(obj).reduce((acc, cur, i) =&gt; &#123;
-        acc[newKey[i]] = cur;
-        return acc;
-    &#125;, &#123;&#125;));
-console.log(resultData);</code></pre>
+
+var p = new Person("why", 18);
+p.running();
+```
+转换成ES6:
+类中有一个constructor构造方法，当我们通过new关键字调用时，就会默认执行这个构造方法
+1. 构造方法中可以给当前对象添加属性
+2. 类中也可以定义其他方法，这些方法会被放到Person类的prototype上
+3. 属性也可以直接定义在类中
+```
+class Person &#123;
+  height = 1.88;
+  address = "北京市";
+  constructor(name, age) &#123;
+    this.name = name;
+    this.age = age;
+  &#125;
+
+  running() &#123;
+    console.log(this.name + this.age + "running");
+  &#125;
+&#125;
+
+const p = new Person("why", 18);
+p.running();
+```
+#### 6.2类的继承
+ES6中增加了extends关键字来作为类的继承。
+我们先写两个类没有继承的情况下，它们存在的重复代码：
+Person类和Student类：
+```
+class Person &#123;
+  constructor(name, age) &#123;
+    this.name = name;
+    this.age = age;
+  &#125;
+
+  running() &#123;
+    console.log(this.name, this.age, "running");
+  &#125;
+&#125;
+
+class Student &#123;
+  constructor(name, age, sno, score) &#123;
+    this.name = name;
+    this.age = age;
+    this.sno = sno;
+    this.score = score;
+  &#125;
+
+  running() &#123;
+    console.log(this.name, this.age, "running");
+  &#125;
+
+  studying() &#123;
+    console.log(this.name, this.age, this.sno, this.score, "studing");
+  &#125;
+&#125;
+```
+我们可以使用继承来简化代码：
+注意：在constructor中，子类必须通过super来调用父类的构造方法，对父类进行初始化，否则会报错
+这里其实学过java的朋友应该很好理解。
+```
+class Student1 extends Person &#123;
+  constructor(name, age, sno, score) &#123;
+    super(name, age);
+    this.sno = sno;
+    this.score = score;
+  &#125;
+
+  studying() &#123;
+    console.log(this.name, this.age, this.sno, this.score, "studing");
+  &#125;
+&#125;
+
+const stu1 = new Student1("why", 18, 110, 100);
+stu1.studying();
+```
+#### 6.3案例练习
+1.  列表展示
+真实开发中，我们的数据通常会从服务器获取，比较常见的是获取一个列表数据，保存到一个数组中进行展示
+比如现在有一个电影列表，我们如何通过React进行展示呢？
+我们还是通过一个组件来完成：
+```
+class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      movies: ["星际穿越", "大话西游", "盗梦空间", "少年派"]
+    &#125;
+  &#125;
+
+  render() &#123;
+    // var movieLis = [];
+    // for (var i in this.state.movies) &#123;
+    //   movieLis.push((<li>&#123;this.state.movies[i]&#125;</li>));
+    // &#125;
+
+    return (
+      <div>
+        <h2>电影列表</h2>
+        <ul>
+          &#123;
+            this.state.movies.map((item, index) => &#123;
+              return (<li>&#123;item&#125;</li>)
+            &#125;)
+          &#125;
+        </ul>
+      </div>
+    )
+  &#125;
+&#125;
+
+ReactDOM.render(<App/>, document.getElementById("app"));
+```
+2. 计数器案例
+```
+class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      counter: 0
+    &#125;
+  &#125;
+
+  render() &#123;
+    return (
+      <div>
+        <h2>当前计数:&#123;this.state.counter&#125;</h2>
+        <button onClick=&#123;this.increment.bind(this)&#125;>+1</button>
+        <button onClick=&#123;this.decrement.bind(this)&#125;>-1</button>
+      </div>
+    )
+  &#125;
+
+  increment() &#123;
+    this.setState(&#123;
+      counter: this.state.counter+1
+    &#125;)
+  &#125;
+
+  decrement() &#123;
+    this.setState(&#123;
+      counter: this.state.counter-1
+    &#125;)
+  &#125;
+&#125;
+
+ReactDOM.render(<App/>, document.getElementById("app"));
+```
+
+### JSX语法解析
+
+#### 认识JSX
+```
+<script type="text/babel">
+  const element = <h2>Hello World</h2>
+ ReactDOM.render(element, document.getElementById("app"));
+</script>
+```
+1. JSX是一种JavaScript的语法扩展（eXtension），也在很多地方称之为JavaScript XML，因为看起就是一段XML语法；
+2. 它用于描述我们的UI界面，并且其完全可以和JavaScript融合在一起使用；
+3. 它不同于Vue中的模块语法，不需要专门学习模块语法中的一些指令（比如v-for、v-if、v-else、v-bind）；
+4. JSX的顶层只能有一个根元素，所以我们很多时候会在外层包裹一个div原生（或者使用后面我们学习的Fragment）；
+5. JSX中的标签可以是单标签，也可以是双标签；注意：如果是单标签，必须以/>结尾
+6. 如果我们jsx中的内容是动态的，我们可以通过表达式来获取：书写规则：&#123;表达式&#125;，大括号内可以是变量、字符串、数组、函数调用等任意js表达式；
+
+#### jsx中的注释:
+```
+<div>
+  &#123;/* 我是一段注释 */&#125;
+  <h2>Hello World</h2>
+</div>
+```
+#### JSX嵌入变量
+情况一：当变量是Number、String、Array类型时，可以直接显示
+情况二：当变量是null、undefined、Boolean类型时，内容为空；如果希望可以显示null、undefined、Boolean，那么需要转成字符串；
+转换的方式有很多，比如toString方法、和空字符串拼接，String(变量)等方式；
+情况三：对象类型不能作为子元素（not valid as a React child）
+```
+class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      name: "why",
+      age: 18,
+      hobbies: ["篮球", "唱跳", "rap"],
+      
+      test1: null,
+      test2: undefined,
+      flag: false,
+
+      friend: &#123;
+        name: "kobe",
+        age: 40
+      &#125;
+    &#125;
+  &#125;
+
+  render() &#123;
+    return (
+      <div>
+        &#123;/* 我是一段注释 */&#125;
+        <h2>Hello World</h2>
+      </div>
+
+      <div>
+        &#123;/* 1.可以直接显示 */&#125;
+        <h2>&#123;this.state.name&#125;</h2>
+        <h2>&#123;this.state.age&#125;</h2>
+        <h2>&#123;this.state.hobbies&#125;</h2>
+
+        
+        &#123;/* 2.不显示 */&#125;
+        <h2>&#123;this.state.test1&#125;</h2>
+        <h2>&#123;this.state.test1 + ""&#125;</h2>
+        <h2>&#123;this.state.test2&#125;</h2>
+        <h2>&#123;this.state.test2 + ""&#125;</h2>
+        <h2>&#123;this.state.flag&#125;</h2>
+        <h2>&#123;this.state.flag + ""&#125;</h2>
+        
+        &#123;/* 3.不显示 */&#125;
+        <h2>123&#123;this.state.friend&#125;</h2>
+      </div>
+    )
+  &#125;
+&#125;
+
+ReactDOM.render(<App/>, document.getElementById("app"));
+```
+
+#### JSX嵌入表达式
+JSX中，也可以是一个表达式。
+这里我们演练三个，其他的大家在开发中灵活运用：
+1.运算表达式
+2.三元运算符
+3.执行一个函数
+```
+class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      firstName: "kobe",
+      lastName: "bryant",
+      age: 20
+    &#125;
+  &#125;
+
+  render() &#123;
+    return (
+      <div>
+        &#123;/* 运算表达式 */&#125;
+        <h2>&#123;this.state.firstName + " " + this.state.lastName&#125;</h2>
+        &#123;/* 三元运算符 */&#125;
+        <h2>&#123;this.state.age >= 18 ? "成年人": "未成年人"&#125;</h2>
+        &#123;/* 执行一个函数 */&#125;
+        <h2>&#123;this.sayHello("kobe")&#125;</h2>
+      </div>
+    )
+  &#125;
+
+  sayHello(name) &#123;
+    return "Hello " + name;
+  &#125;
+&#125;
+ReactDOM.render(<App/>, document.getElementById("app"));
+```
+
+#### jsx绑定属性
+很多时候，描述的HTML原生会有一些属性，而我们希望这些属性也是动态的：
+比如元素都会有title属性
+比如img元素会有src属性
+比如a元素会有href属性
+比如元素可能需要绑定class
+注意：绑定class比较特殊，因为class在js中是一个关键字，所以jsx中不允许直接写class
+写法：使用className替代
+比如原生使用内联样式style
+style后面跟的是一个对象类型，对象中是样式的属性名和属性值；
+注意：这里会将属性名转成驼峰标识，而不是连接符-；
+```
+class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      title: "你好啊",
+      imgUrl: "https://upload.jianshu.io/users/upload_avatars/1102036/c3628b478f06.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240",
+      link: "https://www.baidu.com",
+      active: false
+    &#125;
+  &#125;
+
+  render() &#123;
+    return (
+      <div>
+        <h2 title=&#123;this.state.title&#125;>Hello World</h2>
+        <img src=&#123;this.state.imgUrl&#125; alt=""/>
+        <a href=&#123;this.state.link&#125; target="_blank">百度一下</a>
+        <div className=&#123;"message " + (this.state.active ? "active": "")&#125;>你好啊</div>
+        <div className=&#123;["message", (this.state.active ? "active": "")].join(" ")&#125;>你好啊</div>
+        <div style=&#123;&#123;fontSize: "30px", color: "red", backgroundColor: "blue"&#125;&#125;&gt;我是文本&lt;/div&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><h4 id="jsx事件监听"><a href="#jsx事件监听" class="headerlink" title="jsx事件监听"></a>jsx事件监听</h4><p>方案一：bind给btnClick显示绑定this</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      message: &quot;你好啊,李银河&quot;
+    &#125;
+
+    this.btnClick = this.btnClick.bind(this);
+  &#125;
+
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;点我一下(React)&lt;/button&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;也点我一下(React)&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+
+  btnClick() &#123;
+    console.log(this);
+    console.log(this.state.message);
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>方案二：使用 ES6 箭头函数</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      message: &quot;你好啊,李银河&quot;
+    &#125;
+  &#125;
+
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;点我一下(React)&lt;/button&gt;
+        &lt;button onClick=&#123;this.btnClick&#125;&gt;也点我一下(React)&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+
+  btnClick = () =&gt; &#123;
+    console.log(this);
+    console.log(this.state.message);
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>方案三：事件监听时传入箭头函数（推荐）</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      message: &quot;你好啊,李银河&quot;
+    &#125;
+  &#125;
+
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;button onClick=&#123;() =&gt; this.btnClick()&#125;&gt;点我一下(React)&lt;/button&gt;
+        &lt;button onClick=&#123;() =&gt; this.btnClick()&#125;&gt;也点我一下(React)&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+
+  btnClick() &#123;
+    console.log(this);
+    console.log(this.state.message);
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><h4 id="事件参数传递"><a href="#事件参数传递" class="headerlink" title="事件参数传递"></a>事件参数传递</h4><p>情况一：获取event对象<br>很多时候我们需要拿到event对象来做一些事情（比如阻止默认行为）<br>假如我们用不到this，那么直接传入函数就可以获取到event对象；</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;a href=&quot;http://www.baidu.com&quot; onClick=&#123;this.btnClick&#125;&gt;点我一下&lt;/a&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+
+  btnClick(e) &#123;
+    e.preventDefault();
+    console.log(e);
+  &#125;
+&#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>情况二：获取更多参数</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      names: [&quot;衣服&quot;, &quot;鞋子&quot;, &quot;裤子&quot;]
+    &#125;
+  &#125;
+
+  render() &#123;
+    return (
+      &lt;div&gt; 
+       &#123;
+          this.state.names.map((item, index) =&gt; &#123;
+            return (
+              &lt;a href=&quot;#&quot; onClick=&#123;e =&gt; this.aClick(e, item, index)&#125;&gt;&#123;item&#125;&lt;/a&gt;
+            )
+          &#125;)
+        &#125;
+      &lt;/div&gt;
+    )
+  &#125;
+
+  aClick(e, item, index) &#123;
+    e.preventDefault();
+    console.log(item, index);
+    console.log(e);
+  &#125;
+&#125;</code></pre>
             </div>
             <hr/>
 
@@ -578,7 +1011,7 @@ console.log(resultData);</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2021/05/11/lodash/">http://itzhengjinhan.github.io/2021/05/11/lodash/</a>
+                    <a href="http://itzhengjinhan.github.io/2021/07/04/react%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">http://itzhengjinhan.github.io/2021/07/04/react%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -781,9 +1214,10 @@ console.log(resultData);</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/07/04/react%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
                     <div class="card-image">
@@ -801,9 +1235,9 @@ console.log(resultData);</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -812,6 +1246,7 @@ console.log(resultData);</code></pre>
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -822,13 +1257,13 @@ console.log(resultData);</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/27/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93/">
+                <a href="/2021/05/11/lodash/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="总结跨域的解决方法">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="JavaScript开发优化技巧以及lodash的使用方法">
                         
-                        <span class="card-title">总结跨域的解决方法</span>
+                        <span class="card-title">JavaScript开发优化技巧以及lodash的使用方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -839,7 +1274,7 @@ console.log(resultData);</code></pre>
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-11
                             </span>
                         <span class="publish-author">
                             
