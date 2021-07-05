@@ -869,6 +869,32 @@ ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code><
     )
   &#125;
 &#125;
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre><p>我们也可以将其封装到一个独立的函数中：</p>
+<pre><code>class App extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      isLogin: true
+    &#125;
+  &#125;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &#123;this.getTitleJsx()&#125;
+      &lt;/div&gt;
+    )
+  &#125;
+  getTitleJsx() &#123;
+    let titleJsx = null;
+    if (this.state.isLogin) &#123;
+      titleJsx = &lt;h2&gt;欢迎回来~&lt;/h2&gt;
+    &#125; else &#123;
+      titleJsx = &lt;h2&gt;请先登录~&lt;/h2&gt;
+    &#125;
+    return titleJsx;
+  &#125;
+&#125;
 ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code></pre>
             </div>
             <hr/>
