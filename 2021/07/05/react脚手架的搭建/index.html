@@ -663,7 +663,7 @@ export default class App extends Component &#123;
       &lt;/div&gt;
     )
   &#125;
-&#125;</code></pre><h3 id="子传父传值方式"><a href="#子传父传值方式" class="headerlink" title="子传父传值方式"></a>子传父传值方式</h3><p>在React中同样是通过props传递消息，只是让父组件给子组件传递一个回调函数，在子组件中调用这个函数即可</p>
+&#125;</code></pre><h3 id="子传父传值方式"><a href="#子传父传值方式" class="headerlink" title="子传父传值方式"></a>子传父传值方式</h3><p>在React中同样是通过props传递消息，调用父元素的函数从而操作父元素的数据，从而实现数据从子元素传递至父元素</p>
 <pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
 
 function CounterButton(props) &#123;
