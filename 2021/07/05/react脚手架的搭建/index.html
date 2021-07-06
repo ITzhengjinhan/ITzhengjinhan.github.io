@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="React脚手架的搭建及相关知识, 全栈攻城狮">
+    <meta name="keywords" content="React脚手架搭建及相关知识, 全栈攻城狮">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>React脚手架的搭建及相关知识 | 全栈攻城狮</title>
+    <title>React脚手架搭建及相关知识 | 全栈攻城狮</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">React脚手架的搭建及相关知识</h1>
+                    <h1 class="description center-align post-title">React脚手架搭建及相关知识</h1>
                 </div>
             </div>
         </div>
@@ -565,7 +565,137 @@ export default class App extends Component &#123;
     console.log(&quot;调用componentWillUnmount方法&quot;);
   &#125;
 &#125;</code></pre><p>初始化时：<br><img src="https://pic.imgdb.cn/item/60e426d15132923bf8746255.png"><br>修改data时：<br><img src="https://pic.imgdb.cn/item/60e426f45132923bf874fd1f.png"><br>组件销毁时：<br><img src="https://pic.imgdb.cn/item/60e4270d5132923bf8756bea.png"></p>
+<h2 id="五、父子组件通信"><a href="#五、父子组件通信" class="headerlink" title="五、父子组件通信"></a>五、父子组件通信</h2><pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
 
+function Header() &#123;
+  return &lt;h2&gt;Header&lt;/h2&gt;
+&#125;
+
+function Main() &#123;
+  return (
+    &lt;div&gt;
+      &lt;Banner/&gt;
+      &lt;ProductList/&gt;
+    &lt;/div&gt;
+  )
+&#125;
+
+function Banner() &#123;
+  return &lt;div&gt;Banner&lt;/div&gt;
+&#125;
+
+function ProductList() &#123;
+  return (
+    &lt;ul&gt;
+      &lt;li&gt;商品1&lt;/li&gt;
+      &lt;li&gt;商品2&lt;/li&gt;
+      &lt;li&gt;商品3&lt;/li&gt;
+      &lt;li&gt;商品4&lt;/li&gt;
+      &lt;li&gt;商品5&lt;/li&gt;
+    &lt;/ul&gt;
+  )
+&#125;
+
+function Footer() &#123;
+  return &lt;h2&gt;Footer&lt;/h2&gt;
+&#125;
+
+export default class App extends Component &#123;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;Header/&gt;
+        &lt;Main/&gt;
+        &lt;Footer/&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;</code></pre><p>上面的嵌套逻辑如下，它们存在如下关系：<br>App组件是Header、Main、Footer组件的父组件；<br>Main组件是Banner、ProductList组件的父组件；<br>如图所示：<br><img src="https://pic.imgdb.cn/item/60e45b215132923bf866054f.png"></p>
+<h3 id="父传子传值方式："><a href="#父传子传值方式：" class="headerlink" title="父传子传值方式："></a>父传子传值方式：</h3><p>父组件通过 属性=值 的形式来传递给子组件数据；<br>子组件通过 props 参数获取父组件传递过来的数据；</p>
+<p>例如假设子组件是class组件</p>
+<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
+
+// 1.类子组件
+class ChildCpn1 extends Component &#123;
+  constructor(props) &#123;
+    super();
+    this.props = props;
+  &#125;
+
+  render() &#123;
+    const &#123; name, age, height &#125; = this.props;
+
+    return (
+      &lt;div&gt;
+        &lt;h2&gt;我是class的组件&lt;/h2&gt;
+        &lt;p&gt;展示父组件传递过来的数据: &#123;name + &quot; &quot; + age + &quot; &quot; + height&#125;&lt;/p&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;
+
+export default class App extends Component &#123;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;ChildCpn1 name=&quot;why&quot; age=&quot;18&quot; height=&quot;1.88&quot; /&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;</code></pre><p>假设子组件是function组件<br>functional组件相对来说比较简单，因为不需要有构造方法，也不需要有this的问题。</p>
+<pre><code>function ChildCpn2(props) &#123;
+  const &#123;name, age, height&#125; = props;
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;我是function的组件&lt;/h2&gt;
+      &lt;p&gt;展示父组件传递过来的数据: &#123;name + &quot; &quot; + age + &quot; &quot; + height&#125;&lt;/p&gt;
+    &lt;/div&gt;
+  )
+&#125;
+
+export default class App extends Component &#123;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;ChildCpn1 name=&quot;why&quot; age=&quot;18&quot; height=&quot;1.88&quot;/&gt;
+        &lt;ChildCpn2 name=&quot;kobe&quot; age=&quot;30&quot; height=&quot;1.98&quot;/&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;</code></pre><h3 id="子传父传值方式"><a href="#子传父传值方式" class="headerlink" title="子传父传值方式"></a>子传父传值方式</h3><p>在React中同样是通过props传递消息，只是让父组件给子组件传递一个回调函数，在子组件中调用这个函数即可</p>
+<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
+
+function CounterButton(props) &#123;
+  const &#123; operator, btnClick &#125; = props;
+  return &lt;button onClick=&#123;btnClick&#125;&gt;&#123;operator&#125;&lt;/button&gt;
+&#125;
+
+export default class App extends Component &#123;
+  constructor(props) &#123;
+    super(props);
+
+    this.state = &#123;
+      counter: 0
+    &#125;
+  &#125;
+
+  changeCounter(count) &#123;
+    this.setState(&#123;
+      counter: this.state.counter + count
+    &#125;)
+  &#125;
+
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;h2&gt;当前计数: &#123;this.state.counter&#125;&lt;/h2&gt;
+        &lt;CounterButton operator=&quot;+1&quot; btnClick=&#123;e =&gt; this.changeCounter(1)&#125; /&gt;
+        &lt;CounterButton operator=&quot;-1&quot; btnClick=&#123;e =&gt; this.changeCounter(-1)&#125; /&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;</code></pre>
             </div>
             <hr/>
 
@@ -802,9 +932,9 @@ export default class App extends Component &#123;
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="React脚手架的搭建及相关知识">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="React脚手架搭建及相关知识">
                         
-                        <span class="card-title">React脚手架的搭建及相关知识</span>
+                        <span class="card-title">React脚手架搭建及相关知识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
