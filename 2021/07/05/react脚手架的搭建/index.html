@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="React脚手架的搭建, 全栈攻城狮">
+    <meta name="keywords" content="React脚手架的搭建及相关知识, 全栈攻城狮">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>React脚手架的搭建 | 全栈攻城狮</title>
+    <title>React脚手架的搭建及相关知识 | 全栈攻城狮</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -315,7 +315,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">React脚手架的搭建</h1>
+                    <h1 class="description center-align post-title">React脚手架的搭建及相关知识</h1>
                 </div>
             </div>
         </div>
@@ -483,7 +483,26 @@ export default class App extends Component &#123;
 import ReactDOM from &#39;react-dom&#39;;
 import App from &#39;./App&#39;;
 ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;root&quot;));</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e315795132923bf8e4ae4d.jpg"></p>
+<h2 id="四、创建React组件"><a href="#四、创建React组件" class="headerlink" title="四、创建React组件"></a>四、创建React组件</h2><p>根据组件的定义方式，可以分为：函数组件(Functional Component )和类组件(Class Component)</p>
+<h3 id="4-1创建类组件"><a href="#4-1创建类组件" class="headerlink" title="4.1创建类组件"></a>4.1创建类组件</h3><p>类组件需要继承自 React.Component<br>类组件必须实现render函数<br>使用class定义一个组件：<br>constructor是可选的，我们通常在constructor中初始化一些数据；<br>this.state中维护的就是我们组件内部的数据；<br>render() 方法是 class 组件中<span style="color:red">唯一必须实现</span>的方法；</p>
+<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
+export default class App extends Component &#123;
+  constructor() &#123;
+    super();
 
+    this.state = &#123;
+
+    &#125;
+  &#125;
+  render() &#123;
+    return &lt;h2&gt;Hello App&lt;/h2&gt;
+  &#125;
+&#125;</code></pre><h3 id="4-2创建函数组件"><a href="#4-2创建函数组件" class="headerlink" title="4.2创建函数组件"></a>4.2创建函数组件</h3><p>函数组件是使用function来进行定义的函数，只是这个函数会返回和类组件中render函数返回一样的内容。</p>
+<pre><code>export default function App() &#123;
+  return (
+    &lt;div&gt;Hello World&lt;/div&gt;
+  )
+&#125;</code></pre>
             </div>
             <hr/>
 
@@ -720,9 +739,9 @@ ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;root&quot;));</code>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="React脚手架的搭建">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="React脚手架的搭建及相关知识">
                         
-                        <span class="card-title">React脚手架的搭建</span>
+                        <span class="card-title">React脚手架的搭建及相关知识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
