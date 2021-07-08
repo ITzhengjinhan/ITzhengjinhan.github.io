@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="React脚手架搭建及相关知识, 全栈攻城狮">
+    <meta name="keywords" content="TypeScript基础, 全栈攻城狮">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>React脚手架搭建及相关知识 | 全栈攻城狮</title>
+    <title>TypeScript基础 | 全栈攻城狮</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">React脚手架搭建及相关知识</h1>
+                    <h1 class="description center-align post-title">TypeScript基础</h1>
                 </div>
             </div>
         </div>
@@ -444,7 +444,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-05
+                    2021-07-07
                 </div>
                 
 
@@ -460,242 +460,92 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>脚手架让项目从搭建到开发，再到部署，整个流程变得快速和便捷；对于现在比较流行的三大框架都有属于自己的脚手架：<br>Vue的脚手架：vue-cli<br>Angular的脚手架：angular-cli<br>React的脚手架：create-react-app<br>目前这些脚手架都是使用node编写的，并且都是基于webpack的；<br>所以我们必须在自己的电脑上安装node环境</p>
-<h2 id="一、create-react-app搭建前需要安装的相关依赖"><a href="#一、create-react-app搭建前需要安装的相关依赖" class="headerlink" title="一、create-react-app搭建前需要安装的相关依赖"></a>一、create-react-app搭建前需要安装的相关依赖</h2><h3 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h3><p>官网地址：<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
-<h3 id="包管理工具"><a href="#包管理工具" class="headerlink" title="包管理工具"></a>包管理工具</h3><p>什么是npm？全称 Node Package Manager，即“node包管理器”；<br>另外，还有一个大名鼎鼎的node包管理工具yarn<br>React脚手架默认也是使用yarn；<br>安装yarn：</p>
-<pre><code>npm install -g yarn</code></pre><h3 id="安装脚手架"><a href="#安装脚手架" class="headerlink" title="安装脚手架"></a>安装脚手架</h3><pre><code>npm install -g create-react-app</code></pre><h2 id="二、创建React项目"><a href="#二、创建React项目" class="headerlink" title="二、创建React项目"></a>二、创建React项目</h2><p>创建React项目的命令如下：<br>注意：项目名称不能包含大写字母</p>
-<pre><code>create-react-app 项目名称</code></pre><p>创建完成后，进入对应的目录，就可以将项目跑起来：</p>
-<pre><code>cd 01-test-react
-yarn start</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e3135f5132923bf8d54ff6.png"><br>项目结构：<br><img src="https://pic.imgdb.cn/item/60e313735132923bf8d5e21f.png"><br>说明：<br><img src="https://pic.imgdb.cn/item/60e313865132923bf8d668f5.png"></p>
-<h2 id="三、从零编写项目"><a href="#三、从零编写项目" class="headerlink" title="三、从零编写项目"></a>三、从零编写项目</h2><p>开始编写代码<br>在src目录下，创建一个index.js文件，因为这是webpack打包的入口。<br>在index.js中开始编写React代码：<br>我们需要手动的来导入React、ReactDOM，因为它们都是在我们安装的模块中；</p>
-<pre><code>import React from &quot;react&quot;;
-import ReactDOM from &#39;react-dom&#39;;
-ReactDOM.render(&lt;h2&gt;Hello React&lt;/h2&gt;, document.getElementById(&quot;root&quot;));</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e315795132923bf8e4ae4d.jpg"></p>
-<p>如果我们不希望直接在 ReactDOM.render 中编写过多的代码，就可以单独抽取一个组件<br>App.js：</p>
-<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
-
-export default class App extends Component &#123;
-  render() &#123;
-    return &lt;h2&gt;Hello React&lt;/h2&gt;
-  &#125;
-&#125;</code></pre><p>在index.js中引入App，并且使用它：</p>
-<pre><code>import React from &quot;react&quot;;
-import ReactDOM from &#39;react-dom&#39;;
-import App from &#39;./App&#39;;
-ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;root&quot;));</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e315795132923bf8e4ae4d.jpg"></p>
-<h2 id="四、创建React组件"><a href="#四、创建React组件" class="headerlink" title="四、创建React组件"></a>四、创建React组件</h2><p>根据组件的定义方式，可以分为：函数组件(Functional Component )和类组件(Class Component)</p>
-<h3 id="4-1创建类组件"><a href="#4-1创建类组件" class="headerlink" title="4.1创建类组件"></a>4.1创建类组件</h3><p>类组件需要继承自 React.Component<br>类组件必须实现render函数<br>使用class定义一个组件：<br>constructor是可选的，我们通常在constructor中初始化一些数据；<br>this.state中维护的就是我们组件内部的数据；<br>render() 方法是 class 组件中<span style="color:red">唯一必须实现</span>的方法；</p>
-<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
-export default class App extends Component &#123;
-  constructor() &#123;
-    super();
-
-    this.state = &#123;
-
-    &#125;
-  &#125;
-  render() &#123;
-    return &lt;h2&gt;Hello App&lt;/h2&gt;
-  &#125;
-&#125;</code></pre><h3 id="4-2创建函数组件"><a href="#4-2创建函数组件" class="headerlink" title="4.2创建函数组件"></a>4.2创建函数组件</h3><p>函数组件是使用function来进行定义的函数，只是这个函数会返回和类组件中render函数返回一样的内容。</p>
-<pre><code>export default function App() &#123;
-  return (
-    &lt;div&gt;Hello World&lt;/div&gt;
-  )
-&#125;</code></pre><h2 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h2><h3 id="1-constructor"><a href="#1-constructor" class="headerlink" title="1.constructor:"></a>1.constructor:</h3><p>如果不初始化 state 或不进行方法绑定，则不需要为 React 组件实现构造函数。<br>constructor中通常只做两件事情：<br>通过给 this.state 赋值对象来初始化内部的state；<br>为事件绑定实例（this）；</p>
-<pre><code>constructor(props)</code></pre><h3 id="2-componentDidMount"><a href="#2-componentDidMount" class="headerlink" title="2.componentDidMount:"></a>2.componentDidMount:</h3><p>componentDidMount() 会在组件挂载后（插入 DOM 树中）立即调用。<br>componentDidMount中通常进行哪里操作呢？<br>依赖于DOM的操作可以在这里进行；<br>在此处发送网络请求就最好的地方；（官方建议）<br>可以在此处添加一些订阅（会在componentWillUnmount取消订阅）；</p>
-<h3 id="3-componentDidUpdate"><a href="#3-componentDidUpdate" class="headerlink" title="3.componentDidUpdate:"></a>3.componentDidUpdate:</h3><p>componentDidUpdate() 会在更新后会被立即调用，首次渲染不会执行此方法。<br>当组件更新后，可以在此处对 DOM 进行操作；<br>如果你对更新前后的 props 进行了比较，也可以选择在此处进行网络请求；（例如，当 props 未发生变化时，则不会执行网络请求）。</p>
-<pre><code>componentDidUpdate(prevProps) &#123;
-  // 典型用法（不要忘记比较 props）：
-  if (this.props.userID !== prevProps.userID) &#123;
-    this.fetchData(this.props.userID);
-  &#125;
-&#125;</code></pre><h3 id="4-componentWillUnmount"><a href="#4-componentWillUnmount" class="headerlink" title="4.componentWillUnmount"></a>4.componentWillUnmount</h3><p>componentWillUnmount() 会在组件卸载及销毁之前直接调用。<br>在此方法中执行必要的清理操作；<br>例如，清除 timer，取消网络请求或清除在 componentDidMount() 中创建的订阅等；</p>
-<img src="https://pic.imgdb.cn/item/60e3c65e5132923bf801f243.jpg">
-
-<h3 id="测试生命周期"><a href="#测试生命周期" class="headerlink" title="测试生命周期"></a>测试生命周期</h3><pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
-
-class HYTestCpn extends Component &#123;
-  render() &#123;
-    return &lt;h2&gt;HYTestCpn&lt;/h2&gt;
-  &#125;
-
-  componentWillUnmount() &#123;
-    console.log(&quot;HYTestCpn componentWillUnmount&quot;);
-  &#125;
+                <h2 id="变量和数据类型"><a href="#变量和数据类型" class="headerlink" title="变量和数据类型"></a>变量和数据类型</h2><h3 id="一-变量声明方式"><a href="#一-变量声明方式" class="headerlink" title="一. 变量声明方式"></a>一. 变量声明方式</h3><ol>
+<li><p>格式：<br>let/const 标识符: 数据类型 = 赋值;</p>
+<pre><code>let message: string = &quot;Hello World&quot;;
+message = &quot;Hello TypeScript&quot;; // 正确的做法
+message = 20; // 错误的做法，因为message是一个string类型</code></pre><p>注意：这里的string是小写的，和String是有区别的<br>string是TypeScript中定义的字符串类型，String是ECMAScript中定义的一个类</p>
+</li>
+<li><p>赋值即申明：<br>在一个变量第一次赋值时，会根据后面的赋值内容的类型，来推断出变量的类型：</p>
+<pre><code>let message = &quot;Hello World&quot;; // string类型
+let age = 20; // number类型
+let isFlag = true; // boolean类型</code></pre></li>
+</ol>
+<h3 id="二-JavaScript数据类型"><a href="#二-JavaScript数据类型" class="headerlink" title="二. JavaScript数据类型"></a>二. JavaScript数据类型</h3><ol>
+<li><p>number类型<br>数字类型是我们开发中经常使用的类型，TypeScript和JavaScript一样，不区分整数类型（int）和浮点型（double），统一为number类型。</p>
+</li>
+<li><p>boolean类型<br>boolean类型只有两个取值：true和false，非常简单</p>
+</li>
+<li><p>string类型<br>string类型是字符串类型，可以使用单引号或者双引号表示：</p>
+</li>
+<li><p>array类型<br>数组类型的定义也非常简单，有两种方式：<br>但是TSLint会推荐我们使用第一种方式</p>
+<pre><code>const names1: string[] = [&quot;why&quot;, &quot;abc&quot;, &quot;cba&quot;];
+const names2: Array&lt;string&gt; = [&quot;why&quot;, &quot;abc&quot;, &quot;cba&quot;];</code></pre></li>
+<li><p>object类型</p>
+<pre><code>// object类型表示
+const myinfo: object = &#123;
+name: &quot;why&quot;,
+age: 20,
+height: 1.88,
+&#125;;</code></pre></li>
+<li><p>null和undefined<br>在 JavaScript 中，undefined 和 null 是两个基本数据类型。<br>在TypeScript中，它们各自的类型也是undefined和null，也就意味着它们既是实际的值，也是自己的类型：</p>
+<pre><code>const n: null = null;
+const u: undefined = undefined;</code></pre></li>
+</ol>
+<h3 id="三、TypeScript数据类型"><a href="#三、TypeScript数据类型" class="headerlink" title="三、TypeScript数据类型"></a>三、TypeScript数据类型</h3><p>TypeScript在原有的JavaScript基础上引入了很多好用的类型：enum枚举类型、tuple元组类型、any类型、void类型、never类型等</p>
+<ol>
+<li>enum枚举的基本定义<pre><code>enum Direction &#123;
+EAST,
+WEST,
+NORTH,
+SOUTH,
 &#125;
+</code></pre></li>
+</ol>
+<p>const d1 = Direction.EAST;//打印0<br>const d2 = Direction.NORTH;//打印2</p>
+<pre><code>默认情况下，枚举中的数据是从0开始的，我们可以改变它的初始化值，比如下面的代码：</code></pre><p>enum Direction {<br>  EAST = 10,<br>  WEST,<br>  NORTH,<br>  SOUTH,<br>}</p>
+<p>const d1 = Direction.EAST;<br>const d2 = Direction.NORTH;</p>
+<p>console.log(d1); // 10<br>console.log(d2); // 12</p>
+<pre><code>
+2. tuple类型
 
-export default class App extends Component &#123;
-  constructor(props) &#123;
-    super(props);
+tuple是元组类型</code></pre><p>const tInfo: [string, number, number] = [“why”, 18, 1.88];<br>const item1 = tInfo[0]; // why, 并且知道类型是string类型<br>const item2 = tInfo[1]; // 18, 并且知道类型是number类型</p>
+<pre><code>tuple和数组类比
+但是数组中通常会定义一组相同的数据，如果数据不同会造成类型的丢失
 
-    this.state = &#123;
-      counter: 0
-    &#125;
+3. any类型
+在某些情况下，我们确实无法确定一个变量的类型，并且可能它会发生一些变化，这个时候我们可以使用any类型</code></pre><p>let a: any = “why”;<br>a = 123;<br>a = true;</p>
+<p>const aArray: any[] = [“why”, 18, 1.88];</p>
+<pre><code>4. void类型
+void类型通常用于函数没有返回值时来使用</code></pre><p>const sum = (num1: number, num2: number) =&gt; {<br>  return num1 + num2;<br>};</p>
+<p>// 相当于下面的写法<br>const sum: (num1: number, num2: number) =&gt; number = (num1: number, num2: number) =&gt; {<br>  return num1 + num2;<br>};</p>
+<pre><code>### 四、TypeScript定义接口
 
-    console.log(&quot;调用constructor方法&quot;);
-  &#125;
+1. 接口的基本使用</code></pre><p>interface IPerson {<br>  name: string;<br>}</p>
+<pre><code>2. 接口中定义方法</code></pre><p>interface Person {<br>  name: string;<br>  run(): void;<br>  eat(): void;<br>}</p>
+<pre><code>3. 如果我们有一个对象是该接口类型，那么必须包含对应的属性和方法：</code></pre><p>const p: Person = {<br>  name: “why”,<br>  run() {<br>    console.log(“running”);<br>  },<br>  eat() {<br>    console.log(“eating”);<br>  },<br>};</p>
+<pre><code>4. 可选属性的定义
 
-  render() &#123;
-    console.log(&quot;调用render方法&quot;)
-    return (
-      &lt;div&gt;
-        &lt;h2&gt;当前计数: &#123;this.state.counter&#125;&lt;/h2&gt;
-        &#123;this.state.counter &lt;= 5 &amp;&amp; &lt;HYTestCpn/&gt;&#125;
-        &lt;button onClick=&#123;e =&gt; this.increment()&#125;&gt;+1&lt;/button&gt;
-      &lt;/div&gt;
-    )
-  &#125;
+默认情况下一个变量（对象）是对应的接口类型，那么这个变量（对象）必须实现接口中所有的属性和方法。
+但是，开发中为了让接口更加的灵活，某些属性我们可能希望设计成可选的（想实现可以实现，不想实现也没有关系），这个时候就可以使用可选属性（后面详细讲解函数时，也会讲到函数中有可选参数）：</code></pre><p>interface Person {<br>  name: string;<br>  age?: number;<br>  run(): void;<br>  eat(): void;<br>  study?(): void;<br>}</p>
+<pre><code>5. 只读属性的定义
 
-  increment() &#123;
-    this.setState(&#123;
-      counter: this.state.counter + 1
-    &#125;)
-  &#125;
+如果一个属性，我们只是希望在定义的时候就定义值，之后不可以修改，那么可以在属性的前面加上一个关键字：readonly</code></pre><p>interface Person {<br>  readonly name: string;<br>  age?: number;<br>  run(): void;<br>  eat(): void;<br>  study?(): void;<br>}</p>
+<pre><code>### 接口的高级使用
+1. 函数类型的定义
 
-  componentDidMount() &#123;
-    console.log(&quot;调用componentDidMount方法&quot;);
-  &#125;
+接口不仅仅可以定义普通的对象类型，也可以定义函数的类型</code></pre><p>// 函数类型的定义<br>interface SumFunc {<br>  (num1: number, num2: number): number;<br>}</p>
+<p>// 定义具体的函数<br>const sum: SumFunc = (num1, num2) =&gt; {<br>  return num1 + num2;<br>};</p>
+<p>// 调用函数<br>console.log(sum(20, 30));</p>
+<pre><code>2. 可索引类型的定义
 
-  componentDidUpdate() &#123;
-    console.log(&quot;调用componentDidUpdate方法&quot;);
-  &#125;
+和使用接口描述函数的类型差不多，我们也可以使用接口来描述 可索引类型
+比如一个变量可以这样访问：a[3]，a[&quot;name&quot;]
+可索引类型具有一个 索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</code></pre><p>// 定义可索引类型的接口<br>interface RoleMap {<br>  [index: number]: string;<br>}</p>
+<p>// 赋值具体的值<br>// 赋值方式一：<br>const roleMap1: RoleMap = {<br>  0: “学生”,<br>  1: “讲师”,<br>  2: “班主任”,<br>};</p>
+<p>// 赋值方式二：因为数组本身是可索引的值<br>const roleMap2 = [“鲁班七号”, “露娜”, “李白”];</p>
+<p>// 取出对应的值<br>console.log(roleMap1[0]); // 学生<br>console.log(roleMap2[1]); // 露娜<br>```</p>
 
-  componentWillUnmount() &#123;
-    console.log(&quot;调用componentWillUnmount方法&quot;);
-  &#125;
-&#125;</code></pre><p>初始化时：<br><img src="https://pic.imgdb.cn/item/60e426d15132923bf8746255.png"><br>修改data时：<br><img src="https://pic.imgdb.cn/item/60e426f45132923bf874fd1f.png"><br>组件销毁时：<br><img src="https://pic.imgdb.cn/item/60e4270d5132923bf8756bea.png"></p>
-<h2 id="五、父子组件通信"><a href="#五、父子组件通信" class="headerlink" title="五、父子组件通信"></a>五、父子组件通信</h2><pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
-
-function Header() &#123;
-  return &lt;h2&gt;Header&lt;/h2&gt;
-&#125;
-
-function Main() &#123;
-  return (
-    &lt;div&gt;
-      &lt;Banner/&gt;
-      &lt;ProductList/&gt;
-    &lt;/div&gt;
-  )
-&#125;
-
-function Banner() &#123;
-  return &lt;div&gt;Banner&lt;/div&gt;
-&#125;
-
-function ProductList() &#123;
-  return (
-    &lt;ul&gt;
-      &lt;li&gt;商品1&lt;/li&gt;
-      &lt;li&gt;商品2&lt;/li&gt;
-      &lt;li&gt;商品3&lt;/li&gt;
-      &lt;li&gt;商品4&lt;/li&gt;
-      &lt;li&gt;商品5&lt;/li&gt;
-    &lt;/ul&gt;
-  )
-&#125;
-
-function Footer() &#123;
-  return &lt;h2&gt;Footer&lt;/h2&gt;
-&#125;
-
-export default class App extends Component &#123;
-  render() &#123;
-    return (
-      &lt;div&gt;
-        &lt;Header/&gt;
-        &lt;Main/&gt;
-        &lt;Footer/&gt;
-      &lt;/div&gt;
-    )
-  &#125;
-&#125;</code></pre><p>上面的嵌套逻辑如下，它们存在如下关系：<br>App组件是Header、Main、Footer组件的父组件；<br>Main组件是Banner、ProductList组件的父组件；<br>如图所示：<br><img src="https://pic.imgdb.cn/item/60e45b215132923bf866054f.png"></p>
-<h3 id="父传子传值方式："><a href="#父传子传值方式：" class="headerlink" title="父传子传值方式："></a>父传子传值方式：</h3><p>父组件通过 属性=值 的形式来传递给子组件数据；<br>子组件通过 props 参数获取父组件传递过来的数据；</p>
-<p>例如假设子组件是class组件</p>
-<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
-
-// 1.类子组件
-class ChildCpn1 extends Component &#123;
-  constructor(props) &#123;
-    super();
-    this.props = props;
-  &#125;
-
-  render() &#123;
-    const &#123; name, age, height &#125; = this.props;
-
-    return (
-      &lt;div&gt;
-        &lt;h2&gt;我是class的组件&lt;/h2&gt;
-        &lt;p&gt;展示父组件传递过来的数据: &#123;name + &quot; &quot; + age + &quot; &quot; + height&#125;&lt;/p&gt;
-      &lt;/div&gt;
-    )
-  &#125;
-&#125;
-
-export default class App extends Component &#123;
-  render() &#123;
-    return (
-      &lt;div&gt;
-        &lt;ChildCpn1 name=&quot;why&quot; age=&quot;18&quot; height=&quot;1.88&quot; /&gt;
-      &lt;/div&gt;
-    )
-  &#125;
-&#125;</code></pre><p>假设子组件是function组件<br>functional组件相对来说比较简单，因为不需要有构造方法，也不需要有this的问题。</p>
-<pre><code>function ChildCpn2(props) &#123;
-  const &#123;name, age, height&#125; = props;
-
-  return (
-    &lt;div&gt;
-      &lt;h2&gt;我是function的组件&lt;/h2&gt;
-      &lt;p&gt;展示父组件传递过来的数据: &#123;name + &quot; &quot; + age + &quot; &quot; + height&#125;&lt;/p&gt;
-    &lt;/div&gt;
-  )
-&#125;
-
-export default class App extends Component &#123;
-  render() &#123;
-    return (
-      &lt;div&gt;
-        &lt;ChildCpn1 name=&quot;why&quot; age=&quot;18&quot; height=&quot;1.88&quot;/&gt;
-        &lt;ChildCpn2 name=&quot;kobe&quot; age=&quot;30&quot; height=&quot;1.98&quot;/&gt;
-      &lt;/div&gt;
-    )
-  &#125;
-&#125;</code></pre><h3 id="子传父传值方式"><a href="#子传父传值方式" class="headerlink" title="子传父传值方式"></a>子传父传值方式</h3><p>在React中同样是通过props传递消息，调用父元素的函数从而操作父元素的数据，从而实现数据从子元素传递至父元素</p>
-<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
-
-function CounterButton(props) &#123;
-  const &#123; operator, btnClick &#125; = props;
-  return &lt;button onClick=&#123;btnClick&#125;&gt;&#123;operator&#125;&lt;/button&gt;
-&#125;
-
-export default class App extends Component &#123;
-  constructor(props) &#123;
-    super(props);
-
-    this.state = &#123;
-      counter: 0
-    &#125;
-  &#125;
-
-  changeCounter(count) &#123;
-    this.setState(&#123;
-      counter: this.state.counter + count
-    &#125;)
-  &#125;
-
-  render() &#123;
-    return (
-      &lt;div&gt;
-        &lt;h2&gt;当前计数: &#123;this.state.counter&#125;&lt;/h2&gt;
-        &lt;CounterButton operator=&quot;+1&quot; btnClick=&#123;e =&gt; this.changeCounter(1)&#125; /&gt;
-        &lt;CounterButton operator=&quot;-1&quot; btnClick=&#123;e =&gt; this.changeCounter(-1)&#125; /&gt;
-      &lt;/div&gt;
-    )
-  &#125;
-&#125;</code></pre>
             </div>
             <hr/>
 
@@ -720,7 +570,7 @@ export default class App extends Component &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2021/07/05/react%E8%84%9A%E6%89%8B%E6%9E%B6%E7%9A%84%E6%90%AD%E5%BB%BA/">http://itzhengjinhan.github.io/2021/07/05/react%E8%84%9A%E6%89%8B%E6%9E%B6%E7%9A%84%E6%90%AD%E5%BB%BA/</a>
+                    <a href="http://itzhengjinhan.github.io/2021/07/07/typescript/">http://itzhengjinhan.github.io/2021/07/07/typescript/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -923,9 +773,10 @@ export default class App extends Component &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/07/07/typescript/">
                     <div class="card-image">
@@ -943,9 +794,9 @@ export default class App extends Component &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -954,6 +805,7 @@ export default class App extends Component &#123;
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -964,13 +816,13 @@ export default class App extends Component &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/07/04/react%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                <a href="/2021/07/05/react%E8%84%9A%E6%89%8B%E6%9E%B6%E7%9A%84%E6%90%AD%E5%BB%BA/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="React基础知识">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="React脚手架搭建及相关知识">
                         
-                        <span class="card-title">React基础知识</span>
+                        <span class="card-title">React脚手架搭建及相关知识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -981,7 +833,7 @@ export default class App extends Component &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
                             </span>
                         <span class="publish-author">
                             
