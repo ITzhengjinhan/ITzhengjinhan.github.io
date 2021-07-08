@@ -494,58 +494,124 @@ const u: undefined = undefined;</code></pre></li>
 </ol>
 <h3 id="三、TypeScript数据类型"><a href="#三、TypeScript数据类型" class="headerlink" title="三、TypeScript数据类型"></a>三、TypeScript数据类型</h3><p>TypeScript在原有的JavaScript基础上引入了很多好用的类型：enum枚举类型、tuple元组类型、any类型、void类型、never类型等</p>
 <ol>
-<li>enum枚举的基本定义<pre><code>enum Direction &#123;
+<li><p>enum枚举的基本定义</p>
+<pre><code>enum Direction &#123;
 EAST,
 WEST,
 NORTH,
 SOUTH,
 &#125;
-</code></pre></li>
+const d1 = Direction.EAST;//打印0
+const d2 = Direction.NORTH;//打印2</code></pre><p>默认情况下，枚举中的数据是从0开始的，我们可以改变它的初始化值，比如下面的代码：</p>
+<pre><code>enum Direction &#123;
+EAST = 10,
+WEST,
+NORTH,
+SOUTH,
+&#125;
+const d1 = Direction.EAST;
+const d2 = Direction.NORTH;
+console.log(d1); // 10
+console.log(d2); // 12</code></pre></li>
+<li><p>tuple类型</p>
+</li>
 </ol>
-<p>const d1 = Direction.EAST;//打印0<br>const d2 = Direction.NORTH;//打印2</p>
-<pre><code>默认情况下，枚举中的数据是从0开始的，我们可以改变它的初始化值，比如下面的代码：</code></pre><p>enum Direction {<br>  EAST = 10,<br>  WEST,<br>  NORTH,<br>  SOUTH,<br>}</p>
-<p>const d1 = Direction.EAST;<br>const d2 = Direction.NORTH;</p>
-<p>console.log(d1); // 10<br>console.log(d2); // 12</p>
-<pre><code>
-2. tuple类型
+<p>tuple是元组类型</p>
+<pre><code>const tInfo: [string, number, number] = [&quot;why&quot;, 18, 1.88];
+const item1 = tInfo[0]; // why, 并且知道类型是string类型
+const item2 = tInfo[1]; // 18, 并且知道类型是number类型</code></pre><p>tuple和数组类比<br>但是数组中通常会定义一组相同的数据，如果数据不同会造成类型的丢失</p>
+<ol start="3">
+<li><p>any类型<br>在某些情况下，我们确实无法确定一个变量的类型，并且可能它会发生一些变化，这个时候我们可以使用any类型</p>
+<pre><code>let a: any = &quot;why&quot;;
+a = 123;
+a = true;
+const aArray: any[] = [&quot;why&quot;, 18, 1.88];</code></pre></li>
+<li><p>void类型<br>void类型通常用于函数没有返回值时来使用</p>
+<pre><code>const sum = (num1: number, num2: number) =&gt; &#123;
+return num1 + num2;
+&#125;;
+// 相当于下面的写法
+const sum: (num1: number, num2: number) =&gt; number = (num1: number, num2: number) =&gt; &#123;
+return num1 + num2;
+&#125;;</code></pre><h3 id="四、TypeScript定义接口"><a href="#四、TypeScript定义接口" class="headerlink" title="四、TypeScript定义接口"></a>四、TypeScript定义接口</h3></li>
+<li><p>接口的基本使用</p>
+<pre><code>interface IPerson &#123;
+name: string;
+&#125;</code></pre></li>
+<li><p>接口中定义方法</p>
+<pre><code>interface Person &#123;
+name: string;
+run(): void;
+eat(): void;
+&#125;</code></pre></li>
+<li><p>如果我们有一个对象是该接口类型，那么必须包含对应的属性和方法：</p>
+<pre><code>const p: Person = &#123;
+name: &quot;why&quot;,
+run() &#123;
+ console.log(&quot;running&quot;);
+&#125;,
+eat() &#123;
+ console.log(&quot;eating&quot;);
+&#125;,
+&#125;;</code></pre></li>
+<li><p>可选属性的定义</p>
+</li>
+</ol>
+<p>默认情况下一个变量（对象）是对应的接口类型，那么这个变量（对象）必须实现接口中所有的属性和方法。<br>但是，开发中为了让接口更加的灵活，某些属性我们可能希望设计成可选的（想实现可以实现，不想实现也没有关系），这个时候就可以使用可选属性（后面详细讲解函数时，也会讲到函数中有可选参数）：</p>
+<pre><code>interface Person &#123;
+  name: string;
+  age?: number;
+  run(): void;
+  eat(): void;
+  study?(): void;
+&#125;</code></pre><ol start="5">
+<li>只读属性的定义</li>
+</ol>
+<p>如果一个属性，我们只是希望在定义的时候就定义值，之后不可以修改，那么可以在属性的前面加上一个关键字：readonly</p>
+<pre><code>interface Person &#123;
+  readonly name: string;
+  age?: number;
+  run(): void;
+  eat(): void;
+  study?(): void;
+&#125;</code></pre><h3 id="接口的高级使用"><a href="#接口的高级使用" class="headerlink" title="接口的高级使用"></a>接口的高级使用</h3><ol>
+<li>函数类型的定义</li>
+</ol>
+<p>接口不仅仅可以定义普通的对象类型，也可以定义函数的类型</p>
+<pre><code>// 函数类型的定义
+interface SumFunc &#123;
+  (num1: number, num2: number): number;
+&#125;
 
-tuple是元组类型</code></pre><p>const tInfo: [string, number, number] = [“why”, 18, 1.88];<br>const item1 = tInfo[0]; // why, 并且知道类型是string类型<br>const item2 = tInfo[1]; // 18, 并且知道类型是number类型</p>
-<pre><code>tuple和数组类比
-但是数组中通常会定义一组相同的数据，如果数据不同会造成类型的丢失
+// 定义具体的函数
+const sum: SumFunc = (num1, num2) =&gt; &#123;
+  return num1 + num2;
+&#125;;
 
-3. any类型
-在某些情况下，我们确实无法确定一个变量的类型，并且可能它会发生一些变化，这个时候我们可以使用any类型</code></pre><p>let a: any = “why”;<br>a = 123;<br>a = true;</p>
-<p>const aArray: any[] = [“why”, 18, 1.88];</p>
-<pre><code>4. void类型
-void类型通常用于函数没有返回值时来使用</code></pre><p>const sum = (num1: number, num2: number) =&gt; {<br>  return num1 + num2;<br>};</p>
-<p>// 相当于下面的写法<br>const sum: (num1: number, num2: number) =&gt; number = (num1: number, num2: number) =&gt; {<br>  return num1 + num2;<br>};</p>
-<pre><code>### 四、TypeScript定义接口
+// 调用函数
+console.log(sum(20, 30));</code></pre><ol start="2">
+<li>可索引类型的定义</li>
+</ol>
+<p>和使用接口描述函数的类型差不多，我们也可以使用接口来描述 可索引类型<br>比如一个变量可以这样访问：a[3]，a[“name”]<br>可索引类型具有一个 索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</p>
+<pre><code>// 定义可索引类型的接口
+interface RoleMap &#123;
+  [index: number]: string;
+&#125;
 
-1. 接口的基本使用</code></pre><p>interface IPerson {<br>  name: string;<br>}</p>
-<pre><code>2. 接口中定义方法</code></pre><p>interface Person {<br>  name: string;<br>  run(): void;<br>  eat(): void;<br>}</p>
-<pre><code>3. 如果我们有一个对象是该接口类型，那么必须包含对应的属性和方法：</code></pre><p>const p: Person = {<br>  name: “why”,<br>  run() {<br>    console.log(“running”);<br>  },<br>  eat() {<br>    console.log(“eating”);<br>  },<br>};</p>
-<pre><code>4. 可选属性的定义
+// 赋值具体的值
+// 赋值方式一：
+const roleMap1: RoleMap = &#123;
+  0: &quot;学生&quot;,
+  1: &quot;讲师&quot;,
+  2: &quot;班主任&quot;,
+&#125;;
 
-默认情况下一个变量（对象）是对应的接口类型，那么这个变量（对象）必须实现接口中所有的属性和方法。
-但是，开发中为了让接口更加的灵活，某些属性我们可能希望设计成可选的（想实现可以实现，不想实现也没有关系），这个时候就可以使用可选属性（后面详细讲解函数时，也会讲到函数中有可选参数）：</code></pre><p>interface Person {<br>  name: string;<br>  age?: number;<br>  run(): void;<br>  eat(): void;<br>  study?(): void;<br>}</p>
-<pre><code>5. 只读属性的定义
+// 赋值方式二：因为数组本身是可索引的值
+const roleMap2 = [&quot;鲁班七号&quot;, &quot;露娜&quot;, &quot;李白&quot;];
 
-如果一个属性，我们只是希望在定义的时候就定义值，之后不可以修改，那么可以在属性的前面加上一个关键字：readonly</code></pre><p>interface Person {<br>  readonly name: string;<br>  age?: number;<br>  run(): void;<br>  eat(): void;<br>  study?(): void;<br>}</p>
-<pre><code>### 接口的高级使用
-1. 函数类型的定义
-
-接口不仅仅可以定义普通的对象类型，也可以定义函数的类型</code></pre><p>// 函数类型的定义<br>interface SumFunc {<br>  (num1: number, num2: number): number;<br>}</p>
-<p>// 定义具体的函数<br>const sum: SumFunc = (num1, num2) =&gt; {<br>  return num1 + num2;<br>};</p>
-<p>// 调用函数<br>console.log(sum(20, 30));</p>
-<pre><code>2. 可索引类型的定义
-
-和使用接口描述函数的类型差不多，我们也可以使用接口来描述 可索引类型
-比如一个变量可以这样访问：a[3]，a[&quot;name&quot;]
-可索引类型具有一个 索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</code></pre><p>// 定义可索引类型的接口<br>interface RoleMap {<br>  [index: number]: string;<br>}</p>
-<p>// 赋值具体的值<br>// 赋值方式一：<br>const roleMap1: RoleMap = {<br>  0: “学生”,<br>  1: “讲师”,<br>  2: “班主任”,<br>};</p>
-<p>// 赋值方式二：因为数组本身是可索引的值<br>const roleMap2 = [“鲁班七号”, “露娜”, “李白”];</p>
-<p>// 取出对应的值<br>console.log(roleMap1[0]); // 学生<br>console.log(roleMap2[1]); // 露娜<br>```</p>
-
+// 取出对应的值
+console.log(roleMap1[0]); // 学生
+console.log(roleMap2[1]); // 露娜</code></pre>
             </div>
             <hr/>
 
