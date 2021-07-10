@@ -463,7 +463,12 @@
                 <h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><ol>
 <li>下载Node.js</li>
 <li>使用npm 全局安装typescript<pre><code>npm i -g typescript</code></pre></li>
-<li>创建ts文件并进行编辑<pre><code>tsc xxx.ts</code></pre></li>
+<li>创建ts文件并进行编辑<pre><code>tsc xxx.ts
+补充：
+tsc xxx.ts -w;不用手动编译，自动编译；缺陷：只能监听某一个文件
+改进，监听全文件并自动编辑生成js方法,执行下面命令：
+tsc --init
+tsc -w</code></pre></li>
 </ol>
 <h2 id="变量和数据类型"><a href="#变量和数据类型" class="headerlink" title="变量和数据类型"></a>变量和数据类型</h2><h3 id="一-变量声明方式"><a href="#一-变量声明方式" class="headerlink" title="一. 变量声明方式"></a>一. 变量声明方式</h3><ol>
 <li><p>格式：<br>let/const 变量: 数据类型;<br>let/const 变量: 数据类型 = 赋值;<br>function fn(参数: 类型, 参数: 类型)：类型{<br> …<br>}</p>
