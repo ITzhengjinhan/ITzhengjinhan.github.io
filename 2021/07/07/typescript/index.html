@@ -461,19 +461,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><ol>
-<li><p>下载Node.js</p>
-</li>
-<li><p>使用npm 全局安装typescript</p>
-<pre><code>npm i -g typescript</code></pre></li>
-<li><p>创建ts文件并进行编辑</p>
-<pre><code>tsc xxx.ts
-补充：
-tsc xxx.ts -w;不用手动编译，自动编译；缺陷：只能监听某一个文件
-改进，监听全文件并自动编辑生成js方法,执行下面命令：
-tsc --init
-tsc -w</code></pre></li>
-<li><p>tsconfig.json配置文件<br>```<br>配置参数：<br>include，表示需要编译的文件</p>
-</li>
+<li>下载Node.js</li>
+<li>使用npm 全局安装typescript<pre><code>npm i -g typescript</code></pre></li>
+<li>创建ts文件并进行编辑<br>```<br>tsc xxx.ts<br>补充：<br>tsc xxx.ts -w;不用手动编译，自动编译；缺陷：只能监听某一个文件<br>改进，监听全文件并自动编辑生成js方法,执行下面命令：<br>tsc –init<br>tsc -w<br>tsconfig.json的配置文件<br>配置参数：<br>include，表示需要编译的文件</li>
 </ol>
 <p><strong>表示任意目录；*表示任意文件<br>“include”:{<br>    “./</strong>/*”<br>}<br>exclude,表示不需要编译的文件</p>
 <pre><code>
