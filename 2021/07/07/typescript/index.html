@@ -471,94 +471,169 @@ tsc --init
 tsc -w</code></pre></li>
 </ol>
 <hr>
-<p>tsconfig.json的配置文件<br>配置参数：<br>include，表示需要编译的文件<br><em>&nbsp;<em>表示任意目录；</em>表示任意文件<br>“include”:{<br>    “./</em>&nbsp;<em>/</em>“<br>}<br>exclude,表示不需要编译的文件</p>
-<pre><code>
-## 变量和数据类型
+<p>tsconfig.json的配置文件<br>配置参数：<br>include，表示需要编译的文件</p>
+<ul>
+<li><em>表示任意目录；*表示任意文件<br>“include”:{<br>  “./</em> <em>/</em>“<br>}<br>exclude,表示不需要编译的文件<pre><code></code></pre></li>
+</ul>
+<h2 id="变量和数据类型"><a href="#变量和数据类型" class="headerlink" title="变量和数据类型"></a>变量和数据类型</h2><h3 id="一-变量声明方式"><a href="#一-变量声明方式" class="headerlink" title="一. 变量声明方式"></a>一. 变量声明方式</h3><ol>
+<li><p>格式：<br>let/const 变量: 数据类型;<br>let/const 变量: 数据类型 = 赋值;<br>function fn(参数: 类型, 参数: 类型)：类型&#123;<br> …<br>&#125;</p>
+<pre><code>let message: string = &quot;Hello World&quot;;
+message = &quot;Hello TypeScript&quot;; // 正确的做法
+message = 20; // 错误的做法，因为message是一个string类型</code></pre><p>注意：这里的string是小写的，和String是有区别的<br>string是TypeScript中定义的字符串类型，String是ECMAScript中定义的一个类</p>
+</li>
+<li><p>赋值即申明：<br>在一个变量第一次赋值时，会根据后面的赋值内容的类型，来推断出变量的类型：</p>
+<pre><code>let message = &quot;Hello World&quot;; // string类型
+let age = 20; // number类型
+let isFlag = true; // boolean类型</code></pre></li>
+</ol>
+<h3 id="二-JavaScript数据类型"><a href="#二-JavaScript数据类型" class="headerlink" title="二. JavaScript数据类型"></a>二. JavaScript数据类型</h3><ol>
+<li><p>number类型<br>数字类型是我们开发中经常使用的类型，TypeScript和JavaScript一样，不区分整数类型（int）和浮点型（double），统一为number类型。</p>
+</li>
+<li><p>boolean类型<br>boolean类型只有两个取值：true和false，非常简单</p>
+</li>
+<li><p>string类型<br>string类型是字符串类型，可以使用单引号或者双引号表示：</p>
+</li>
+<li><p>array类型<br>数组类型的定义也非常简单，有两种方式：<br>但是TSLint会推荐我们使用第一种方式</p>
+<pre><code>const names1: string[] = [&quot;why&quot;, &quot;abc&quot;, &quot;cba&quot;];
+const names2: Array&lt;string&gt; = [&quot;why&quot;, &quot;abc&quot;, &quot;cba&quot;];</code></pre></li>
+<li><p>object类型</p>
+<pre><code>// object类型表示,一般不会这么声明，因为没意义
+const myinfo: object = &#123;
+name: &quot;why&quot;,
+age: 20,
+height: 1.88,
+&#125;;
+//1.更多是声明对象中的属性：
+let b:&#123;name:string,age:number&#125;;
+b=&#123;name:&#39;zhangsan&#39;,age:18&#125;
+//注意，如果少声明变量也会报错
+b=&#123;name:&quot;lisi&quot;&#125;
+//解决方案：添加可选属性,加上一个?
+let b:&#123;name:string,age?:number&#125;;
+//2.[propName:string]:any表示后面参数可以是任意类型的属性，同时解决多个参数问题：
+let c:&#123;name:string.[propName:string]:any&#125;;
+c=&#123;name=&quot;wangwu&quot;,age:18,gender:&#39;男&#39;&#125;</code></pre></li>
+<li><p>Function函数<br>设置函数结构的类型声明：</p>
+<pre><code>let d:(a:number,b:number)=&gt;number;</code></pre></li>
+<li><p>null和undefined<br>在 JavaScript 中，undefined 和 null 是两个基本数据类型。<br>在TypeScript中，它们各自的类型也是undefined和null，也就意味着它们既是实际的值，也是自己的类型：</p>
+<pre><code>const n: null = null;
+const u: undefined = undefined;</code></pre></li>
+</ol>
+<h3 id="三、TypeScript数据类型"><a href="#三、TypeScript数据类型" class="headerlink" title="三、TypeScript数据类型"></a>三、TypeScript数据类型</h3><p>TypeScript在原有的JavaScript基础上引入了很多好用的类型：enum枚举类型、tuple元组类型、any类型、void类型、never类型等</p>
+<ol>
+<li><p>enum枚举的基本定义</p>
+<pre><code>enum Direction &#123;
+EAST,
+WEST,
+NORTH,
+SOUTH,
+&#125;
+const d1 = Direction.EAST;//打印0
+const d2 = Direction.NORTH;//打印2</code></pre><p>默认情况下，枚举中的数据是从0开始的，我们可以改变它的初始化值，比如下面的代码：</p>
+<pre><code>enum Direction &#123;
+EAST = 10,
+WEST,
+NORTH,
+SOUTH,
+&#125;
+const d1 = Direction.EAST;
+const d2 = Direction.NORTH;
+console.log(d1); // 10
+console.log(d2); // 12</code></pre></li>
+<li><p>tuple类型</p>
+</li>
+</ol>
+<p>tuple是元组类型,也就是固定长度的数组：[类型，类型，类型]</p>
+<pre><code>const tInfo: [string, number, number] = [&quot;why&quot;, 18, 1.88];
+const item1 = tInfo[0]; // why, 并且知道类型是string类型
+const item2 = tInfo[1]; // 18, 并且知道类型是number类型</code></pre><p>tuple和数组类比<br>但是数组中通常会定义一组相同的数据，如果数据不同会造成类型的丢失</p>
+<ol start="3">
+<li>any类型<br>在某些情况下，我们确实无法确定一个变量的类型，并且可能它会发生一些变化，这个时候我们可以使用any类型<pre><code>let a: any = &quot;why&quot;;
+a = 123;
+a = true;
+const aArray: any[] = [&quot;why&quot;, 18, 1.88];</code></pre></li>
+<li>void类型<br>void类型通常用于函数没有返回值时来使用<pre><code>const sum = (num1: number, num2: number) =&gt; &#123;
+return num1 + num2;
+&#125;;
+// 相当于下面的写法
+const sum: (num1: number, num2: number) =&gt; number</code></pre></li>
+<li>unknown;<br>表示未知，用法与any类型，与any区别：<br>any类型可以赋值给任意变量，但unknown不行</li>
+</ol>
+<h3 id="四、TypeScript定义接口"><a href="#四、TypeScript定义接口" class="headerlink" title="四、TypeScript定义接口"></a>四、TypeScript定义接口</h3><ol>
+<li>接口的基本使用<pre><code>interface IPerson &#123;
+name: string;
+&#125;</code></pre></li>
+<li>接口中定义方法<pre><code>interface Person &#123;
+name: string;
+run(): void;
+eat(): void;
+&#125;</code></pre></li>
+<li>如果我们有一个对象是该接口类型，那么必须包含对应的属性和方法：<pre><code>const p: Person = &#123;
+name: &quot;why&quot;,
+run() &#123;
+ console.log(&quot;running&quot;);
+&#125;,
+eat() &#123;
+ console.log(&quot;eating&quot;);
+&#125;,
+&#125;;</code></pre></li>
+<li>可选属性的定义</li>
+</ol>
+<p>默认情况下一个变量（对象）是对应的接口类型，那么这个变量（对象）必须实现接口中所有的属性和方法。<br>但是，开发中为了让接口更加的灵活，某些属性我们可能希望设计成可选的（想实现可以实现，不想实现也没有关系），这个时候就可以使用可选属性（后面详细讲解函数时，也会讲到函数中有可选参数）：</p>
+<pre><code>interface Person &#123;
+  name: string;
+  age?: number;
+  run(): void;
+  eat(): void;
+  study?(): void;
+&#125;</code></pre><ol start="5">
+<li>只读属性的定义</li>
+</ol>
+<p>如果一个属性，我们只是希望在定义的时候就定义值，之后不可以修改，那么可以在属性的前面加上一个关键字：readonly</p>
+<pre><code>interface Person &#123;
+  readonly name: string;
+  age?: number;
+  run(): void;
+  eat(): void;
+  study?(): void;
+&#125;</code></pre><h3 id="接口的高级使用"><a href="#接口的高级使用" class="headerlink" title="接口的高级使用"></a>接口的高级使用</h3><ol>
+<li>函数类型的定义</li>
+</ol>
+<p>接口不仅仅可以定义普通的对象类型，也可以定义函数的类型</p>
+<pre><code>// 函数类型的定义
+interface SumFunc &#123;
+  (num1: number, num2: number): number;
+&#125;
 
-### 一. 变量声明方式
-1. 格式：
-let/const 变量: 数据类型;
-let/const 变量: 数据类型 = 赋值;
-function fn(参数: 类型, 参数: 类型)：类型&#123;
-    ...
-&#125;</code></pre><p>let message: string = “Hello World”;<br>message = “Hello TypeScript”; // 正确的做法<br>message = 20; // 错误的做法，因为message是一个string类型</p>
-<pre><code>注意：这里的string是小写的，和String是有区别的
-string是TypeScript中定义的字符串类型，String是ECMAScript中定义的一个类
+// 定义具体的函数
+const sum: SumFunc = (num1, num2) =&gt; &#123;
+  return num1 + num2;
+&#125;;
 
-2. 赋值即申明：
-在一个变量第一次赋值时，会根据后面的赋值内容的类型，来推断出变量的类型：</code></pre><p>let message = “Hello World”; // string类型<br>let age = 20; // number类型<br>let isFlag = true; // boolean类型</p>
-<pre><code>
-### 二. JavaScript数据类型
+// 调用函数
+console.log(sum(20, 30));</code></pre><ol start="2">
+<li>可索引类型的定义</li>
+</ol>
+<p>和使用接口描述函数的类型差不多，我们也可以使用接口来描述 可索引类型<br>比如一个变量可以这样访问：a[3]，a[“name”]<br>可索引类型具有一个 索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</p>
+<pre><code>// 定义可索引类型的接口
+interface RoleMap &#123;
+  [index: number]: string;
+&#125;
 
-1. number类型
-数字类型是我们开发中经常使用的类型，TypeScript和JavaScript一样，不区分整数类型（int）和浮点型（double），统一为number类型。
+// 赋值具体的值
+// 赋值方式一：
+const roleMap1: RoleMap = &#123;
+  0: &quot;学生&quot;,
+  1: &quot;讲师&quot;,
+  2: &quot;班主任&quot;,
+&#125;;
 
-2. boolean类型
-boolean类型只有两个取值：true和false，非常简单
+// 赋值方式二：因为数组本身是可索引的值
+const roleMap2 = [&quot;鲁班七号&quot;, &quot;露娜&quot;, &quot;李白&quot;];
 
-3. string类型
-string类型是字符串类型，可以使用单引号或者双引号表示：
-
-4. array类型
-数组类型的定义也非常简单，有两种方式：
-但是TSLint会推荐我们使用第一种方式</code></pre><p>const names1: string[] = [“why”, “abc”, “cba”];<br>const names2: Array<string> = [“why”, “abc”, “cba”];</p>
-<pre><code>
-5. object类型</code></pre><p>// object类型表示,一般不会这么声明，因为没意义<br>const myinfo: object = {<br>  name: “why”,<br>  age: 20,<br>  height: 1.88,<br>};<br>//1.更多是声明对象中的属性：<br>let b:{name:string,age:number};<br>b={name:’zhangsan’,age:18}<br>//注意，如果少声明变量也会报错<br>b={name:”lisi”}<br>//解决方案：添加可选属性,加上一个?<br>let b:{name:string,age?:number};<br>//2.[propName:string]:any表示后面参数可以是任意类型的属性，同时解决多个参数问题：<br>let c:{name:string.[propName:string]:any};<br>c={name=”wangwu”,age:18,gender:’男’}</p>
-<pre><code>
-6. Function函数
-设置函数结构的类型声明：</code></pre><p>let d:(a:number,b:number)=&gt;number;</p>
-<pre><code>
-7. null和undefined
-在 JavaScript 中，undefined 和 null 是两个基本数据类型。
-在TypeScript中，它们各自的类型也是undefined和null，也就意味着它们既是实际的值，也是自己的类型：</code></pre><p>const n: null = null;<br>const u: undefined = undefined;</p>
-<pre><code>
-### 三、TypeScript数据类型
-TypeScript在原有的JavaScript基础上引入了很多好用的类型：enum枚举类型、tuple元组类型、any类型、void类型、never类型等
-
-1. enum枚举的基本定义</code></pre><p>enum Direction {<br>  EAST,<br>  WEST,<br>  NORTH,<br>  SOUTH,<br>}<br>const d1 = Direction.EAST;//打印0<br>const d2 = Direction.NORTH;//打印2</p>
-<pre><code>默认情况下，枚举中的数据是从0开始的，我们可以改变它的初始化值，比如下面的代码：</code></pre><p>enum Direction {<br>  EAST = 10,<br>  WEST,<br>  NORTH,<br>  SOUTH,<br>}<br>const d1 = Direction.EAST;<br>const d2 = Direction.NORTH;<br>console.log(d1); // 10<br>console.log(d2); // 12</p>
-<pre><code>
-2. tuple类型
-
-tuple是元组类型,也就是固定长度的数组：[类型，类型，类型]</code></pre><p>const tInfo: [string, number, number] = [“why”, 18, 1.88];<br>const item1 = tInfo[0]; // why, 并且知道类型是string类型<br>const item2 = tInfo[1]; // 18, 并且知道类型是number类型</p>
-<pre><code>tuple和数组类比
-但是数组中通常会定义一组相同的数据，如果数据不同会造成类型的丢失
-
-3. any类型
-在某些情况下，我们确实无法确定一个变量的类型，并且可能它会发生一些变化，这个时候我们可以使用any类型</code></pre><p>let a: any = “why”;<br>a = 123;<br>a = true;<br>const aArray: any[] = [“why”, 18, 1.88];</p>
-<pre><code>4. void类型
-void类型通常用于函数没有返回值时来使用</code></pre><p>const sum = (num1: number, num2: number) =&gt; {<br>  return num1 + num2;<br>};<br>// 相当于下面的写法<br>const sum: (num1: number, num2: number) =&gt; number</p>
-<pre><code>5. unknown;
-表示未知，用法与any类型，与any区别：
-any类型可以赋值给任意变量，但unknown不行
-
-### 四、TypeScript定义接口
-
-1. 接口的基本使用</code></pre><p>interface IPerson {<br>  name: string;<br>}</p>
-<pre><code>2. 接口中定义方法</code></pre><p>interface Person {<br>  name: string;<br>  run(): void;<br>  eat(): void;<br>}</p>
-<pre><code>3. 如果我们有一个对象是该接口类型，那么必须包含对应的属性和方法：</code></pre><p>const p: Person = {<br>  name: “why”,<br>  run() {<br>    console.log(“running”);<br>  },<br>  eat() {<br>    console.log(“eating”);<br>  },<br>};</p>
-<pre><code>4. 可选属性的定义
-
-默认情况下一个变量（对象）是对应的接口类型，那么这个变量（对象）必须实现接口中所有的属性和方法。
-但是，开发中为了让接口更加的灵活，某些属性我们可能希望设计成可选的（想实现可以实现，不想实现也没有关系），这个时候就可以使用可选属性（后面详细讲解函数时，也会讲到函数中有可选参数）：</code></pre><p>interface Person {<br>  name: string;<br>  age?: number;<br>  run(): void;<br>  eat(): void;<br>  study?(): void;<br>}</p>
-<pre><code>5. 只读属性的定义
-
-如果一个属性，我们只是希望在定义的时候就定义值，之后不可以修改，那么可以在属性的前面加上一个关键字：readonly</code></pre><p>interface Person {<br>  readonly name: string;<br>  age?: number;<br>  run(): void;<br>  eat(): void;<br>  study?(): void;<br>}</p>
-<pre><code>### 接口的高级使用
-1. 函数类型的定义
-
-接口不仅仅可以定义普通的对象类型，也可以定义函数的类型</code></pre><p>// 函数类型的定义<br>interface SumFunc {<br>  (num1: number, num2: number): number;<br>}</p>
-<p>// 定义具体的函数<br>const sum: SumFunc = (num1, num2) =&gt; {<br>  return num1 + num2;<br>};</p>
-<p>// 调用函数<br>console.log(sum(20, 30));</p>
-<pre><code>2. 可索引类型的定义
-
-和使用接口描述函数的类型差不多，我们也可以使用接口来描述 可索引类型
-比如一个变量可以这样访问：a[3]，a[&quot;name&quot;]
-可索引类型具有一个 索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</code></pre><p>// 定义可索引类型的接口<br>interface RoleMap {<br>  [index: number]: string;<br>}</p>
-<p>// 赋值具体的值<br>// 赋值方式一：<br>const roleMap1: RoleMap = {<br>  0: “学生”,<br>  1: “讲师”,<br>  2: “班主任”,<br>};</p>
-<p>// 赋值方式二：因为数组本身是可索引的值<br>const roleMap2 = [“鲁班七号”, “露娜”, “李白”];</p>
-<p>// 取出对应的值<br>console.log(roleMap1[0]); // 学生<br>console.log(roleMap2[1]); // 露娜<br>```</p>
-
+// 取出对应的值
+console.log(roleMap1[0]); // 学生
+console.log(roleMap2[1]); // 露娜</code></pre>
             </div>
             <hr/>
 
