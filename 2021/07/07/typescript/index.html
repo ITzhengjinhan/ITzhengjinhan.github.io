@@ -460,8 +460,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="变量和数据类型"><a href="#变量和数据类型" class="headerlink" title="变量和数据类型"></a>变量和数据类型</h2><h3 id="一-变量声明方式"><a href="#一-变量声明方式" class="headerlink" title="一. 变量声明方式"></a>一. 变量声明方式</h3><ol>
-<li><p>格式：<br>let/const 标识符: 数据类型 = 赋值;</p>
+                <h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><ol>
+<li>下载Node.js</li>
+<li>使用npm 全局安装typescript<pre><code>npm i -g typescript</code></pre></li>
+<li>创建ts文件并进行编辑<pre><code>tsc xxx.ts</code></pre></li>
+</ol>
+<h2 id="变量和数据类型"><a href="#变量和数据类型" class="headerlink" title="变量和数据类型"></a>变量和数据类型</h2><h3 id="一-变量声明方式"><a href="#一-变量声明方式" class="headerlink" title="一. 变量声明方式"></a>一. 变量声明方式</h3><ol>
+<li><p>格式：<br>let/const 变量: 数据类型;<br>let/const 变量: 数据类型 = 赋值;<br>function fn(参数: 类型, 参数: 类型)：类型{<br> …<br>}</p>
 <pre><code>let message: string = &quot;Hello World&quot;;
 message = &quot;Hello TypeScript&quot;; // 正确的做法
 message = 20; // 错误的做法，因为message是一个string类型</code></pre><p>注意：这里的string是小写的，和String是有区别的<br>string是TypeScript中定义的字符串类型，String是ECMAScript中定义的一个类</p>
@@ -482,12 +487,24 @@ let isFlag = true; // boolean类型</code></pre></li>
 <pre><code>const names1: string[] = [&quot;why&quot;, &quot;abc&quot;, &quot;cba&quot;];
 const names2: Array&lt;string&gt; = [&quot;why&quot;, &quot;abc&quot;, &quot;cba&quot;];</code></pre></li>
 <li><p>object类型</p>
-<pre><code>// object类型表示
+<pre><code>// object类型表示,一般不会这么声明，因为没意义
 const myinfo: object = &#123;
 name: &quot;why&quot;,
 age: 20,
 height: 1.88,
-&#125;;</code></pre></li>
+&#125;;
+//1.更多是声明对象中的属性：
+let b:&#123;name:string,age:number&#125;;
+b=&#123;name:&#39;zhangsan&#39;,age:18&#125;
+//注意，如果少声明变量也会报错
+b=&#123;name:&quot;lisi&quot;&#125;
+//解决方案：添加可选属性,加上一个?
+let b:&#123;name:string,age?:number&#125;;
+//2.[propName:string]:any表示后面参数可以是任意类型的属性，同时解决多个参数问题：
+let c:&#123;name:string.[propName:string]:any&#125;;
+c=&#123;name=&quot;wangwu&quot;,age:18,gender:&#39;男&#39;&#125;</code></pre></li>
+<li><p>Function函数<br>设置函数结构的类型声明：</p>
+<pre><code>let d:(a:number,b:number)=&gt;number;</code></pre></li>
 <li><p>null和undefined<br>在 JavaScript 中，undefined 和 null 是两个基本数据类型。<br>在TypeScript中，它们各自的类型也是undefined和null，也就意味着它们既是实际的值，也是自己的类型：</p>
 <pre><code>const n: null = null;
 const u: undefined = undefined;</code></pre></li>
@@ -521,31 +538,27 @@ console.log(d2); // 12</code></pre></li>
 const item1 = tInfo[0]; // why, 并且知道类型是string类型
 const item2 = tInfo[1]; // 18, 并且知道类型是number类型</code></pre><p>tuple和数组类比<br>但是数组中通常会定义一组相同的数据，如果数据不同会造成类型的丢失</p>
 <ol start="3">
-<li><p>any类型<br>在某些情况下，我们确实无法确定一个变量的类型，并且可能它会发生一些变化，这个时候我们可以使用any类型</p>
-<pre><code>let a: any = &quot;why&quot;;
+<li>any类型<br>在某些情况下，我们确实无法确定一个变量的类型，并且可能它会发生一些变化，这个时候我们可以使用any类型<pre><code>let a: any = &quot;why&quot;;
 a = 123;
 a = true;
 const aArray: any[] = [&quot;why&quot;, 18, 1.88];</code></pre></li>
-<li><p>void类型<br>void类型通常用于函数没有返回值时来使用</p>
-<pre><code>const sum = (num1: number, num2: number) =&gt; &#123;
+<li>void类型<br>void类型通常用于函数没有返回值时来使用<pre><code>const sum = (num1: number, num2: number) =&gt; &#123;
 return num1 + num2;
 &#125;;
 // 相当于下面的写法
-const sum: (num1: number, num2: number) =&gt; number = (num1: number, num2: number) =&gt; &#123;
-return num1 + num2;
-&#125;;</code></pre><h3 id="四、TypeScript定义接口"><a href="#四、TypeScript定义接口" class="headerlink" title="四、TypeScript定义接口"></a>四、TypeScript定义接口</h3></li>
-<li><p>接口的基本使用</p>
-<pre><code>interface IPerson &#123;
+const sum: (num1: number, num2: number) =&gt; number</code></pre></li>
+<li>unknown;<br>表示未知，用法与any类型，与any区别：<br>any类型可以赋值给任意变量，但unknown不行</li>
+</ol>
+<h3 id="四、TypeScript定义接口"><a href="#四、TypeScript定义接口" class="headerlink" title="四、TypeScript定义接口"></a>四、TypeScript定义接口</h3><ol>
+<li>接口的基本使用<pre><code>interface IPerson &#123;
 name: string;
 &#125;</code></pre></li>
-<li><p>接口中定义方法</p>
-<pre><code>interface Person &#123;
+<li>接口中定义方法<pre><code>interface Person &#123;
 name: string;
 run(): void;
 eat(): void;
 &#125;</code></pre></li>
-<li><p>如果我们有一个对象是该接口类型，那么必须包含对应的属性和方法：</p>
-<pre><code>const p: Person = &#123;
+<li>如果我们有一个对象是该接口类型，那么必须包含对应的属性和方法：<pre><code>const p: Person = &#123;
 name: &quot;why&quot;,
 run() &#123;
  console.log(&quot;running&quot;);
@@ -554,8 +567,7 @@ eat() &#123;
  console.log(&quot;eating&quot;);
 &#125;,
 &#125;;</code></pre></li>
-<li><p>可选属性的定义</p>
-</li>
+<li>可选属性的定义</li>
 </ol>
 <p>默认情况下一个变量（对象）是对应的接口类型，那么这个变量（对象）必须实现接口中所有的属性和方法。<br>但是，开发中为了让接口更加的灵活，某些属性我们可能希望设计成可选的（想实现可以实现，不想实现也没有关系），这个时候就可以使用可选属性（后面详细讲解函数时，也会讲到函数中有可选参数）：</p>
 <pre><code>interface Person &#123;
