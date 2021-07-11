@@ -470,12 +470,28 @@ tsc xxx.ts -w;不用手动编译，自动编译；缺陷：只能监听某一个
 tsc --init
 tsc -w</code></pre></li>
 <li>tsconfig.json的配置文件<pre><code>配置参数：
-include，表示需要编译的文件
+include：表示需要编译的文件
 \*\*表示任意目录；\*表示任意文件
 &quot;include&quot;:&#123;
  &quot;./\*\*/\*&quot;
 &#125;//这里的转意符\要去掉，本博客不加\的话*出不来
-exclude,表示不需要编译的文件</code></pre></li>
+exclude：表示不需要编译的文件
+compilerOptions:编译器的选项
+&quot;compilerOptions&quot;:&#123;
+ //target用来指定ts被编译为的ES版本
+ &quot;target&quot;:&quot;ES2015&quot;
+ //module:指定要使用的模块化规范
+ //lib:用来指定项目中要使用的库，一般有默认库，不建议改
+ //outDir:用来指定编译后js文件所在的目录
+ //allowJs:是否对js文件进行编译，默认是false
+ //checkJs:js文件是否符合语法规范，默认false
+ //removeComments:是否移出注释
+ //noEmit:是否不生成编译后的js文件
+ //noEmitOnError:当有错误时不生成js文件
+ //alwaysStrict:用来设置编译后的js文件是否使用严格模式
+ //noImplicitAny:不允许隐式的any类型
+ //noImplicitThis:不允许不明确类型的this
+&#125;</code></pre></li>
 </ol>
 <h2 id="变量和数据类型"><a href="#变量和数据类型" class="headerlink" title="变量和数据类型"></a>变量和数据类型</h2><h3 id="一-变量声明方式"><a href="#一-变量声明方式" class="headerlink" title="一. 变量声明方式"></a>一. 变量声明方式</h3><ol>
 <li><p>格式：<br>let/const 变量: 数据类型;<br>let/const 变量: 数据类型 = 赋值;<br>function fn(参数: 类型, 参数: 类型)：类型{<br> …<br>}</p>
