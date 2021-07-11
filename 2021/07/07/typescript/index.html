@@ -769,9 +769,12 @@ test&lt;number, string&gt;(10, &quot;hello&quot;);</code></pre></li>
 <pre><code>interface MyInter&#123;
 length: number;
 &#125;
-</code></pre></li>
+function test&lt;T extends MyInter&gt;(arg: T): number&#123;
+return arg.length;
+&#125;
+使用T extends MyInter表示泛型T必须是MyInter的子类，不一定非要使用接口类和抽象类同样适用；</code></pre><h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><p><a target="_blank" rel="noopener" href="https://ts.xcatliu.com/">TypeScript入门教程</a><br><a target="_blank" rel="noopener" href="https://www.tslang.cn/docs/home.html">TS官方文档</a></p>
+</li>
 </ol>
-<p>function test<T extends MyInter>(arg: T): number{<br>  return arg.length;<br>}<br>使用T extends MyInter表示泛型T必须是MyInter的子类，不一定非要使用接口类和抽象类同样适用；<br>```</p>
 
             </div>
             <hr/>
