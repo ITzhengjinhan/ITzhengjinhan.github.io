@@ -661,15 +661,30 @@ const p1 = new Person(&#39;孙悟空&#39;);
 // 实际通过调用getter方法读取name属性
 console.log(p1.name);
 // 实际通过调用setter方法修改name属性 
-p1.name = &#39;猪八戒&#39;; </code></pre><h3 id="五、TypeScript定义接口"><a href="#五、TypeScript定义接口" class="headerlink" title="五、TypeScript定义接口"></a>五、TypeScript定义接口</h3><ol>
+p1.name = &#39;猪八戒&#39;; </code></pre><h3 id="五、抽象类"><a href="#五、抽象类" class="headerlink" title="五、抽象类"></a>五、抽象类</h3><p>抽象类是专门用来被其他类所继承的类，它只能被其他类所继承不能用来创建实例</p>
+<pre><code>abstract class Animal&#123;
+  abstract run(): void;
+  bark()&#123;
+      console.log(&#39;动物在叫~&#39;);
+  &#125;
+&#125;
+
+class Dog extends Animals&#123;
+  run()&#123;
+      console.log(&#39;狗在跑~&#39;);
+  &#125;
+&#125;
+使用abstract开头的方法叫做抽象方法，抽象方法没有方法体只能定义在抽象类中，继承抽象类时抽象方法必须要实现;</code></pre><h3 id="六、TypeScript定义接口"><a href="#六、TypeScript定义接口" class="headerlink" title="六、TypeScript定义接口"></a>六、TypeScript定义接口</h3><ol>
 <li>接口的基本使用<pre><code>interface IPerson &#123;
 name: string;
-&#125;</code></pre></li>
+&#125;
+接口中所有的属性都不能有实际的值</code></pre></li>
 <li>接口中定义方法<pre><code>interface Person &#123;
 name: string;
 run(): void;
 eat(): void;
-&#125;</code></pre></li>
+&#125;
+接口中所有的方法都是抽象方法</code></pre></li>
 <li>如果我们有一个对象是该接口类型，那么必须包含对应的属性和方法：<pre><code>const p: Person = &#123;
 name: &quot;why&quot;,
 run() &#123;
@@ -735,7 +750,29 @@ const roleMap2 = [&quot;鲁班七号&quot;, &quot;露娜&quot;, &quot;李白&quo
 
 // 取出对应的值
 console.log(roleMap1[0]); // 学生
-console.log(roleMap2[1]); // 露娜</code></pre>
+console.log(roleMap2[1]); // 露娜</code></pre><h3 id="七、泛型函数"><a href="#七、泛型函数" class="headerlink" title="七、泛型函数"></a>七、泛型函数</h3><p>定义一个函数或类时，有些情况下无法确定其中要使用的具体类型（返回值、参数、属性的类型不能确定）；<br>此时泛型便能够发挥作用；</p>
+<ol>
+<li><p>创建泛型函数</p>
+<pre><code>function test&lt;T&gt;(arg: T): T&#123;
+ return arg;
+&#125;
+这里的&lt;T&gt;就是泛型；</code></pre></li>
+<li><p>使用泛型函数</p>
+<pre><code>test(10)//不指定泛型，ts可以自动对类型进行推断
+test&lt;number&gt;(10)//指定泛型</code></pre></li>
+<li><p>函数中声明多个泛型<br>可以同时指定多个泛型，泛型间使用逗号隔开：</p>
+<pre><code>function test&lt;T, K&gt;(a: T, b: K): K&#123;
+return b;
+&#125;
+test&lt;number, string&gt;(10, &quot;hello&quot;);</code></pre></li>
+<li><p>除此之外，也可以对泛型的范围进行约束</p>
+<pre><code>interface MyInter&#123;
+length: number;
+&#125;
+</code></pre></li>
+</ol>
+<p>function test<T extends MyInter>(arg: T): number{<br>  return arg.length;<br>}<br>使用T extends MyInter表示泛型T必须是MyInter的子类，不一定非要使用接口类和抽象类同样适用；<br>```</p>
+
             </div>
             <hr/>
 
