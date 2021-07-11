@@ -584,6 +584,7 @@ class Student &#123;
 <pre><code>class Student1 extends Person &#123;
   constructor(name, age, sno, score) &#123;
     super(name, age);
+    //子类继承父类时，必须调用父类的构造方法（如果子类中也定义了构造方法）！
     this.sno = sno;
     this.score = score;
   &#125;

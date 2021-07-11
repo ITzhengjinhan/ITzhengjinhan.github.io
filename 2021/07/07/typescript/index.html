@@ -577,7 +577,64 @@ return num1 + num2;
 const sum: (num1: number, num2: number) =&gt; number</code></pre></li>
 <li>unknown;<br>表示未知，用法与any类型，与any区别：<br>any类型可以赋值给任意变量，但unknown不行</li>
 </ol>
-<h3 id="四、TypeScript定义接口"><a href="#四、TypeScript定义接口" class="headerlink" title="四、TypeScript定义接口"></a>四、TypeScript定义接口</h3><ol>
+<h3 id="四、类的定义"><a href="#四、类的定义" class="headerlink" title="四、类的定义"></a>四、类的定义</h3><pre><code>class 类名 &#123;
+    属性名: 类型;
+    constructor(参数: 类型)&#123;
+        this.属性名 = 参数;
+    &#125;
+    方法名()&#123;
+        ....
+    &#125;
+&#125;
+class Person&#123;
+        name: string;
+        age: number;
+        static type: string=&#39;人&#39;;
+        constructor(name: string, age: number)&#123;
+            this.name = name;
+            this.age = age;
+        &#125;
+
+        sayHello()&#123;
+            //this指向当前实例
+            console.log(`大家好，我是$&#123;this.name&#125;`);
+        &#125;
+    &#125;
+使用类：
+const p = new Person(&#39;孙悟空&#39;, 18);
+p.sayHello();//实例方法
+Person.type;//类属性
+
+类的继承与属性三种修饰符
+class A &#123;
+    //默认类型时public
+    protected num: number;
+    constructor(num: number) &#123;
+        this.num = num;
+    &#125;
+    run()&#123;
+        console.log(this.num)
+    &#125;
+&#125;
+class X extends A &#123;
+    protected name: string;
+    constructor(num: number, name: string) &#123;
+        super(num);//子类继承父类时，必须调用父类的构造方法（如果子类中也定义了构造方法）！
+        this.name = name;
+    &#125;
+    work()&#123;
+        console.log(`$&#123;this.name&#125;在工作,$&#123;this.number&#125;`)
+    &#125;
+&#125;
+var w = new A(123)
+w.run() // protected在类里面可以访问
+w.num // 报错 protected 在类外部无法访问
+var x = new X(123,&#39;zhangsan&#39;)
+w.work() // protected在子类中可以访问
+
+public（默认值），公有 在类里面、子类、类外部都可以访问
+protected ， 保护类型 在类里面 子类里面可以访问，在类外部没法访问
+private ，私有 在类里面可以访问，在子类、类外部都没法访问</code></pre><h3 id="五、TypeScript定义接口"><a href="#五、TypeScript定义接口" class="headerlink" title="五、TypeScript定义接口"></a>五、TypeScript定义接口</h3><ol>
 <li>接口的基本使用<pre><code>interface IPerson &#123;
 name: string;
 &#125;</code></pre></li>
