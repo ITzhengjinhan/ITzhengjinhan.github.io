@@ -695,6 +695,105 @@ export default class App extends Component &#123;
       &lt;/div&gt;
     )
   &#125;
+&#125;</code></pre><h2 id="六、非父子组件通信"><a href="#六、非父子组件通信" class="headerlink" title="六、非父子组件通信"></a>六、非父子组件通信</h2><p>非父子组件数据的共享：在开发中，比较常见的数据传递方式是通过props属性自上而下（由父到子）进行传递。<br>但是对于有一些场景：比如一些数据需要在多个组件中进行共享（地区偏好、UI主题、用户登录状态、用户信息等）。<br>如果我们在顶层的App中定义这些信息，之后一层层传递下去，那么对于一些中间层不需要数据的组件来说，是一种冗余的操作。<br>例如：传统不使用context情况下</p>
+<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
+function ProfileHeader(props) &#123;
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;用户昵称: &#123;props.nickname&#125;&lt;/h2&gt;
+      &lt;h2&gt;用户等级: &#123;props.level&#125;&lt;/h2&gt;
+    &lt;/div&gt;
+  )
+&#125;
+class Profile extends Component &#123;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;ProfileHeader nickname=&#123;this.props.nickname&#125; level=&#123;this.props.level&#125; /&gt;
+        &lt;ul&gt;
+          &lt;li&gt;设置1&lt;/li&gt;
+          &lt;li&gt;设置2&lt;/li&gt;
+          &lt;li&gt;设置3&lt;/li&gt;
+          &lt;li&gt;设置4&lt;/li&gt;
+          &lt;li&gt;设置5&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;
+export default class App extends Component &#123;
+  constructor() &#123;
+    super();
+
+    this.state = &#123;
+      nickname: &quot;coderwhy&quot;,
+      level: 99
+    &#125;
+  &#125;
+  render() &#123;
+    const &#123; nickname, level &#125; = this.state;
+    return (
+      &lt;div&gt;
+        &lt;Profile nickname=&#123;nickname&#125; level=&#123;level&#125; /&gt;
+        &lt;h2&gt;其他内容&lt;/h2&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;</code></pre><p>下面两种写法是等价的：</p>
+<pre><code>function App1() &#123;
+  return &lt;Greeting firstName=&quot;Ben&quot; lastName=&quot;Hector&quot; /&gt;;
+&#125;
+
+function App2() &#123;
+  const props = &#123;firstName: &#39;Ben&#39;, lastName: &#39;Hector&#39;&#125;;
+  return &lt;Greeting &#123;...props&#125; /&gt;;
+&#125;</code></pre><p>那么我们上面的Profile的传递代码可以修改为如下代码：<br>如果层级更多的话，一层层传递是非常麻烦，并且代码是非常冗余的：</p>
+<pre><code>&lt;ProfileHeader &#123;...this.props&#125;/&gt;</code></pre><h3 id="Context使用"><a href="#Context使用" class="headerlink" title="Context使用"></a>Context使用</h3><ol>
+<li><p>创建一个需要共享的Context对象：<br>const MyContext = React.createContext(defaultValue);</p>
+</li>
+<li><p>如果一个组件订阅了Context，那么这个组件会从离自身最近的那个匹配的 Provider 中读取到当前的context值；<br>defaultValue是组件在顶层查找过程中没有找到对应的Provider，那么就使用默认值<br>&lt;MyContext.Provider value={/* 某个值 */}&gt;</p>
+</li>
+</ol>
+<pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
+const UserContext = React.createContext(&#123; nickname: &quot;默认&quot;, level: -1 &#125;)
+class ProfileHeader extends Component &#123;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;h2&gt;用户昵称: &#123;this.context.nickname&#125;&lt;/h2&gt;
+        &lt;h2&gt;用户等级: &#123;this.context.level&#125;&lt;/h2&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;
+ProfileHeader.contextType = UserContext;
+class Profile extends Component &#123;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;ProfileHeader /&gt;
+        &lt;ul&gt;
+          &lt;li&gt;设置1&lt;/li&gt;
+          &lt;li&gt;设置2&lt;/li&gt;
+          &lt;li&gt;设置3&lt;/li&gt;
+          &lt;li&gt;设置4&lt;/li&gt;
+          &lt;li&gt;设置5&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    )
+  &#125;
+&#125;
+export default class App extends Component &#123;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;UserContext.Provider value=&#123;&#123; nickname: "why", level: 99 &#125;&#125;&gt;
+          &lt;Profile /&gt;
+        &lt;/UserContext.Provider&gt;
+        &lt;h2&gt;其他内容&lt;/h2&gt;
+      &lt;/div&gt;
+    )
+  &#125;
 &#125;</code></pre>
             </div>
             <hr/>
